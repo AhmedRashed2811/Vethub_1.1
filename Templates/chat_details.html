@@ -1,0 +1,472 @@
+{% load static %}
+{% load tz %}
+{% timezone "Africa/Cairo" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% for group_for in request.user.groups.all %}
+        {% if group_for.name == 'Doctors' %}
+            <title>Chat With {{customer.name}}</title>
+        {% elif group_for.name == 'Customers' %}
+            <title>Chat With Dr. {{doctor.name}}</title>
+        {% endif %}
+    {% endfor %}
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'imgs/logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/style8.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/style21.css' %}">
+
+</head>
+<body>
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex justify-content-center align-items-center" to='' href="{% url 'index' %}">
+        
+                <img src="{% static 'imgs/logo.png' %}" alt="logo" />
+                <h1 class="m-0">Vet<span>Hub</span></h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent" style="text-align: center;">
+                
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ng-star-inserted">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
+            
+                    <li class="nav-item">
+                        {% if request.user.is_authenticated %}
+                            {% csrf_token %}
+                            {% for group_for in request.user.groups.all %}
+                                {% if group_for.name == 'Doctors' %}
+                                    <a class="nav-link active" href="{% url 'chats' %}" >Chats</a>
+                                {% elif group_for.name == 'Customers' %}
+                                    <a class="nav-link active" href="{% url 'chats' %}" >Chats</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+            
+                    <li class="nav-item">
+                        {% if request.user.is_authenticated %}
+                            {% csrf_token %}
+                            {% for group_for in request.user.groups.all %}
+                                {% if group_for.name == 'Doctors' %}
+                                    <a class="nav-link" href="{% url 'edit_doctor' request.user.id%}" >Profile</a>
+                                {% elif group_for.name == 'Customers' %}
+                                    <a class="nav-link" href="{% url 'edit_customer' request.user.id%}" >Profile</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+
+                    <li class="nav-item">
+
+                    {% if request.user.is_authenticated %}
+                        {% csrf_token %}
+                        {% for group_for in request.user.groups.all %}
+                            {% if group_for.name == 'Admins' %}
+                                <a class="nav-link" href="{% url 'admin_panel' %}" >Admin Panel</a>
+                            {% elif group_for.name == 'Doctors' %}
+                                <a class="nav-link" href="{% url 'clinic_management_system' %}" >Clinic Management System</a>
+                            {% elif group_for.name == 'Customers' %}
+                                <a class="nav-link" href="{% url 'customer_previous_appointments' %}" >Appointments</a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                        
+                    </li>
+            
+                </ul>
+        
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-center align-items-center gap-2">
+        
+                    <li class='nav-item position-relative'>
+                        <div class="flag"  style="display:none;">
+                            <!-- <img src="" alt=""> -->
+                            <svg width="60" height="35" viewBox="0 0 60 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="60" height="35" rx="6" fill="#F7FAF8"/>
+                                <rect x="3.5" y="3" width="53" height="29" fill="#FAFAFA"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M56.5 28.5326V22.2282H44.9934L56.5 28.5326Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M42.5526 22.2283L56.5 29.7935L56.5 32L38.3684 22.2283H42.5526Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M35.2303 32H50.2237L35.2303 23.8043V32Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7697 32H10.125L24.7697 23.8043L24.7697 32Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7697 22.2283L7.475 32L3.5 32L21.1434 22.2283H24.7697Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 28.5326V22.2282H15.0066L3.5 28.5326Z" fill="#012169"/>
+                                <rect x="3.5" y="14.6631" width="53" height="5.67391" fill="#C8102E"/>
+                                <rect x="26.8618" y="3" width="6.27632" height="29" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M56.5 6.46741V12.7718H44.9934L56.5 6.46741Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M35.2303 12.7717L52.525 3L56.5 3L38.8566 12.7717H35.2303Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M35.2303 3H49.875L35.2303 11.1957L35.2303 3Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7697 3H9.77632L24.7697 11.1957V3Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4474 12.7717L3.5 5.20652L3.5 3L21.6316 12.7717H17.4474Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 6.46741V12.7718H15.0066L3.5 6.46741Z" fill="#012169"/>
+                                <rect class="flagHover" x="3.5" y="3" width="53" height="29" fill="black" fill-opacity="0.16"/>
+                                </svg>
+                                
+                        </div>
+                    </li>
+
+                    {% if not request.user.is_authenticated %}
+
+                        <li class="nav-item ng-star-inserted cursorPointer">
+                            <a href="{% url 'signup' %}" class="nav-link logout fw-bolder">SignUp</a>
+                        </li>
+                        <li class="nav-item ng-star-inserted cursorPointer">
+                            <a href="{% url 'login' %}" class="nav-link logout fw-bolder">Login</a>
+                        </li>
+
+                    {%else%}
+                        <li class="nav-item ng-star-inserted cursorPointer">
+                            <button class="nav-link logout fw-bolder"  type="button" class="btn delete mx-2" data-bs-toggle="modal" data-bs-target="#staticBackdroptwo">Logout</button>
+                        </li>
+                    {% endif %}
+                    
+                </ul>
+        
+            </div>
+        </div>
+    </nav>
+
+    <!-- Chats -->
+    <section class="userChat">
+        <div class="container">
+
+            <div class="header d-flex align-items-center">
+                {% for group_for in request.user.groups.all %}
+                    {% if group_for.name == 'Doctors' %}
+                        <img src="{% static 'imgs/Avatar.png' %}" alt="Profile Picture">
+                    {% elif group_for.name == 'Customers' %}
+                        <a href="{% url 'doctor_details' doctor.id %}">
+                            <img src="{{ doctor.doctor.profile_photo.url }}">
+                        </a>
+                    {% endif %}
+                {% endfor %}
+                
+                {% for group_for in request.user.groups.all %}
+                    {% if group_for.name == 'Doctors' %}
+                        <h1>{{customer.name}}</h1>
+                    {% elif group_for.name == 'Customers' %}
+                        <h1>Dr. {{doctor.name}}</h1>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+            <div class="body">
+                <div class="allMassages d-flex flex-column" id="ChatBody">
+
+                    {% for message in messages %}
+                        {% if message.msg_sender != request.user %}
+                            <span class=date id="date-{{message.id}}" style="display: none;"></span>
+                            <div class="chatMassage">
+                                <p>{{ message.content }}</p>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p style="font-size: 15px;" class="msg-time">{{ message.timestamp|date:"g:i A" }}</p>
+                                <p id="date-two-{{message.id}}" style="display: none;" class="msg-date">{{ message.timestamp|date:"F j, Y" }}</p>
+                                <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>{{message.seen}}</p> -->
+                            </div>
+
+                            <span class=date id="date-{{message.id}}" style="display: none;"></span>
+                        {%else%}
+                            <span class=date id="date-{{message.id}}" style="display: none;"></span>
+                            <div class="myMassage">
+                                <p>{{ message.content }}</p>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p style="font-size: 15px;" class="msg-time">{{ message.timestamp|date:"g:i A" }}</p>
+                                <p id="date-two-{{message.id}}" style="display: none;" class="msg-date">{{ message.timestamp|date:"F j, Y" }}</p>
+                                <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>{{message.seen}}</p> -->
+                            </div>
+
+                            <span class=date id="date-{{message.id}}" style="display: none;"></span>
+                        {% endif %}
+
+                    {% endfor %}
+
+
+                </div>
+                <div class="footer">
+
+                    <form id="myForm" class="h-100 d-flex justify-content-between align-items-center" action="" method="POST">
+                        {% csrf_token %}
+                        <input type="text" placeholder="Type your Message..." name="content" id="content">
+                        <button type="button" onclick="temp()" id="submit-button">
+                            <img src="{% static 'imgs/send-massage.png' %}" alt="button send massage">
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-start Footer">
+                <div class="d-flex justify-content-center align-items-center twoSections">
+                    <div class="sectionOne py-4">
+                        <div class="logo d-flex align-items-center">
+                            <img src="{% static 'imgs/logo.png' %}" alt="logo" />
+                            <h1 class="m-0">Vet<span>Hub</span></h1>
+                        </div>
+                        <p>A website for booking veterinary doctors</p>
+                        <section class="socialMedia">
+                            <h3>Social Media</h3>
+                            <section class="socialLinks d-flex justify-content-around align-items-center pt-2">
+                                    <a href="https://www.facebook.com/"><img src="{% static 'imgs/facebook.png' %}" alt="facebook"></a>
+                                    <a href="#"><img src="{% static 'imgs/Google.png' %}" alt="Google"></a>
+                                    <a href="https://www.linkedin.com/"><img src="{% static 'imgs/linkedin.png' %}" alt="linkedin"></a>
+                            </section>
+                        </section>
+                    </div>
+                    <div class="sectionTwo py-4">
+                        <h3>Your Pet is in safe hands</h3>
+                        <p>VetHub website first and last goal is to obtain the best and fastest way to care for your pet</p>
+                        
+                        {% for group_for in request.user.groups.all %}
+                            {% if group_for.name == 'Customers' %}
+                                <h3>Contact Us</h3>
+                                <form method="post" class="d-flex justify-content-center align-items-center">
+                                    {% csrf_token %}
+                                    {{ supportTeamMessageForm.as_p }}
+                                    <input id='Massage' name="message" class='form-control' type="text" placeholder="Massage Us" />
+                                    <div class="px-2">
+                                        <button  type="submit" class='btn text-white'>Send</button>
+                                    </div>
+                                </form>
+
+                            {% endif %}
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+                <div class="sectionThree py-4">
+                    <h3>Get in Touch</h3>
+                    <section>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+201222222222</span>
+                    </section>
+                    <section>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>contact@example.com</span>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Massage Confirmation -->
+    <div class="modal fade" id="staticBackdroptwo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Logout Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2>Are you sure you want to logout your account?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="{% url 'logout'  %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn Delete-btn" style="background-color: #019874d0;">Logout</button>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <div class="w-100 modal-father"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
+        var allMassages = document.querySelector('.userChat .body .allMassages');
+        allMassages.scrollTop = allMassages.scrollHeight;
+        var lastDate = ""
+        var lastTimeElement = ""
+        var counter = 0
+        var counter2 = 0
+
+        function checkDate(){
+            var times = document.querySelectorAll('.msg-time')
+            times.forEach(function(time, index, array){
+                var datef = time.nextElementSibling.innerHTML
+                if (counter == 0){
+                    var date = document.getElementById(time.nextElementSibling.id).innerHTML
+                    var formattedDate = moment(date, "MMMM DD, YYYY, h:mm a").format("DD-MM-YYYY");
+                    
+                    document.getElementById(time.parentElement.previousElementSibling.id).style.display = "block"
+                    document.getElementById(time.parentElement.previousElementSibling.id).style.color = "#fff"
+                    document.getElementById(time.parentElement.previousElementSibling.id).style.fontStyle = "normal"
+                    document.getElementById(time.parentElement.previousElementSibling.id).style.fontFamily = "Poppins"
+                    document.getElementById(time.parentElement.previousElementSibling.id).style.fontWeight = "500"
+                    document.getElementById(time.parentElement.previousElementSibling.id).style.fontSize = "20px"
+                    document.getElementById(time.parentElement.previousElementSibling.id).style.lineHeight = "158%"
+                    document.getElementById(time.parentElement.previousElementSibling.id).style.width = "fit-content"
+                    document.getElementById(time.parentElement.previousElementSibling.id).innerHTML = formattedDate
+                    counter += 1
+                    
+                }else if (counter != 0 && counter < times.length - 1){
+
+                    var nextIndex = index + 1;
+                    if (nextIndex < array.length) {
+                        var nextTimeElement = array[nextIndex]
+                        var nextTime = array[nextIndex].innerHTML;
+                        var datef2 = nextTimeElement.nextElementSibling.innerHTML
+                    }
+
+                    if (datef != datef2){
+                        
+                        var date2 = document.getElementById(nextTimeElement.nextElementSibling.id).innerHTML
+                        var formattedDate = moment(date2, "MMMM DD, YYYY, h:mm a").format("DD-MM-YYYY");
+                        lastDate = formattedDate
+                        document.getElementById(nextTimeElement.parentElement.nextElementSibling.id).style.display = "block"
+                        document.getElementById(nextTimeElement.parentElement.nextElementSibling.id).style.color = "#fff"
+                        document.getElementById(nextTimeElement.parentElement.nextElementSibling.id).style.fontStyle = "normal"
+                        document.getElementById(nextTimeElement.parentElement.nextElementSibling.id).style.fontFamily = "Poppins"
+                        document.getElementById(nextTimeElement.parentElement.nextElementSibling.id).style.fontWeight = "500"
+                        document.getElementById(nextTimeElement.parentElement.nextElementSibling.id).style.fontSize = "20px"
+                        document.getElementById(nextTimeElement.parentElement.nextElementSibling.id).style.lineHeight = "158%"
+                        document.getElementById(nextTimeElement.parentElement.nextElementSibling.id).style.width = "fit-content"
+                        document.getElementById(nextTimeElement.parentElement.nextElementSibling.id).innerHTML = formattedDate
+                    }
+
+                    counter += 1
+                    
+                    lastTimeElement=nextTimeElement.parentElement
+                }
+            })
+        }
+        
+        checkDate()
+
+        // Function to convert date string to "7:51 PM" format
+        function formatDateToTime(dateString) {
+            // Create a new Date object from the provided date string
+            const date = new Date(dateString);
+            
+            // Get the hour and minute components
+            let hour = date.getHours();
+            const minute = date.getMinutes();
+
+            // Determine AM or PM and adjust hour accordingly
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+            hour = hour % 12 || 12; // Convert hour to 12-hour format
+
+            // Construct the formatted time string
+            const formattedTime = `${hour}:${minute < 10 ? '0' : ''}${minute} ${ampm}`;
+
+            return formattedTime;
+        }
+
+        const websocketProtocol = window.location.protocol === "https:" ? "wss": "ws";
+        const wsEndpoint = `${websocketProtocol}://${window.location.host}/ws/notification/{{chat.id}}`
+        const socket = new WebSocket(wsEndpoint)
+    
+        function temp(){
+            const chatMessage = document.getElementById("content").value
+            if (chatMessage == ""){
+                
+            }else{
+                socket.send(
+                    JSON.stringify({
+                        'message': chatMessage,
+                        'sender_id' : '{{request.user.id}}',
+                        'receiver_id': '{{receiver.id}}',
+                        'chat_id' : '{{chat.id}}',
+                        'user_id': '{{request.user.id}}',
+                        'time': new Date()
+                    })
+                )
+                document.getElementById("content").value = ""
+            }
+        }
+
+        socket.addEventListener("message", (event) =>{
+            const messageData = JSON.parse(event.data);
+            
+            if(messageData["message"]["receiver_id"] == "{{request.user.id}}"){
+                
+                const chatBody = document.getElementById("ChatBody");
+                const chatMessageBox = document.createElement("div")
+                chatMessageBox.classList.add("chatMassage");
+                chatMessageBox.innerHTML = `<p>${messageData["message"]["message"]}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <p style="font-size: 15px;" class="msg-time">${formatDateToTime(messageData["message"]["time"])}</p>`;
+                
+                chatBody.append(chatMessageBox);
+                scrollToBottom();
+                document.getElementById("content").value = ""
+            }
+
+            if (messageData["message"]["sender_id"] == "{{request.user.id}}"){
+                const chatBody = document.getElementById("ChatBody");
+                const chatMessageBox = document.createElement("div")
+                chatMessageBox.classList.add("myMassage");
+                
+                chatMessageBox.innerHTML = `<p>${messageData["message"]["message"]}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <p style="font-size: 15px;" class="msg-time">${formatDateToTime(messageData["message"]["time"])}</p>
+                                            `;
+
+                chatBody.append(chatMessageBox);
+
+                scrollToBottom(); 
+                document.getElementById("content").value = ""
+
+            }
+
+            var date = new Date(messageData["message"]["time"]);
+
+            
+            // Get day, month, and year
+            var day = date.getDate().toString().padStart(2, '0'); // Add leading zero if needed
+            var month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-indexed
+            var year = date.getFullYear();
+            var formattedDate3 = `${day}-${month}-${year}`;
+            
+
+            if(formattedDate3 != lastDate && counter2 == 0){
+
+                var newDate = document.createElement("div")
+                newDate.classList.add("date")
+                newDate.style.color = "#fff"
+                newDate.style.fontStyle = "normal"
+                newDate.style.fontFamily = "Poppins"
+                newDate.style.fontWeight = "500"
+                newDate.style.fontSize = "20px"
+                newDate.style.lineHeight = "158%"
+                newDate.style.width = "fit-content"
+                newDate.textContent = formattedDate3
+                lastTimeElement.insertAdjacentHTML("afterend", newDate.outerHTML);
+                counter2 += 1
+            }
+        })
+
+        function scrollToBottom() {
+            var allMassages = document.querySelector('.userChat .body .allMassages');
+            allMassages.scrollTop = allMassages.scrollHeight;
+        }
+
+        window.addEventListener("keydown", function(event) {
+            // Check if the pressed key is the Enter key (key code 13)
+            if (event.keyCode === 13   && document.getElementById("content").value.trim()) {
+                // Call your function here
+                event.preventDefault();
+                temp();
+            }
+        });
+
+    </script>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+</body>
+{% endtimezone %}

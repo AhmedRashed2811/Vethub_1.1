@@ -1,0 +1,1808 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'imgs/logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/style10.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/style26.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+</head>
+<body>
+    
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex justify-content-center align-items-center" to='' href="{% url 'index' %}">
+                <img src="{% static 'imgs/logo.png' %}" alt="logo" />
+                <h1 class="m-0">Vet<span>Hub</span></h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent" style="text-align: center;">
+                
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ng-star-inserted">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
+
+            
+                    <li class="nav-item">
+                        {% if request.user.is_authenticated %}
+                            {% csrf_token %}
+                            {% for group_for in request.user.groups.all %}
+                                {% if group_for.name == 'Doctors' %}
+                                    <a class="nav-link" href="{% url 'chats' %}" >Chats</a>
+                                {% elif group_for.name == 'Customers' %}
+                                    <a class="nav-link" href="{% url 'chats' %}" >Chats</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+            
+                    <li class="nav-item">
+                        {% if request.user.is_authenticated %}
+                            {% csrf_token %}
+                            {% for group_for in request.user.groups.all %}
+                                {% if group_for.name == 'Doctors' %}
+                                    <a class="nav-link" href="{% url 'edit_doctor' request.user.id%}" >Profile</a>
+                                {% elif group_for.name == 'Customers' %}
+                                    <a class="nav-link" href="{% url 'edit_customer' request.user.id%}" >Profile</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+
+                    <li class="nav-item">
+
+                    {% if request.user.is_authenticated %}
+                        {% csrf_token %}
+                        {% for group_for in request.user.groups.all %}
+                            {% if group_for.name == 'Admins' %}
+                                <a class="nav-link" href="{% url 'admin_panel' %}" >Admin Panel</a>
+                            {% elif group_for.name == 'Doctors' %}
+                                <a class="nav-link active" href="{% url 'clinic_management_system' %}" >Clinic Management System</a>
+                            {% elif group_for.name == 'Customers' %}
+                                <a class="nav-link" href="{% url 'customer_previous_appointments' %}" >Appointments</a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                        
+                    </li>
+            
+                </ul>
+        
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-center align-items-center gap-2">
+        
+                    <li class='nav-item position-relative'>
+                        <div class="flag"  style="display:none;">
+                            <!-- <img src="" alt=""> -->
+                            <svg width="60" height="35" viewBox="0 0 60 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="60" height="35" rx="6" fill="#F7FAF8"/>
+                                <rect x="3.5" y="3" width="53" height="29" fill="#FAFAFA"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M56.5 28.5326V22.2282H44.9934L56.5 28.5326Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M42.5526 22.2283L56.5 29.7935L56.5 32L38.3684 22.2283H42.5526Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M35.2303 32H50.2237L35.2303 23.8043V32Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7697 32H10.125L24.7697 23.8043L24.7697 32Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7697 22.2283L7.475 32L3.5 32L21.1434 22.2283H24.7697Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 28.5326V22.2282H15.0066L3.5 28.5326Z" fill="#012169"/>
+                                <rect x="3.5" y="14.6631" width="53" height="5.67391" fill="#C8102E"/>
+                                <rect x="26.8618" y="3" width="6.27632" height="29" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M56.5 6.46741V12.7718H44.9934L56.5 6.46741Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M35.2303 12.7717L52.525 3L56.5 3L38.8566 12.7717H35.2303Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M35.2303 3H49.875L35.2303 11.1957L35.2303 3Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7697 3H9.77632L24.7697 11.1957V3Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4474 12.7717L3.5 5.20652L3.5 3L21.6316 12.7717H17.4474Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 6.46741V12.7718H15.0066L3.5 6.46741Z" fill="#012169"/>
+                                <rect class="flagHover" x="3.5" y="3" width="53" height="29" fill="black" fill-opacity="0.16"/>
+                                </svg>
+                                
+                        </div>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        {% for group_for in request.user.groups.all %}
+                            {% if group_for.name == 'Customers' %}
+                                <li class='nav-item position-relative'>
+                                    <a class='nav-link BillFather fw-bolder'>
+                                        <!-- <i class='fa-solid fa-bell fs-3'></i> -->
+                                        <svg width="29" height="39" viewBox="0 0 29 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path class="BillHover" d="M16.5 3.5C16.5 4.3743 16.2461 5.14496 15.8609 5.68425C15.475 6.22451 14.987 6.5 14.5 6.5C14.013 6.5 13.525 6.22451 13.1391 5.68425C12.7539 5.14496 12.5 4.3743 12.5 3.5C12.5 2.6257 12.7539 1.85504 13.1391 1.31575C13.525 0.775489 14.013 0.5 14.5 0.5C14.987 0.5 15.475 0.775489 15.8609 1.31575C16.2461 1.85504 16.5 2.6257 16.5 3.5Z" fill="#E9AB02" stroke="#010444"/>
+                                            <path class="BillHover" d="M19.5 34C19.5 36.4038 17.1268 38.5 14 38.5C10.8732 38.5 8.5 36.4038 8.5 34C8.5 31.5962 10.8732 29.5 14 29.5C17.1268 29.5 19.5 31.5962 19.5 34Z" fill="#E9AB02" stroke="#010444"/>
+                                            <mask id="path-3-inside-1_886_982" fill="white">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5868 3.22168C8.17044 3.22168 2.78951 8.06595 2.11787 14.4471L1.60464 19.3231C1.53108 20.022 1.51388 20.7127 1.5492 21.3909L0 33.913H29L27.624 21.4003C27.6599 20.719 27.6429 20.0252 27.569 19.3231L27.0558 14.4471C26.3841 8.06596 21.0032 3.22168 14.5868 3.22168Z"/>
+                                            </mask>
+                                            <path class="BillHover" fill-rule="evenodd" clip-rule="evenodd" d="M14.5868 3.22168C8.17044 3.22168 2.78951 8.06595 2.11787 14.4471L1.60464 19.3231C1.53108 20.022 1.51388 20.7127 1.5492 21.3909L0 33.913H29L27.624 21.4003C27.6599 20.719 27.6429 20.0252 27.569 19.3231L27.0558 14.4471C26.3841 8.06596 21.0032 3.22168 14.5868 3.22168Z" fill="#E9AB02"/>
+                                            <path d="M2.11787 14.4471L3.11237 14.5518L2.11787 14.4471ZM1.60464 19.3231L0.610136 19.2184H0.610136L1.60464 19.3231ZM1.5492 21.3909L2.54163 21.5137L2.55241 21.4266L2.54784 21.3389L1.5492 21.3909ZM0 33.913L-0.992434 33.7902L-1.13134 34.913H0V33.913ZM29 33.913V34.913H30.116L29.994 33.8037L29 33.913ZM27.624 21.4003L26.6254 21.3475L26.6211 21.4287L26.63 21.5096L27.624 21.4003ZM27.569 19.3231L26.5745 19.4278L27.569 19.3231ZM27.0558 14.4471L28.0503 14.3424L27.0558 14.4471ZM3.11237 14.5518C3.73045 8.67958 8.6822 4.22168 14.5868 4.22168V2.22168C7.65868 2.22168 1.84858 7.45232 1.12336 14.3424L3.11237 14.5518ZM2.59915 19.4278L3.11237 14.5518L1.12336 14.3424L0.610136 19.2184L2.59915 19.4278ZM2.54784 21.3389C2.51524 20.7128 2.53108 20.0745 2.59915 19.4278L0.610136 19.2184C0.531085 19.9694 0.512518 20.7125 0.550551 21.4429L2.54784 21.3389ZM0.992434 34.0358L2.54163 21.5137L0.556764 21.2681L-0.992434 33.7902L0.992434 34.0358ZM29 32.913H0V34.913H29V32.913ZM26.63 21.5096L28.006 34.0223L29.994 33.8037L28.618 21.2909L26.63 21.5096ZM26.5745 19.4278C26.6429 20.0774 26.6586 20.7186 26.6254 21.3475L28.6226 21.453C28.6613 20.7194 28.6429 19.9729 28.5635 19.2184L26.5745 19.4278ZM26.0613 14.5518L26.5745 19.4278L28.5635 19.2184L28.0503 14.3424L26.0613 14.5518ZM14.5868 4.22168C20.4914 4.22168 25.4432 8.67959 26.0613 14.5518L28.0503 14.3424C27.3251 7.45233 21.515 2.22168 14.5868 2.22168V4.22168Z" fill="#010444" mask="url(#path-3-inside-1_886_982)"/>
+                                            </svg>
+                                            
+                                        <div id="notifications-count" class='badge position-absolute text-white top-0 end-0 bg-main'> {{notifications_count}} </div>
+                                    </a>
+                                    <div class="Notification position-absolute p-3 notificationshow" id="notifications">
+                                        <h3>Notification</h3>
+                                        <div class="scroll-div">
+                                            {% for notification  in notifications %}
+                                                {%if notification.notification_type == "APPOINTMENT_DONE"%}
+                                                    {%if feedback_exists%}
+                                                        {% for appointment  in not_feedback_appointments %}
+                                                        <div class="notificate my-2">
+                                                            <div class="d-flex justify-content-between">
+                                                                <div class="d-flex">
+                                                                    <h4>{{notification.message}}</h4>
+                                                                    
+                                                                </div>
+                                                                <div class="date">
+                                                                    <h5>{{notification.created_date | date:"d/m/Y"}}</h5>
+                                                                    <h5>{{notification.created_time}}</h5>
+                                                                </div>
+                                                            </div>
+                                                            <div class="w-100 d-flex justify-content-center OpenForm">
+                                                                <a href="{% url 'feedback' appointment.doctor.user.id %}">
+                                                                    Open Form
+                                                                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M6.81326 3.83301C4.66303 3.83301 2.91992 5.54912 2.91992 7.66606V12.7112C2.91992 14.8281 4.66303 16.5443 6.81326 16.5443L6.81326 19.0703C6.81326 19.1504 6.90708 19.1952 6.97091 19.1455L10.3173 16.5443H16.5466C18.6968 16.5443 20.4399 14.8281 20.4399 12.7112V7.66606C20.4399 5.54912 18.6968 3.83301 16.5466 3.83301H6.81326Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                                                        <path d="M8.76014 10.5413C8.76014 11.0706 8.32437 11.4997 7.78681 11.4997C7.24925 11.4997 6.81348 11.0706 6.81348 10.5413C6.81348 10.0121 7.24925 9.58301 7.78681 9.58301C8.32437 9.58301 8.76014 10.0121 8.76014 10.5413Z" fill="white"/>
+                                                                        <path d="M12.6535 10.5413C12.6535 11.0706 12.2177 11.4997 11.6801 11.4997C11.1426 11.4997 10.7068 11.0706 10.7068 10.5413C10.7068 10.0121 11.1426 9.58301 11.6801 9.58301C12.2177 9.58301 12.6535 10.0121 12.6535 10.5413Z" fill="white"/>
+                                                                        <path d="M16.5468 10.5413C16.5468 11.0706 16.111 11.4997 15.5735 11.4997C15.0359 11.4997 14.6001 11.0706 14.6001 10.5413C14.6001 10.0121 15.0359 9.58301 15.5735 9.58301C16.111 9.58301 16.5468 10.0121 16.5468 10.5413Z" fill="white"/>
+                                                                    </svg>
+                                                                        
+                                                                </a>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        
+                                                        {% endfor %}
+                                                    {%endif%}
+                                                {%endif%}
+    
+    
+                                                <div class="notificate my-2">
+                                                    <div class="d-flex justify-content-between">
+                                                        <h4>{{ notification.message }}</h4>
+                                                        <div class="date">
+                                                            <h5>{{notification.created_date | date:"d/m/Y"}}</h5>
+                                                            <h5>{{notification.created_time}}</h5>
+                                                            <div class="OpenForm">
+                                                                {%if notification.is_read%}
+                                                                    <button class="Read">Mark as Read</button>
+                                                                {%else%}
+                                                                    <button class="noRead" data-notification-id="{{ notification.id }}">Mark as Read</button>
+    
+                                                                {%endif%}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                            {% endfor %}
+            
+                                        </div>
+                                    </div>
+                                </li>
+                            {%endif%}
+                        {%endfor%}
+                    {%endif%}
+                        
+
+                    {% if not request.user.is_authenticated %}
+                        <li class="nav-item ng-star-inserted cursorPointer">
+                            <a href="{% url 'signup' %}" class="nav-link logout fw-bolder">SignUp</a>
+                        </li>
+                        <li class="nav-item ng-star-inserted cursorPointer">
+                            <a href="{% url 'login' %}" class="nav-link logout fw-bolder">Login</a>
+                        </li>
+                    {%else%}
+                        <li class="nav-item ng-star-inserted cursorPointer">
+                            <button class="nav-link logout fw-bolder"  type="button" class="btn delete mx-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Logout</button>
+                        </li>
+                    {% endif %}
+                    
+                </ul>
+        
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Bar -->
+    <div class="sideBar clincSideBar d-flex">
+
+        <div class="sideBarBody  d-flex flex-column justify-content-between vh-100 pb-4 pt-3">
+            <div>
+                <div class="w-100 d-flex justify-content-center">
+                    <a class="nav-link" href="{% url 'edit_doctor' request.user.id%}" >
+                        <img src="{{ request.user.doctor.profile_photo.url }}" class="doctorPhoto" alt="Doctor photo">
+                    </a>
+                    
+                </div>
+                <h1 class="title">Clinic Management</h1>
+                <div class="links overflow-hidden d-flex flex-column">
+                    <a class="py-2 position-relative text-white text-decoration-none active" sectionName="AppointmentManage">
+                        <img src="{% static 'imgs/time-bomb.png' %}" alt="Appointment  Manage System">
+                        Appointment  Manage System
+                    </a>
+                    <!-- <a class="py-2 position-relative text-white text-decoration-none" id="go-to-overview-action" sectionName="Overview">
+                        <img src="{% static 'imgs/statistics.png' %}" alt="Overview">
+                        Overview
+                    </a> -->
+                    <a class="py-2 position-relative text-white text-decoration-none" id="go-to-appoinmtents-action" sectionName="AllAppointments">
+                        <img src="{% static 'imgs/Appointments.png' %}" alt="All Appointments">
+                        All Appointments &nbsp;&nbsp;&nbsp;<span style="color:#a6db32; font-size: 16px;">{{appointments_done_count}}</span>
+                    </a>
+                    <a class="py-2 position-relative text-white text-decoration-none" sectionName="Reviews">
+                        <img src="{% static 'imgs/rating.png' %}" alt="Reviews">
+                        Reviews
+                    </a>
+                    <a class="py-2 position-relative text-white text-decoration-none" sectionName="Offer">
+                        <img src="{% static 'imgs/Offer.png' %}" alt="Offer">
+                        Manage Offer
+                    </a>
+                    <a class="py-2 position-relative text-white text-decoration-none" sectionName="Reports">
+                        <img src="{% static 'imgs/pet.png' %}" alt="Reports">
+                        Pets Previous Reports
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sideBarHeader h-100 d-flex flex-column justify-content-between py-4 text-center bg-white text-black">
+            <i class="fa-solid open-close-icon fa-x fa-2x"></i>
+        </div>
+    </div>
+    
+    <div class="AdminBody ClincBody"> 
+
+        <!-- Appointment  Manage System -->
+        <section id="AppointmentManage" class="appointmentManage show">
+            <h2 class="text-sm-start px-3 pt-4">Appointment Manage System</h2>
+            <div class="container pb-4">
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                            <!-- Success Alert -->
+                            <div class="alert alert-success alert-dismissible d-flex align-items-center fade show">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                </svg>
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% elif message.tags == 'warning' %}
+                            <!-- Warning Alert -->
+                            <div class="alert alert-warning alert-dismissible d-flex align-items-center fade show">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                </svg>
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% elif message.tags == 'info' %}
+                            <!-- Info Alert -->
+                            <div class="alert alert-info alert-dismissible d-flex align-items-center fade show">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                                </svg>
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% elif message.tags == 'error' %}
+                            <!-- Error Alert -->
+                            <div class="alert alert-danger alert-dismissible d-flex align-items-center fade show">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
+                                    <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                </svg>
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <div class="row">
+                    <div class="col-lg-7 col-md-12">
+                        <form class="mt-5" method="post">
+                            {% csrf_token %}
+                            <div class="DayOf form-group pb-3 d-flex justify-content-center align-items-center">
+                                <label class="control-label" for="day-name-l">Day Off</label>
+                                <input id="chosen-day" type="hidden" name="day-off" value="{{request.user.doctor.day_off}}">
+                                <select class="m-b form-control" name="day-name-l" id="day-select">
+                                    <option value="" selected disabled>{{request.user.doctor.day_off}}</option>
+                                    <option value="None">None</option>
+                                    <option value="Saturday">Saturday</option>
+                                    <option value="Sunday">Sunday</option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                </select>
+
+                            </div>
+
+                            <div class="w-100 d-flex justify-content-center align-items-center">
+                                <div class="FromTo form-group pb-3 d-flex justify-content-center align-items-center mx-3">  
+                                    <label class="control-label" for="start-time-name-l">From</label>
+                                    <input id="chosen-start-time" type="hidden" name="start-time" value="{{request.user.doctor.start_time}}">
+                                    <select name="start-time-name-l" class="form-control" id="start-time-select">
+                                        <option value="" selected disabled >{{request.user.doctor.start_time}}</option>
+                                        <option value="09:00 am">09:00 am</option>
+                                        <option value="09:30 am">09:30 am</option>
+                                        <option value="10:00 am">10:00 am</option>
+                                        <option value="10:30 am">10:30 am</option>
+                                        <option value="11:00 am">11:00 am</option>
+                                        <option value="11:30 am">11:30 am</option>
+                                        <option value="12:00 pm">12:00 pm</option>
+                                        <option value="12:30 pm">12:30 pm</option>
+                                        <option value="01:00 pm">01:00 pm</option>
+                                        <option value="01:30 pm">01:30 pm</option>
+                                        <option value="02:00 pm">02:00 pm</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="ToFrom form-group pb-3 d-flex justify-content-center align-items-center">
+                                    <label class="control-label" for="finish-time-name-l">To</label>
+                                    <input id="chosen-finish-time" type="hidden" name="finish-time" value="{{request.user.doctor.finish_time}}">
+                                    <select name="finish-time-name-l" class="form-control" id="finish-time-select">
+                                        <option value="" selected disabled >{{request.user.doctor.finish_time}}</option>
+                                        <option value="09:00 pm">09:00 pm</option>
+                                        <option value="09:30 pm">09:30 pm</option>
+                                        <option value="10:00 pm">10:00 pm</option>
+                                        <option value="10:30 pm">10:30 pm</option>
+                                        <option value="11:00 pm">11:00 pm</option>
+                                        <option value="11:30 pm">11:30 pm</option>
+                                        <option value="12:00 am">12:00 am</option>
+                                        <option value="12:30 am">12:30 am</option>
+                                        <option value="01:00 am">01:00 am</option>
+                                        <option value="01:30 am">01:30 am</option>
+                                        <option value="02:00 am">02:00 am</option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            <div class="DayOf form-group pb-3 d-flex justify-content-center align-items-center">
+                                <button id="update-button" type="submit" class="btn btn-save" style="background-color: #019874d0;">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-5 col-md-12">
+                        <div class="bookingInformation">
+                            <div class="header d-flex justify-content-center align-items-center">
+                                <h3>Booking information</h3>
+                            </div>
+                            <div class="reservationDate">
+                                
+                                <div class="days">
+                                    <div class="swiper">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <div class="day">
+                                                    <div class="header text-center">
+                                                        <h5 id="day1" class="day-name">Sunday 14/12</h5>
+                                                    </div>
+
+                                                    {{reservation_times|safe}}
+                                                    
+                                                    <div id="more">more</div>
+                
+                                                    <button type="button" class="footer text-center" data-bs-toggle="modal" data-bs-target="#BookAppointment">
+                                                        <h5>Book</h5>
+                                                    </button>
+    
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="day">
+                                                    <div class="header text-center">
+                                                        <h5 id="day2" class="day-name">Monday 14/12</h5>
+                                                    </div>
+                                                    {{reservation_times|safe}}
+                                                    <div id="more">more</div>
+                
+                                                    <button type="button" class="footer text-center" data-bs-toggle="modal" data-bs-target="#BookAppointment">
+                                                        <h5>Book</h5>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="day">
+                                                    <div class="header text-center">
+                                                        <h5 id="day3" class="day-name">Tuesday 14/12</h5>
+                                                    </div>
+                                                    {{reservation_times|safe}}
+                                                    <div id="more">more</div>
+                
+                                                    <button type="button" class="footer text-center" data-bs-toggle="modal" data-bs-target="#BookAppointment">
+                                                        <h5>Book</h5>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="day">
+                                                    <div class="header text-center">
+                                                        <h5 id="day4" class="day-name"> Wednesday 14/12</h5>
+                                                    </div>
+                                                    {{reservation_times|safe}}
+                                                    <div id="more">more</div>
+                
+                                                    <button type="button" class="footer text-center" data-bs-toggle="modal" data-bs-target="#BookAppointment">
+                                                        <h5>Book</h5>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="day">
+                                                    <div class="header text-center">
+                                                        <h5 id="day5" class="day-name">Thursday 14/12</h5>
+                                                    </div>
+                                                    {{reservation_times|safe}}
+                                                    <div id="more">more</div>
+                
+                                                    <button type="button" class="footer text-center" data-bs-toggle="modal" data-bs-target="#BookAppointment">
+                                                        <h5>Book</h5>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="day">
+                                                    <div class="header text-center">
+                                                        <h5 id="day6" class="day-name">Friday 14/12</h5>
+                                                    </div>
+                                                    {{reservation_times|safe}}
+                                                    <div id="more">more</div>
+                
+                                                    <button type="button" class="footer text-center" data-bs-toggle="modal" data-bs-target="#BookAppointment">
+                                                        <h5>Book</h5>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="day">
+                                                    <div class="header text-center">
+                                                        <h5 id="day7" class="day-name">Saturday 14/12</h5>
+                                                    </div>
+                                                    {{reservation_times|safe}}
+                                                    <div id="more">more</div>
+                
+                                                    <button type="button" class="footer text-center" data-bs-toggle="modal" data-bs-target="#BookAppointment">
+                                                        <h5>Book</h5>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-button-next arrowButton arrowButtonright"></div>
+                                        <div class="swiper-button-prev arrowButton arrowButtonleft"></div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Appointments -->
+        <section id="AllAppointments" class="allAppointments">
+            <h2 class="text-sm-start px-3">All Appointments</h2>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="row mx-0 py-4">
+                    <div class="col-md-6">
+                        <form>
+                            <input type="text" class="searchInput form-control bg-transparent" placeholder="Search By Phone Number" onkeyup="searchByPhoneNumber2(this, 'AllAppointments')" >
+                        </form>
+                    </div>
+                </div>
+                <button class="sort"  onclick="sortAppointmentsDescending()">Sort</button>
+            </div>
+
+            <div class="body">
+                <div class="outer-wrapper">
+                    <div class="table-wrapper">
+                        <table id="appointments-table">
+                            <thead>
+                                <th>Patient Name</th>
+                                <th>Mobile Number</th>
+                                <th>Source</th>
+                                <th>Price</th>
+                                <th>Day</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </thead>
+                            <tbody>
+
+                                {% for appointment in doctor_appointments %}
+                                    <tr>
+
+                                        {% if appointment.offline_customer_name %}
+                                            <td>{{ appointment.offline_customer_name}}</td>
+                                        {% else %}
+                                            <td>{{ appointment.customer.user.name }}</td>
+                                        {% endif %}
+
+                                        {% if appointment.offline_customer_phone %}
+                                            <td>{{ appointment.offline_customer_phone}}</td>
+                                        {% else %}
+                                            <td>{{ appointment.customer.user.phone_number }}</td>
+                                        {% endif %}
+
+                                        {% if appointment.offline_customer_phone %}
+                                            <td>Offline</td>
+                                        {% else %}
+                                            <td>Online</td>
+                                        {% endif %}
+                                        
+                                        <td>{{ appointment.appointment_price }}</td>
+                                        <td>{{ appointment.date }}</td>
+                                        <td>{{ appointment.time }}</td>
+                                        {% if appointment.status == 'Pending' %}
+                                            <td id="status-{{ appointment.id }}" class="pending">{{ appointment.status }}</td>
+                                        {% endif %}
+
+                                        {% if appointment.status == 'On-Going' %}
+                                            <td id="status-{{ appointment.id }}" class="onGoing">{{ appointment.status }}</td>
+                                        {% endif %}
+
+                                        {% if appointment.status == 'Done' %}
+                                            <td id="status-{{ appointment.id }}" class="done">{{ appointment.status }}</td>
+                                        {% endif %}
+
+                                        
+                                        <td>
+                                            {% if appointment.status == 'Pending' %}
+                                                <form id="status-form6" action="{% url 'update_status' appointment.id %}" method="POST" style="display: inline;">
+                                                    {% csrf_token %}
+                                                    <input type="hidden"  name="new_status" value="On-Going">
+                                                    <button type="submit" id="start-appoionment-{{appointment.id}}" class="start-appoionment" onclick="refreshPage2({{appointment.id}})">Start</button>
+                                                </form>
+                                            {% endif %}
+
+                                            {% if appointment.status == 'On-Going' %}
+                                                <form id="status-form7" class="status-form3" action="{% url 'update_status' appointment.id %}" method="POST" style="display: inline;">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="new_status" value="Done">
+                                                    <button type="submit" id="finish-appoionment-{{appointment.id}}" class="finish-appoionment" onclick="refreshPage({{appointment.id}})">Finish</button>
+                                                </form>
+                                            {% endif %}
+
+                                                <form id="status-form-{{appointment.id}}" class="status-form3" action="{% url 'update_status' appointment.id %}" method="POST" style="display: none;">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="new_status" value="Done">
+                                                    <button type="submit" id="finish-appoionment-{{appointment.id}}" class="finish-appoionment" onclick="refreshPage3({{appointment.id}})">Finish</button>
+                                                </form>
+
+                                            {% if appointment.status == 'Done' %}
+                                                {% if appointment.offline_customer_phone %}
+                                                {% else %}
+                                                    {% if not appointment.reported %}
+                                                        <a class="write-report" href="{% url 'write_report' appointment.customer.user.id appointment.id%}">Write Report</a>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+
+                                            <input type="hidden" id="reportedx-{{ appointment.id }}" value="False">
+                                            
+                                            {% if not appointment.offline_customer_phone  %}
+                                                <div id="write-report-div-{{ appointment.id }}" style="display: none;">
+                                                    <a class="write-report" href="{% url 'write_report' appointment.customer.user.id appointment.id%}">Write Report</a>
+                                                </div>
+                                            {%endif%}
+
+                                            {% if appointment.status == 'Pending' %}
+                                                <button id="cancel_appointment-button-{{appointment.id}}" type="button" data-bs-toggle="modal" data-bs-target="#cancel-appointment-modal-{{ appointment.id }}" class="doctor-cancel-appooinment">Cancel</button>
+
+                                                <!-- Massage Confirmation for Cancel Appointment -->
+                                                <div class="modal fade" id="cancel-appointment-modal-{{ appointment.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Confirmation</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h5>Are you sure you want to cancel this appointment?</h5>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            <form action="{% url 'cancel_appointment' appointment.id %}" method="post">
+                                                                {% csrf_token %}
+                                                                <button type="submit" class="btn Delete-btn">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="w-100 modal-father"></div>
+                                                </div>
+                                            {% endif %}
+                                        </td>
+
+
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>   
+
+        <!-- Reviews -->
+        <section id="Reviews" class="reviews pb-3">
+            <h2>All Reviews</h2>
+            <div class="scroller">
+                <div class="comments">
+
+                    {% for feedback in feedback_list %}
+                        <div class="comment justify-content-start mb-3 p-3">
+                            <div>
+                                <svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="51" height="51" rx="25.5" fill="#019874"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M26 18C23.7908 18 22 19.7909 22 22C22 24.2091 23.7908 26 26 26C28.2091 26 30 24.2091 30 22C30 19.7909 28.2091 18 26 18ZM29.641 26.7694C31.075 25.673 32 23.9445 32 22C32 18.6863 29.3137 16 26 16C22.6863 16 20 18.6863 20 22C20 23.9445 20.925 25.673 22.359 26.7694C21.3535 27.2142 20.4285 27.8436 19.636 28.636C19.0241 29.248 18.5093 29.939 18.1017 30.6851C17.3496 32.0619 17.6564 33.4657 18.5034 34.4584C19.3188 35.414 20.625 36 22 36H30C31.3749 36 32.6812 35.414 33.4966 34.4584C34.3436 33.4657 34.6503 32.0619 33.8982 30.6851C33.4906 29.939 32.9759 29.248 32.3639 28.636C31.5715 27.8436 30.6464 27.2142 29.641 26.7694ZM26 28C24.1435 28 22.363 28.7375 21.0502 30.0503C20.5742 30.5263 20.1739 31.0637 19.8569 31.6439C19.55 32.2058 19.649 32.7198 20.0248 33.1602C20.4322 33.6376 21.1658 34 22 34H30C30.8341 34 31.5678 33.6376 31.9752 33.1602C32.351 32.7198 32.45 32.2058 32.143 31.6439C31.826 31.0637 31.4257 30.5263 30.9497 30.0503C29.637 28.7375 27.8565 28 26 28Z" fill="white"/>
+                                </svg>
+                            </div>
+                            <div class="details">
+                                <h5>{{feedback.name}}</h5>
+                                <div class="d-flex align-items-center">
+                                    <div class="stars px-1">
+                                        {{feedback.rating|safe}}
+                                    </div>
+                                    <h6>{{ feedback.date|date:"j/n/Y" }} </h6>
+                                </div>
+                                <p class="description">{{ feedback.comment }}</p>
+                            </div>
+                        </div>
+                    {%endfor%}
+                
+                </div>
+            </div>
+            
+        </section>   
+
+        <!-- Offer -->
+        <section id="Offer" class="offer">
+            <h2 class="text-sm-start px-3">Offers</h2>
+
+            <form id="create-offer-form" class="py-2" method="post" action="{% url 'make_offer' %}" >
+                <div id="offer-success-error"></div>
+                {% csrf_token %}
+                <label for="Price">Percentage :</label>
+                <input class="form-control mb-4" type="number" step="0.01" name="percentage" id="Price" placeholder="Offer Percentage.... ex: 25">
+                <p id="percentage-error" style="color:red" ></p>
+                <label for="BirthDate">Deadline Offer :</label>
+                <input class="form-control mb-4" type="date" id="BirthDate" name="end_date">
+                <p id="end-date-error" style="color:red" ></p>
+                {%if offer_exist%}
+                    <div class="w-100 d-flex justify-content-end" id="div-offer">
+                        <button id="create-offer-button2" type="button" class="create" onclick="createOffer()" style="display: none;">Create Offer</button>
+                    </div>
+                {%else%}
+                    <div class="w-100 d-flex justify-content-end" id="div-offer">
+                        <button id="create-offer-button" type="button" class="create" onclick="createOffer()">Create Offer</button>
+                    </div>
+                {%endif%}
+            </form>
+
+            <div class="body m-auto">
+                <div class="outer-wrapper">
+                    <div class="table-wrapper">
+                        <table class="m-auto" id="offers-table">
+                            <thead>
+                                <th>Offer Percentage</th>
+                                <th>Offer Deadline</th>
+                                <th>Delete Offer</th>
+                            </thead>
+                            <tbody>
+
+                                {% if not request.user.doctor.offer_percentage == 0.0 %}
+                                    <tr>
+                                        <td>{{offer_percentage }}%</td>
+                                        <td>{{request.user.doctor.offer_end_date }}</td>
+                                        <td>
+                                            <button type="button" class="btn delete mx-2" data-bs-toggle="modal" data-bs-target="#DeleteOffer">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {%endif%}
+
+
+                                <tr>
+                                    <td id="offer-percentage"></td>
+                                    <td id="offer-end-date"></td>
+                                    <td id="delete-offer" style="display: none;">
+                                        <button type="button" class="btn delete mx-2" data-bs-toggle="modal" data-bs-target="#DeleteOffer">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>  
+
+        <!-- Previous Reports -->
+        <section id="Reports" class="reports">
+            <h2 class="text-sm-start px-3 pt-4">Pets Previous Reports</h2>
+            <div>
+                <form id="search-customer-form" class="d-flex justify-content-center align-items-center" method="post" action="{% url 'pet_history' %}">
+                    {% csrf_token %}
+                    <div class="row mx-0 py-4">
+                        <div class="col-md-12">
+                            <input type="text" class="searchInput form-control bg-transparent" placeholder="Search By Phone Number" name="customer_phone" id="pet-owner-phone">
+                        </div>
+                    </div>
+                    <button  type="submit" class="search" onclick="searchCustomer()">Search</button>
+                </form>
+            </div>
+            <p id="customer-error" style="color:red"></p>
+            <div class="body">
+                <div class="outer-wrapper">
+                    <div class="table-wrapper">
+                        <table class="m-auto" id="pets-table">
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <p id="report-error" style="color:red"></p>
+            <div class="body">
+                <div class="outer-wrapper">
+                    <div class="table-wrapper">
+                        <table class="m-auto" id="reports-table">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div> 
+
+    <!-- Footer -->
+    <footer class="clincFooter">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-start Footer">
+                <div class="d-flex justify-content-center align-items-center twoSections">
+                    <div class="sectionOne py-4">
+                        <div class="logo d-flex align-items-center">
+                            <img src="{% static 'imgs/logo.png' %}" alt="logo" />
+                            <h1 class="m-0">Vet<span>Hub</span></h1>
+                        </div>
+                        <p>A website for booking veterinary doctors</p>
+                        <section class="socialMedia">
+                            <h3>Social Media</h3>
+                            <section class="socialLinks d-flex justify-content-around align-items-center pt-2">
+                                    <a href="https://www.facebook.com/"><img src="{% static 'imgs/facebook.png' %}" alt="facebook"></a>
+                                    <a href="#"><img src="{% static 'imgs/Google.png' %}" alt="Google"></a>
+                                    <a href="https://www.linkedin.com/"><img src="{% static 'imgs/linkedin.png' %}" alt="linkedin"></a>
+                            </section>
+                        </section>
+                    </div>
+                    <div class="sectionTwo py-4">
+                        <h3>Your Pet is in safe hands</h3>
+                        <p>VetHub website first and last goal is to obtain the best and fastest way to care for your pet</p>
+                        {% for group_for in request.user.groups.all %}
+                            {% if group_for.name == 'Customers' %}
+                                <h3>Contact Us</h3>
+                                <form method="post" class="d-flex justify-content-center align-items-center">
+                                    {% csrf_token %}
+                                    {{ supportTeamMessageForm.as_p }}
+                                    <input id='Massage' name="message" class='form-control' type="text" placeholder="Massage Us" />
+                                    <div class="px-2">
+                                        <button  type="submit" class='btn text-white'>Send</button>
+                                    </div>
+                                </form>
+
+                            {% endif %}
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+                <div class="sectionThree py-4">
+                    <h3>Get in Touch</h3>
+                    <section>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+201222222222</span>
+                    </section>
+                    <section>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>contact@example.com</span>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <form id="booking-form" method="post" action="{% url 'offline_appointment' %}">
+        {% csrf_token %}
+        <input type="hidden" name="offline_customer_name" id="form-name">
+        <input type="hidden" name="offline_customer_phone" id="form-phone">
+        <input type="hidden" name="date" id="form-date">
+        <input type="hidden" name="time" id="form-time">
+    </form>
+
+    <!-- Massage Confirmation -->
+    <div class="modal fade" id="BookAppointment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Reservation Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                    <div class="MassageClinicName d-flex justify-content-center align-items-center">
+                        <h2>Name:</h2>
+                        <input class="form-control" type="text" id="offline-customer-name">
+                    </div>
+                    <p id="name-error" style="color:red"></p>
+                    <div class="MassageClinicNumber d-flex justify-content-center align-items-center">
+                        <h2>Phone Number:</h2>
+                        <input class="form-control" type="text" id="offline-customer-phone">
+                    </div>
+                    <p id="phone-error" style="color:red"></p>
+
+                <div class="w-100 d-flex justify-content-between">
+                    <h2>Doctor : <span>{{request.user.name}}</span></h2>
+                </div>
+                
+                <h2>Phone : <span>{{request.user.phone_number}}</span></h2>
+                <h2>Booking Day : <span id="booking-date"></span></h2>
+                <h2>Booking Time : <span id="booking-time"></span></h2>
+                <h2>Checkup Price : <span>{{ request.user.doctor.displayed_price|floatformat:1 }} LE</span></h2>
+                <h2>Location : <span>{{ request.user.doctor.governorate }}, {{ request.user.doctor.city }}</span></h2>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn submit-btn" onclick="createAppointment()">Book Now</button>
+            </div>
+            </div>
+        </div>
+
+        <div class="w-100 modal-father"></div>
+    </div>
+
+    <!-- Massage Confirmation for Delete Offer -->
+    <div class="modal fade" id="DeleteOffer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2>Are you sure you want delete this offer?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  id="delete-offer-modal-close-button">Cancel</button>
+                <form id="delete-offer-form" method="post" action="{% url 'delete_offer' %}" >
+                    {% csrf_token %}
+                    <button type="submit" class="btn Delete-btn" onclick="deleteOffer()">Delete</button>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <div class="w-100 modal-father"></div>
+    </div>
+
+    <!-- Massage Confirmation -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Logout Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2>Are you sure you want to logout your account?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="{% url 'logout'  %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn Delete-btn" style="background-color: #019874d0;">Logout</button>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <div class="w-100 modal-father"></div>
+    </div>
+
+    <script>
+
+        function openSidebar() {
+            const sideBar = document.querySelector(".sideBar");
+            const customersData = document.querySelector("body .AdminBody");
+            const openCloseIcon = document.querySelector(".open-close-icon");
+            const links = document.querySelectorAll(".links a");
+
+            sideBar.style.transition = "left 500ms ease";
+            sideBar.style.left = "0";
+            //customersData.classList.add("maLeft")
+
+            openCloseIcon.classList.remove("fa-align-justify");
+            openCloseIcon.classList.add("fa-x");
+
+            links.forEach((link, index) => {
+                setTimeout(() => {
+                    link.style.transition = `top ${(index + 5) * 100}ms ease`;
+                    link.style.top = "0";
+                }, 0);
+            });
+        }
+
+        function closeSidebar() {
+            const sideBar = document.querySelector(".sideBar");
+            const customersData = document.querySelector("body .AdminBody");
+            const openCloseIcon = document.querySelector(".open-close-icon");
+            const links = document.querySelectorAll(".links a");
+
+            const sideBarBodyWidth = document.querySelector(".sideBarBody").offsetWidth;
+            sideBar.style.transition = "left 500ms ease";
+            console.log(sideBarBodyWidth);
+            if (sideBarBodyWidth < 296) {
+                sideBar.style.left = `-296px`;
+            }else{
+                sideBar.style.left = `-${sideBarBodyWidth}px`;
+            }
+            customersData.classList.remove("maLeft")
+
+            openCloseIcon.classList.add("fa-align-justify");
+            openCloseIcon.classList.remove("fa-x");
+
+            links.forEach((link) => {
+                link.style.transition = "top 500ms ease";
+                link.style.top = "300px";
+            });
+        }
+
+        document.querySelector(".sideBarHeader .open-close-icon").addEventListener("click", () => {
+            const sideBarLeft = document.querySelector(".sideBar").style.left;
+            if (sideBarLeft === "0px") {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+
+        closeSidebar();
+
+        function searchByName(input, sectionId) {
+            var filter, table, tr, td, i, txtValue;
+            filter = input.value.toUpperCase();
+            table = document.querySelector(`#${sectionId} table`);
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().startsWith(filter)) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function searchByPhoneNumber2(input,sectionId) {
+                input.value = input.value.replace(/\D/g, '');            
+                var filter = input.value;
+                var table = document.querySelector(`#${sectionId} table`); 
+                var tr = table.getElementsByTagName("tr");
+                
+                for (var i = 0; i < tr.length; i++) {
+                    var td = tr[i].getElementsByTagName("td")[1]; 
+                    if (td) {
+                        var phoneNumber = td.textContent || td.innerText;                    
+                        if (phoneNumber.startsWith(filter)) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+        function sortAppointmentsDescending() {
+            var table, rows, switching, i, shouldSwitch;
+            table = document.getElementById("appointments-table");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+
+                    // Get the date and time values from the current row and the next row
+                    var dateX = getDateFromRow(rows[i]);
+                    var dateY = getDateFromRow(rows[i + 1]);
+
+                    // Compare dates
+                    if (dateX.getTime() === dateY.getTime()) {
+                        // If dates are equal, compare times (number 5 in the table)
+                        var timeX = getTimeInSeconds(rows[i].getElementsByTagName("td")[5].innerText);
+                        var timeY = getTimeInSeconds(rows[i + 1].getElementsByTagName("td")[5].innerText);
+                        if (timeX > timeY) { // Compare in reverse order for descending sorting
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dateX > dateY) { // Compare in reverse order for descending sorting
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
+
+        function getDateFromRow(row) {
+            // Extract the date string from the row (e.g., "Saturday 04/20")
+            var dateString = row.getElementsByTagName("td")[4].innerText;
+            // Extract the month and day values from the date string
+            var regex = /(\w+) (\d{2})\/(\d{2})/;
+            var matches = dateString.match(regex);
+            if (matches) {
+                var month = parseInt(matches[2], 10);
+                var day = parseInt(matches[3], 10);
+                // Create and return a Date object with the year set to 2024
+                return new Date(2024, month - 1, day);
+            }
+            return null;
+        }
+
+        function getTimeInSeconds(timeString) {
+            var timeParts = timeString.split(" ");
+            var time = timeParts[0].split(":");
+            var hours = parseInt(time[0], 10);
+            var minutes = parseInt(time[1], 10);
+            if (timeParts[1] === "pm" && hours !== 12) {
+                hours += 12;
+            } else if (timeParts[1] === "am" && hours === 12) {
+                hours = 0;
+            }
+            return (hours * 3600) + (minutes * 60);
+        }
+
+        document.querySelectorAll("body .clincSideBar .sideBarBody .links a").forEach(link => {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+                const sectionId = this.getAttribute("sectionName");
+                const sections = document.querySelectorAll("section");
+                const activeLink = document.querySelector(".links a.active");
+                const selectedSection = document.getElementById(sectionId);                
+                sections.forEach(section => {
+                    section.classList.remove("show");
+                });
+                selectedSection.classList.add("show");
+                if (activeLink) {
+                    activeLink.classList.remove("active");
+                }
+                this.classList.add("active");
+            });
+            closeSidebar()
+        });
+
+        function refreshPage2(id) {
+
+            // Get all form elements with the 'status-form' class
+            var form = document.getElementById('status-form6');
+            // Add an event listener for form submissions
+
+            form.addEventListener('submit', function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+
+                // Get the form's action URL
+                var actionUrl = form.getAttribute('action');
+
+                // Create a new FormData object containing form data
+                var formData = new FormData(form);
+
+                // Send a POST request to the server
+                fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(response) {
+                    // Check if the response indicates success
+                    if (response.ok) {
+                        // Refresh the page
+                        //window.location.reload();
+                        document.getElementById(`start-appoionment-${id}`).style.display = "none"
+                        document.getElementById(`cancel_appointment-button-${id}`).style.display = "none"
+                        document.getElementById(`status-form-${id}`).style.display = "block"
+                        document.getElementById(`status-${id}`).classList.remove("pending")
+                        document.getElementById(`status-${id}`).classList.add("onGoing")
+                        document.getElementById(`status-${id}`).innerHTML= "On-Going"
+                    } else {
+                        // Handle errors or non-successful responses
+                        console.error('Failed to update status');
+                    }
+                })
+                .catch(function(error) {
+                    // Handle network errors or other issues
+                    console.error('Error:', error);
+                });
+            });
+        };
+
+        function searchCustomer() {
+
+            document.getElementById("pets-table").innerHTML = ""
+            document.getElementById("reports-table").innerHTML = ""
+            document.getElementById("customer-error").innerHTML =""
+            var petOwnerPhone = document.getElementById("pet-owner-phone").value
+            var allGood = true
+            
+            // Get all form elements with the 'status-form' class
+            var form = document.getElementById('search-customer-form');
+
+            if(checkPhoneNumber(petOwnerPhone) != true){
+                //document.getElementById("customer-error").innerHTML = checkPhoneNumber(petOwnerPhone)
+                var allGood = false
+            }
+
+            // Add an event listener for form submissions
+            form.addEventListener('submit', function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+
+                // Get the form's action URL
+                var actionUrl = form.getAttribute('action');
+
+                // Create a new FormData object containing form data
+                var formData = new FormData(form);
+
+                // Send a POST request to the server
+                fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(response) {
+                    // Check if the response indicates success
+                    if (response.ok) {
+                        // Refresh the page
+                        //window.location.reload();
+                        return response.json();
+                    } else {
+                        // Handle errors or non-successful responses
+                        console.error('Failed to update status');
+                        document.getElementById("pets-table").innerHTML = ""
+                        document.getElementById("reports-table").innerHTML = ""
+                        document.getElementById("customer-error").innerHTML =""
+                        var petOwnerPhone = document.getElementById("pet-owner-phone").value
+                        var allGood = true
+
+                        if(checkPhoneNumber(petOwnerPhone) != true){
+                            document.getElementById("customer-error").innerHTML = checkPhoneNumber(petOwnerPhone)
+                            var allGood = false
+                        }
+
+                        if(allGood == true){
+                            document.getElementById("customer-error").innerHTML = "Customer has no Pets"
+                        }
+                        
+                    }
+                })
+                .then(function(data) {
+                    // Log the body and customer properties of the response data
+                    var body = data.body
+                    var customer = data.customer
+                    var pets_exist = data.pets_exist
+
+                    if(pets_exist == true){
+                        var temp = ""
+                        body.forEach(pet => {
+                            var id =pet.id
+                            temp += `<tr><td>${pet.name}</td>
+                                        <td>${pet.type}</td>
+                                        <td>
+                                            <form id="see-reports-form-${id}" action="/old_reports/${id}/" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="update" onclick="getReports(${id})">See Reports</button>
+                                            </form>
+                                        </td></tr>
+                                    `.replace("pet.id",id)
+                            })
+                            
+                            temp2 = `${temp}`
+                            document.getElementById("pets-table").innerHTML = `<table>
+                                                                                    <thead>
+                                                                                            <tr>
+                                                                                                <th>Name</th>
+                                                                                                <th>Type</th>
+                                                                                                <th>Action</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                                ${temp2}
+                                                                                                
+                                                                                                
+                                                                                        </tbody>
+                                                                                </table>`
+                    }
+                })
+
+                .catch(function(error) {
+                    // Handle network errors or other issues
+                    console.error('Error:', error);
+                });
+            });
+        
+        };
+
+        function getReports(id){
+            // Get all form elements with the 'status-form' class
+            var form = document.getElementById(`see-reports-form-${id}`);
+            document.getElementById("report-error").innerHTML =""
+
+            // Add an event listener for form submissions
+            form.addEventListener('submit', function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+                document.getElementById("report-error").innerHTML =""
+                // Get the form's action URL
+                var actionUrl = form.getAttribute('action');
+
+                // Create a new FormData object containing form data
+                var formData = new FormData(form);
+
+                // Send a POST request to the server
+                fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(response) {
+                    // Check if the response indicates success
+                    if (response.ok) {
+                        // Refresh the page
+                        //window.location.reload();
+                        return response.json();
+                    } else {
+                        // Handle errors or non-successful responses
+                        document.getElementById("reports-table").innerHTML = ""
+                        document.getElementById("report-error").innerHTML ="This Pet Has No Reports Yet!!"
+                    }
+                })
+                .then(function(data) {
+                    // Log the body and customer properties of the response data
+                    var body = data.body
+                    var reports_exist = data.reports_exist
+
+                    if(reports_exist == true){
+                        var temp = ""
+                        body.forEach(pet => {
+                            var dose1 = pet.dose1
+                            var dose2 = pet.dose2
+                            var dose3 = pet.dose3
+                            if (pet.dose1 == null){dose1 = ""}
+                            if (pet.dose2 == null){dose2 = ""}
+                            if (pet.dose3 == null){dose3 = ""}
+                            temp += `<tr> <td>${pet.created_date}</td>
+                                        <td>${pet.report}</td>
+                                        <td>${dose1}</td>
+                                        <td>${dose2}</td>
+                                        <td>${dose3}</td> </tr>
+                                    `
+                            })
+
+                            temp2 = `${temp}`
+                            document.getElementById("reports-table").innerHTML = `<table>
+                                                                                    <thead>
+                                                                                            <tr>
+                                                                                                <th>Date</th>
+                                                                                                <th>Report</th>
+                                                                                                <th>Dose1</th>
+                                                                                                <th>Dose2</th>
+                                                                                                <th>Dose3</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                                ${temp2}
+                                                                                                
+                                                                                                
+                                                                                        </tbody>
+                                                                                </table>`
+                    }
+                })
+
+                .catch(function(error) {
+                    // Handle network errors or other issues
+                    console.error('Error:', error);
+                });
+            });
+        }
+        
+        function refreshPage(id) {
+
+            // Get all form elements with the 'status-form' class
+            var form = document.getElementById('status-form7');
+            // Add an event listener for form submissions
+
+            form.addEventListener('submit', function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+
+                // Get the form's action URL
+                var actionUrl = form.getAttribute('action');
+
+                // Create a new FormData object containing form data
+                var formData = new FormData(form);
+
+                // Send a POST request to the server
+                fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(response) {
+                    // Check if the response indicates success
+                    if (response.ok) {
+                        // Refresh the page
+                        //window.location.reload();
+                        document.getElementById(`finish-appoionment-${id}`).style.display = "none"
+                        document.getElementById(`status-${id}`).classList.remove("onGoing")
+                        document.getElementById(`status-${id}`).classList.add("done")
+                        document.getElementById(`status-${id}`).innerHTML= "Done"
+                        document.getElementById(`write-report-div-${id}`).style.display = "block"
+
+                    } else {
+                        // Handle errors or non-successful responses
+                        console.error('Failed to update status');
+                    }
+                })
+                .catch(function(error) {
+                    // Handle network errors or other issues
+                    console.error('Error:', error);
+                });
+            });
+        };
+
+        function refreshPage3(id) {
+
+            // Get all form elements with the 'status-form' class
+            var form = document.getElementById(`status-form-${id}`);
+            // Add an event listener for form submissions
+
+            form.addEventListener('submit', function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+
+                // Get the form's action URL
+                var actionUrl = form.getAttribute('action');
+
+                // Create a new FormData object containing form data
+                var formData = new FormData(form);
+
+                // Send a POST request to the server
+                fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(response) {
+                    // Check if the response indicates success
+                    if (response.ok) {
+                        // Refresh the page
+                        //window.location.reload();
+                        document.getElementById(`finish-appoionment-${id}`).style.display = "none"
+                        document.getElementById(`status-${id}`).classList.remove("onGoing")
+                        document.getElementById(`status-${id}`).classList.add("done")
+                        document.getElementById(`status-${id}`).innerHTML= "Done"
+                        document.getElementById(`write-report-div-${id}`).style.display = "block"
+
+                    } else {
+                        // Handle errors or non-successful responses
+                        console.error('Failed to update status');
+                    }
+                })
+                .catch(function(error) {
+                    // Handle network errors or other issues
+                    console.error('Error:', error);
+                });
+            });
+            };
+
+        function createOffer(){
+            document.getElementById("percentage-error").innerHTML = ""
+            document.getElementById("end-date-error").innerHTML = ""
+            var percentage = document.getElementById("Price").value
+            var endDate = document.getElementById("BirthDate").value
+            var allGood = true
+
+            if(percentage == "" || endDate == ""){
+                document.getElementById("end-date-error").innerHTML = "Enter Percentage & Date"
+                allGood = false
+            }
+
+            if(percentage < 1){
+                document.getElementById("percentage-error").innerHTML = "Percentage Must be 10, 15, 25..."
+                allGood = false
+            }
+
+            if(allGood == true){
+
+
+                // Get all form elements with the 'status-form' class
+
+                document.getElementById("Price").value = percentage/100
+
+                document.getElementById("create-offer-button").type="submit"
+
+                var form = document.getElementById('create-offer-form');
+                // Add an event listener for form submissions
+
+                form.addEventListener('submit', function(event) {
+                    // Prevent the default form submission behavior
+                    event.preventDefault();
+
+                    // Get the form's action URL
+                    var actionUrl = form.getAttribute('action');
+
+                    // Create a new FormData object containing form data
+                    var formData = new FormData(form);
+
+                    // Send a POST request to the server
+                    fetch(actionUrl, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(function(response) {
+                        // Check if the response indicates success
+                        if (response.ok) {
+                            // Refresh the page
+                            //window.location.reload();
+
+                            var dateObject = new Date(endDate);
+                            // Get the month name
+                            var monthNames = ["January", "February", "March", "April", "May", "June",
+                                            "July", "August", "September", "October", "November", "December"];
+                            var monthName = monthNames[dateObject.getMonth()];
+
+                            // Get the day and year
+                            var day = dateObject.getDate();
+                            var year = dateObject.getFullYear();
+                            
+                            var formattedDate = monthName + " " + day + ", " + year;
+
+                            document.getElementById("Price").value = ""
+                            document.getElementById("BirthDate").value = ""
+                            document.getElementById("offer-percentage").innerHTML = `${percentage} %`
+                            document.getElementById("offer-end-date").innerHTML = formattedDate
+                            document.getElementById("delete-offer").style.display = "block"
+                            document.getElementById("div-offer").style.display = "none"
+                            document.getElementById("create-offer-button").style.display = "none"
+                            document.getElementById("offer-success-error").innerHTML = `<!-- Success Alert -->
+                                                                                        <div class="alert alert-success alert-dismissible d-flex align-items-center fade show">
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                                                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75
+                                                                                                0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97
+                                                                                                11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                                                                            </svg>
+                                                                                            <strong class="mx-2">Success!</strong> "Offer Created Successfully!"
+                                                                                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                                                        </div>`
+
+
+                        } else {
+                            // Handle errors or non-successful responses
+                            console.error('Failed to update status');
+                        }
+                    })
+                    .catch(function(error) {
+                        // Handle network errors or other issues
+                        console.error('Error:', error);
+                    });
+                });
+            }
+        };
+
+        function deleteOffer(){
+            // Get all form elements with the 'status-form' class
+            var form = document.getElementById('delete-offer-form');
+            // Add an event listener for form submissions
+
+            form.addEventListener('submit', function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+
+                // Get the form's action URL
+                var actionUrl = form.getAttribute('action');
+
+                // Create a new FormData object containing form data
+                var formData = new FormData(form);
+
+                // Send a POST request to the server
+                fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(response) {
+                    // Check if the response indicates success
+                    if (response.ok) {
+                        // Refresh the page
+                        document.getElementById("offer-percentage").innerHTML = ""
+                        document.getElementById("offer-end-date").innerHTML = ""
+                        document.getElementById("Price").value = ""
+                        document.getElementById("BirthDate").value = ""
+                        document.getElementById("delete-offer").style.display = "none"
+                        document.getElementById("create-offer-button2").style.display = "block"
+                        document.getElementById("offers-table").innerHTML = ""
+                        document.getElementById("offer-success-error").innerHTML = `<div class="alert alert-danger alert-dismissible d-flex align-items-center fade show">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
+                                <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                </svg>
+                                You Successfully Deleted the Offer...
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>`
+                        document.getElementById("delete-offer-modal-close-button").click()
+                    } else {
+                        // Handle errors or non-successful responses
+                        console.error('Failed to update status');
+                        
+                    }
+                })
+                .catch(function(error) {
+                    // Handle network errors or other issues
+                    console.error('Error:', error);
+                    document.getElementById("delete-offer-modal-close-button").click()
+                    document.getElementById("offer-success-error").innerHTML = `<div class="alert alert-danger alert-dismissible d-flex align-items-center fade show">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
+                                <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                </svg>
+                                You Successfully Deleted the Offer...
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>`
+                    document.getElementById("create-offer-button").style.display = "block"
+                });
+            });
+        }
+
+        function checkName(name){
+                const onlyLettersRegex = /^[a-zA-Z\s]+$/;
+                if (onlyLettersRegex.test(name) == false) {return ("Name Contains Invalid Characters");} 
+
+                const atLeastTwoWordsRegex = /^[a-zA-Z]+(?:\s+[a-zA-Z]+)+$/;
+                if (atLeastTwoWordsRegex.test(name) == false) {return ("Name Must Have at Least 2 Names");} 
+                
+                return true
+            }
+
+        function checkPhoneNumber(phoneNumber){
+                const onlyLettersRegex = /01(0|1|2|5)[0-9]{8}$/;
+                if (onlyLettersRegex.test(phoneNumber) == false) {return ("Phone Number Must Be in Format '01**********'");} 
+                return true
+            }
+
+        function createAppointment(){
+            document.getElementById("name-error").innerHTML = ""
+            document.getElementById("phone-error").innerHTML = ""
+
+            var name = document.getElementById("offline-customer-name").value
+            var phone = document.getElementById("offline-customer-phone").value
+            document.getElementById('form-name').value = name;
+            document.getElementById('form-phone').value = phone;
+            var allGood = true
+
+            if(name == ""){
+                document.getElementById("name-error").innerHTML = "Please Enter Customer Name"
+                allGood = false
+            }
+            if(checkName(name) != true){
+                document.getElementById("name-error").innerHTML = checkName(name)
+                allGood = false
+            }
+            if(phone == ""){
+                document.getElementById("phone-error").innerHTML = "Please Enter Customer Phone"
+                allGood = false
+            }
+            if(checkPhoneNumber(phone) != true){
+                document.getElementById("phone-error").innerHTML = checkPhoneNumber(phone)
+                allGood = false
+            }
+
+            if (allGood == true){
+
+                document.getElementById("booking-form").submit()
+            }
+
+        }
+    
+        for (var i = 1; i <= 7; i++) {
+            var dayElement = document.getElementById('day' + i);
+            var currentDate = new Date();
+            currentDate.setDate(currentDate.getDate() + (i - 1));
+            var formattedDate = currentDate.toLocaleDateString('en-US', { weekday: 'long', month: '2-digit', day: '2-digit' }); 
+            formattedDate = formattedDate.replace(",", "");     
+            dayElement.textContent = formattedDate;
+        }
+
+        var tempCounter = 0
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get all elements with class "time"
+            var timeElements = document.querySelectorAll('.time');
+
+            // Loop through each time element
+            timeElements.forEach(function(timeElement) {
+                // Add click event listener
+                timeElement.addEventListener('click', function() {
+                    // Get the selected time
+                    var selectedTime2 = this.querySelector('span').textContent;
+                    
+                    var parentDiv = timeElement.parentNode;
+                    var h5Element = parentDiv.querySelector('h5');
+                    // Get the text content of the h5 element
+                    var selectedDate2 = h5Element.textContent
+
+
+                    // Output the text content
+                    document.getElementById('booking-date').textContent = selectedDate2;
+                    document.getElementById('form-date').value = selectedDate2;
+
+                    // Update the content of the h2 element
+                    document.getElementById('booking-time').textContent = selectedTime2;
+                    document.getElementById('form-time').value = selectedTime2;
+
+                    var name = document.getElementById("offline-customer-name").value
+                    var phone = document.getElementById("offline-customer-phone").value
+
+                    document.getElementById('form-name').value = name;
+                    document.getElementById('form-phone').value = phone;
+
+                });
+
+                tempCounter += 1
+                var selectedTime = timeElement.querySelector('span').textContent;
+                var parentDiv = timeElement.parentNode;
+                var h5Element = parentDiv.querySelector('h5');
+                var selectedDate = h5Element.textContent
+
+                if (tempCounter <= "{{days_counter}}"){
+                    //console.log(tempCounter)
+
+                    function isTimePassed(timeStr) {
+                        // Get the current time
+                        var currentTime = new Date();
+
+                        if(timeStr == "12:00 am"){timeStr = "00:00 am"}
+                        if(timeStr == "12:30 am"){timeStr = "00:30 am"}
+                        
+                        // Parse the input time string into a Date object
+                        var timeParts = timeStr.split(':');
+                        var hour = parseInt(timeParts[0]);
+                        var minutes = parseInt(timeParts[1].split(' ')[0]);
+                        var isPM = timeParts[1].split(' ')[1].toLowerCase() === 'pm';
+                        if (isPM && hour !== 12) {
+                            hour += 12;
+                        }
+                        var inputTime = new Date();
+                        inputTime.setHours(hour);
+                        inputTime.setMinutes(minutes);
+                        inputTime.setSeconds(0);
+
+                        // Check if the input time has passed
+                        return inputTime < currentTime;
+                    }
+
+                    //)
+                    //isTimePassed(selectedTime)
+
+                    if (isTimePassed(selectedTime)) {
+                        timeElement.classList.add('booked')
+                    } 
+
+                }
+
+                var temp={"time":selectedTime,"date":selectedDate}
+                var appointments = {{ appointments|safe }};
+
+                var foundBookedTime = appointments.find(function(temp2) {
+                    return temp2.time === temp.time && temp.date === temp2.date;
+                });
+
+                if (foundBookedTime) {
+                    //console.log(foundBookedTime);
+                    timeElement.classList.add('booked')
+                } 
+            });
+
+
+            var daysElements = document.querySelectorAll('.swiper-slide');
+            daysElements.forEach(function(dayElement) {
+                var day5Element = dayElement.querySelector('.day-name');
+                var day5InnerHTML = day5Element.innerHTML;
+                var dayName = day5InnerHTML.split(" ")[0]
+
+                if (dayName == `{{request.user.doctor.day_off}}`){
+                    dayElement.style.display = "none"
+                }
+
+            });
+
+        });
+
+
+        var selectElement2 = document.getElementById('day-select');
+        selectElement2.addEventListener('change', function() {
+            // Get the selected option
+            var selectedOption = selectElement2.options[selectElement2.selectedIndex];
+            console.log(selectedOption)
+
+            // Get the value of the selected option
+            var selectedValue = selectedOption.value;
+
+            // Assign the selected value to the hidden input field
+            var hiddenInput = document.getElementById('chosen-day');
+            hiddenInput.value = selectedValue;
+
+        });
+
+        var selectElement = document.getElementById('start-time-select');
+        selectElement.addEventListener('change', function() {
+            // Get the selected option
+            var selectedOption = selectElement.options[selectElement.selectedIndex];
+
+            // Get the value of the selected option
+            var selectedValue = selectedOption.value;
+
+            // Assign the selected value to the hidden input field
+            var hiddenInput = document.getElementById('chosen-start-time');
+            hiddenInput.value = selectedValue;
+            console.log(selectedValue)
+        });
+        
+        var selectElement3 = document.getElementById('finish-time-select');
+        selectElement3.addEventListener('change', function() {
+            // Get the selected option
+            var selectedOption = selectElement3.options[selectElement3.selectedIndex];
+
+            // Get the value of the selected option
+            var selectedValue = selectedOption.value;
+
+            // Assign the selected value to the hidden input field
+            var hiddenInput2 = document.getElementById('chosen-finish-time');
+            hiddenInput2.value = selectedValue;
+
+        });
+        
+
+        // Add event listener for keydown event on window
+        document.getElementById("BookAppointment").addEventListener("keydown", function(event) {
+                // Check if the pressed key is Enter
+                if (event.key === "Enter") {
+                    // Execute your desired function here
+                    createAppointment();
+                }
+            });
+    </script>
+    
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Swiper JS -->
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/index19.js' %}"></script>
+</body>
+</html>
+

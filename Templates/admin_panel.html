@@ -1,0 +1,1185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Panel</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="{% static 'imgs/logo.png' %}" type="image/x-icon">
+        <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+        <link rel="stylesheet" href="{% static 'css/style27.css' %}">
+    </head>
+
+    <body style="background-color: #F5F6F8;">
+
+
+        <!-- Side Bar -->
+        <div class="sideBar d-flex">
+
+            <div class="sideBarBody  d-flex flex-column justify-content-between vh-100 py-4">
+                <div>
+                    <h1>Admin<span>Panal</span></h1>
+                    <div class="links overflow-hidden d-flex flex-column">
+                        <a class="py-2 position-relative text-white text-decoration-none" sectionName="Customers">
+                            <img src="{% static 'imgs/Customers-Data.png' %}" alt="Customers Data">
+                            Customers Data 
+                        </a>
+                        <a class="py-2 position-relative text-white text-decoration-none" sectionName="Doctors">
+                            <img src="{% static 'imgs/Doctor-Data.png' %}" alt="Doctors Data">
+                            Doctors Data
+                        </a>
+                        <a class="py-2 position-relative text-white text-decoration-none" sectionName="Appointments">
+                            <img src="{% static 'imgs/Appointments.png' %}" alt="Appointments">
+                            Appointments
+                        </a>
+                        <a class="py-2 position-relative text-white text-decoration-none" sectionName="InappropriateReviews">
+                            <img src="{% static 'imgs/Inappropriate-Reviews.png' %}" alt="Inappropriate Reviews">
+                            Inappropriate Reviews &nbsp; <span style="color:#a6db32; font-size: 16px;" id="inappropriateReviews-count">{{inappropriate_reviews_count}}</span>
+                        </a>
+                        <a class="py-2 position-relative text-white text-decoration-none" sectionName="ManageNews">
+                            <img src="{% static 'imgs/Manage-News.png' %}" alt="Manage News">
+                            Manage News
+                        </a>
+                        <a class="py-2 position-relative text-white text-decoration-none" sectionName="Support">
+                            <img src="{% static 'imgs/Customer-Support.png' %}" alt="Customer Support">
+                            Customer Support &nbsp; <span style="color:#a6db32; font-size: 16px;" id="supportTeamMessages-count">{{supportTeamMessages_count}}</span>
+                        </a>
+                        <a class="py-2 position-relative text-white text-decoration-none active" sectionName="Verification">
+                            <img src="{% static 'imgs/Doctor-Verification.png' %}" alt="Doctor's Verification">
+                            Doctor's Verification &nbsp; <span style="color:#a6db32; font-size: 16px;">{{new_doctors_count}}</span>
+                        </a>
+                        <a class="py-2 position-relative text-white text-decoration-none" sectionName="NewAdmin">
+                            <img src="{% static 'imgs/New-Admin.png' %}" alt="Create New Admin">
+                            Create New Admin
+                        </a>
+                    </div>
+                </div>
+
+                <div class="px-4 d-flex justify-content-center">
+                    <button class="logout" type="button" data-bs-toggle="modal" data-bs-target="#logoutModal" style="border-style: none;">Logout</button>
+                </div>
+
+            </div>
+
+            <div class="sideBarHeader h-100 d-flex flex-column justify-content-between py-4 text-center px-2 bg-white text-black">
+                <a href="{% url 'index' %}"><img src="{% static 'imgs/logo.png' %}" alt="logo"></a>
+                <i class="fa-solid open-close-icon fa-x fa-2x"></i>
+                <div>
+                    <i class="fa-solid fa-globe d-block"></i>
+                </div>
+            </div>
+
+            
+        </div>
+
+        <div class="AdminBody"> 
+            
+            <!-- Customers Data -->
+            <section id="Customers" class="customersData">
+                <div class="d-flex justify-content-center align-items-center"> 
+                    <div class="row mx-0 py-4">
+                        <div class="col-lg-6 col-md-12">
+                            <form>
+                                <input type="text" class="searchInput form-control bg-transparent" placeholder="Search By Name" onkeyup="searchByName(this, 'Customers')" >
+                            </form>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <form>
+                                <input type="text" class="searchInput form-control bg-transparent" placeholder="Search By Phone Number" onkeyup="searchByPhoneNumber(this)" >
+                            </form>
+                        </div>
+
+                    </div>
+                    <button class="sort" id="sort-customers" onclick="sortCustomersByNumberOfAppointments()">Sort</button>
+                </div>
+
+                <div class="body">
+                    <div class="outer-wrapper">
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Appointments</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </thead>
+                                <tbody>
+                                    {% for customer in customers %}
+                                        <tr>
+                                            <td>{{customer.user.id }}</td>
+                                            <td>{{customer.user.name }}</td>
+                                            <td>{{customer.user.email }}</td>
+                                            <td>{{customer.user.phone_number }}</td>
+                                            <td>{{customer.appointments_count }}</td>
+                                            <td>
+                                                <form action="{% url 'edit_customer' customer.user.id %}" action="post">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="the_customer_id" value="{{customer.user.id}}">
+                                                    <!-- <button id="update1" type="submit" class="update" data-customer-id="{{ customer.user.id }}">Update</button> -->
+                                                    <button id="update1" type="submit" class="update">Update</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <!-- <button class="delete-button1" data-customer-id="{{ customer.user.id }}">Delete</button> -->
+                                                <button type="button" class="btn delete mx-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop-{{customer.user.id}}">
+                                                    Delete
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <!-- Massage Confirmation -->
+
+                                            <div class="modal fade" id="staticBackdrop-{{customer.user.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Confirmation</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h2>Are you sure you want delete "{{customer.user.name}}" Account?</h2>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="{% url 'delete_account' customer.user.id %}" method="post">
+                                                            {% csrf_token %}
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn Delete-btn">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="w-100 modal-father"></div>
+                                            </div>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Doctors Data -->
+            <section id="Doctors" class="doctorsData">
+                <div class="d-flex justify-content-center align-items-center"> 
+                    <div class="row mx-0 py-4">
+                        <div class="col-lg-6 col-md-12">
+                            <form>
+                                <input type="text" class="searchInput form-control bg-transparent" placeholder="Search By Name" onkeyup="searchByName(this, 'Doctors')" >
+                            </form>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <form>
+                                <input type="text" class="searchInput form-control bg-transparent" placeholder="Search By Phone Number" onkeyup="searchByPhoneNumber2(this, 'Doctors')" >
+                            </form>
+                        </div>
+
+                    </div>
+                    <button class="sort">Sort</button>
+                </div>
+
+                <div class="body">
+                    <div class="outer-wrapper">
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>City</th>
+                                    <th>Area</th>
+                                    <th>Appointments</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </thead>
+                                <tbody>
+
+                                    {% for doctor in doctors %}
+                                        <tr>
+                                            <td>{{ doctor.user.id }}</td>
+                                            <td>{{ doctor.user.name }}</td>
+                                            <td>{{ doctor.user.email }}</td>
+                                            <td>{{ doctor.user.phone_number }}</td>
+                                            <td>{{ doctor.governorate }}</td>
+                                            <td>{{ doctor.city }}</td>
+                                            <td>{{ doctor.appointments_count }}</td>
+                                            <td>
+                                                <form action="{% url 'edit_doctor' doctor.user.id %}" action="post">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="the_doctor_id" value="{{doctor.user.id}}">
+                                                    <!-- <button id="update1" type="submit" class="update" data-customer-id="{{ customer.user.id }}">Update</button> -->
+                                                    <button id="update1" type="submit" class="update">Update</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <!-- <button class="delete-button1" data-customer-id="{{ customer.user.id }}">Delete</button> -->
+                                                <button type="button" class="btn delete mx-2" data-bs-toggle="modal" data-bs-target="#DeleteDoctor-{{doctor.user.id}}">
+                                                    Delete
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                                                            
+                                        <!-- Massage Confirmation for Delete Doctor -->
+                                        
+                                        <div class="modal fade" id="DeleteDoctor-{{doctor.user.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Confirmation</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h2>Are you sure you want delete Dr. "{{doctor.user.name}}" Account?</h2>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="{% url 'delete_account' doctor.user.id %}" method="post">
+                                                            {% csrf_token %}
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn Delete-btn">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="w-100 modal-father"></div>
+                                        </div>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appointments -->
+            <section id="Appointments" class="appointments">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="row mx-0 py-4">
+                        <div class="col-md-12">
+                            <form>
+                                <input type="text" class="searchInput form-control bg-transparent" placeholder="Search by Doctor Name" onkeyup="searchByName(this, 'Appointments')" >
+                            </form>
+                        </div>
+                    </div>
+                    <button class="sort" id="appointments-sort" onclick="sortAppointmentsByPrice()">Sort</button>
+                </div>
+
+                <div class="body">
+                    <div class="outer-wrapper">
+                        <div class="table-wrapper">
+                            <table id="customers-table">
+                                <thead>
+                                    <th>Doctor ID</th>
+                                    <th>Doctor Name</th>
+                                    <th>Customer ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Customer Phone</th>
+                                    <th>Price</th>
+                                    <th>Day</th>
+                                    <th>Time</th>
+                                </thead>
+                                <tbody>
+
+                                {% for appointment in appointments%}
+                                    <tr>
+                                        <td><a href="{% url 'doctor_details' appointment.doctor.user.id %}" style="text-decoration: none; color:#019874">{{ appointment.doctor.user.id  }}</a></td>
+                                        <td>{{appointment.doctor.user.name  }} </td>
+
+                                        {% if appointment.offline_customer_name %}
+                                            <td>Offline</td>
+                                        {% else %}
+                                            <td>{{ appointment.customer.user.id }}</td>
+                                        {% endif %}
+
+                                        {% if appointment.offline_customer_phone %}
+                                            <td>{{ appointment.offline_customer_name}}</td>
+                                        {% else %}
+                                            <td>{{ appointment.customer.user.name }}</td>
+                                        {% endif %}
+
+                                        {% if appointment.offline_customer_phone %}
+                                            <td>{{ appointment.offline_customer_phone}}</td>
+                                        {% else %}
+                                            <td>{{ appointment.customer.user.phone_number }}</td>
+                                        {% endif %}
+
+                                        
+                                        <td>{{ appointment.appointment_price }}</td>
+                                        <td>{{ appointment.date}}</td>
+                                        <td>{{ appointment.time }}</td>
+                                    </tr>
+                                {% endfor %}
+                                        
+                                        
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inappropriate Reviews -->
+            <section id="InappropriateReviews" class="inappropriateReviews">
+                <h1>All Inappropriate Comments</h1>
+                <div class="allReviews d-flex flex-column align-items-center">
+
+                    {% for review in inappropriate_feedbacks %}
+                        <div class="review d-flex justify-content-center" id="review-{{review.id}}-div">
+                            <div class="icon d-flex justify-content-center align-items-center">
+                                <i class="fa-regular fa-user text-white"></i>
+                            </div>
+                            <div class="commentInformation">
+                                <h2>{{ review.customer.user.name }}</h2>
+                                <div class="d-flex align-items-center">
+                                    <div class="stars px-1">
+                                        {{review.rating|safe}}
+                                    </div>
+                                    <h6>{{ review.date| date:"j/n/Y" }} </h6>
+                                </div>
+                                <p class="description">{{ review.comment }}</p>
+                            </div>
+                            <div class="Details">
+                                <h2>Details</h2>
+                                <h4>Dr : {{ review.doctor.user.name }} </h4>
+                                <div class="buttons d-flex justify-content-between">
+                                    <button type="button" class="btn Ignore mx-2" data-bs-toggle="modal" data-bs-target="#IgnoreComment-{{review.id}}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        Comment
+                                    </button>
+                                    <button type="button" class="btn delete mx-2" data-bs-toggle="modal" data-bs-target="#DeleteComment-{{review.id}}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        Customer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Massage Confirmation for Delete Customer -->
+                        <div class="modal fade" id="DeleteComment-{{review.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Confirmation</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h2>Are you sure you want delete this customer?</h2>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <a href="{% url 'delete_account' review.customer.user.id %}" class="btn Delete-btn">Delete</a>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="w-100 modal-father"></div>
+                        </div>
+                        
+                        
+                        <!-- Massage Confirmation for Ignore Comment -->
+                        <div class="modal fade" id="IgnoreComment-{{review.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Confirmation</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h2>Are you sure you want delete this comment?</h2>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="delete-review-modal-close-button-{{review.id}}" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                                    <form id="delete-review-form-{{review.id}}" action="{% url 'delete_review' review.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button id="delete-review-button-{{review.id}}" class="btn Delete-btn" type="button" onclick="deleteReview({{review.id}})">Delete</button>
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="w-100 modal-father"></div>
+                        </div>
+                    {%endfor%}
+
+
+            </div>
+            </section>
+
+            <!-- Manage News -->
+            <section id="ManageNews" class="manageNews">
+                <h1>Manage News</h1>
+                <div class="w-100">
+                    <form id="news-form" action="{% url 'manage_news' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="form-group">
+                                <label class="control-label" for="Description">New Description: <span class="text-danger">*</span></label>
+                                <textarea class="form-control" name="Description" id="Description" cols="30" rows="10" placeholder="Description"></textarea>
+                                <input type="hidden" id="news-description" name="news-description">
+                                <p id="description-error" style="color:red"></p>
+                            </div>
+                            <div class="form-group d-flex justify-content-center">
+                                <div class="tb-container">
+                                    <label for="NewsPhoto" class="NewsPhoto"><div class="image"> </div> Upload</label>
+                                    <input type="file" id="NewsPhoto" accept="image/*" name="news-image" onchange="newsPhoto(event);" />
+                                    <p id="news-image-error" style="color:red"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-center mt-4">
+                            <button type="button" class="submit-btn" onclick="createNews()">Create</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- News Section -->
+                <div id="news" class="News">
+                    <div class="container">
+                        <div class="container-sm">
+                            <h2 class="text-dark">All News</h2>
+                            <div class="scrollable-container">
+                                <div class="allNews">
+                                    <div class="d-flex justify-content-around align-items-center">
+
+                                        {% for new in news %}
+
+                                            <div class="oneNews mt-4 m-4">
+                                                <div class="w-100 d-flex justify-content-between align-items-center pb-2">
+                                                    <h3>{{new.date}}</h3>
+                                                    
+                                                    <button type="button" class="deleteBtn" data-bs-toggle="modal" data-bs-target="#DeleteNews-{{new.id}}">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </button>
+                                                </div>
+                                                <p>{{new.information}}</p>
+                                                <img src="{{ new.image.url }}" alt="{{ new.information}}">
+                                            </div>
+
+                                            <!-- Massage Confirmation for Delete News in Manage News -->
+            
+                                            <div class="modal fade" id="DeleteNews-{{new.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Confirmation</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h2>Are you sure you want delete this news?</h2>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            
+                                                                <a href="{% url 'delete_news' new.id %}"  class="btn Delete-btn">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="w-100 modal-father"></div>
+                                            </div>
+
+                                        {% endfor %}
+                                        
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Customer Support -->
+            <section id="Support" class="Support">
+                <h1>Customer Support</h1>
+                <div class="allQuestions d-flex flex-column align-items-center">
+
+                    {% for message in supportTeamMessages%}
+
+
+                        <div class="question d-flex justify-content-center" id="question-div-{{message.id}}">
+                            <div class="icon d-flex justify-content-center align-items-center">
+                                <i class="fa-regular fa-user text-white"></i>
+                            </div>
+                            <div class="questionInformation">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h2>{{ message.customer.user.name }}</h2>
+                                    <h6> {{ message.date| date:"j/n/Y" }} </h6>
+                                </div>
+                                <p class="description">{{ message.message }}</p>
+                            </div>
+                            <div class="Details d-flex flex-column justify-content-between">
+                                <h2>Details</h2>
+                                <div class="w-100 buttons d-flex justify-content-between py-4">
+                                    <button type="button" class="btn delete" data-bs-toggle="modal" data-bs-target="#DeleteQuestion-{{message.id}}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        Delete
+                                    </button>
+                                    <button type="button" class="btn answer" data-bs-toggle="modal" data-bs-target="#SendAnswer-{{message.id}}">
+                                        Send answer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Massage Confirmation for Delete Question in Customer Support -->
+                        <div class="modal fade" id="DeleteQuestion-{{message.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Confirmation</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h2>Are you sure you want delete this question?</h2>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="close-delete-question-modal-{{message.id}}" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form id="delete-question-{{message.id}}" action="{% url 'delete_message' message.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button id="delete-question-button-{{message.id}}" class="btn Delete-btn" type="button" onclick="deleteQuestion({{message.id}})" >Delete</button>
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="w-100 modal-father"></div>
+                        </div>
+                        
+
+                        <!-- Massage Send Answer in Customer Support -->
+                        <div class="modal fade" id="SendAnswer-{{message.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Customer Support</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <h2>Answer The Question : </h2>
+                                        <div class="form-group">
+                                            <textarea id="response-text-{{message.id}}" class="form-control" cols="30" rows="10" placeholder="Answer the question"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button id="close-send-response-button-{{message.id}}"  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        
+                                        <form id="response-form-{{message.id}}" method="post" action="{% url 'send_support_team_message' message.id %}" >
+                                            {% csrf_token %}
+                                            <input id="response-input-{{message.id}}" type="hidden" name="response">
+                                            <button id="send-response-button-{{message.id}}" type="button" class="btn submit-btn" onclick="sendResponse({{message.id}})">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="w-100 modal-father"></div>
+                        </div>
+
+                    {% endfor %}
+                    
+
+                    
+                </div>
+            </section>
+
+            <!-- Doctor's Verification -->
+            <section id="Verification" class="DoctorVerification show">
+                <div class="body">
+                    <div class="outer-wrapper">
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags == 'success' %}
+                                    <!-- Success Alert -->
+                                    <div class="alert alert-success alert-dismissible d-flex align-items-center fade show">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                        </svg>
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                {% elif message.tags == 'warning' %}
+                                    <!-- Warning Alert -->
+                                    <div class="alert alert-warning alert-dismissible d-flex align-items-center fade show">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                        </svg>
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                {% elif message.tags == 'info' %}
+                                    <!-- Info Alert -->
+                                    <div class="alert alert-info alert-dismissible d-flex align-items-center fade show">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                                        </svg>
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                {% elif message.tags == 'error' %}
+                                    <!-- Error Alert -->
+                                    <div class="alert alert-danger alert-dismissible d-flex align-items-center fade show">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
+                                            <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                        </svg>
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Verification</th>
+                                </thead>
+                                <tbody>
+
+                                    {% for doctor in new_doctors %}
+
+                                        <tr>
+                                            <td>{{ doctor.user.id }}</td>
+                                            <td>{{ doctor.user.name }}</td>
+                                            <td>{{ doctor.user.email }}</td>
+                                            <td>{{ doctor.user.phone_number }}</td>
+                                            <td>
+                                                <button type="button" class="btn update mx-2" data-bs-toggle="modal" data-bs-target="#DoctorVerification-{{doctor.user.id}}">
+                                                    Verify
+                                                </button>
+                                            </td>
+                                        </tr>  
+
+                                        <!-- Doctor Verification Massage -->
+                                        <div class="modal fade" id="DoctorVerification-{{doctor.user.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Doctor Verification</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body d-flex justify-content-center">
+                                                    <img class="certificate" src="{{ doctor.certifications.url }}" alt="Certificate">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <a href="{% url 'verification' doctor.user.id%}" class="btn submit-btn">Accept</button>
+                                                    <a href="{% url 'delete_account' doctor.user.id%}" class="btn Delete-btn">Delete</button>
+                                                </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="w-100 modal-father"></div>
+                                        </div>
+
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Create New Admin -->
+            <section id="NewAdmin" class="newAdmin">
+                <div class="vh-100 p-3 d-flex justify-content-center align-items-center">
+                    <div class="createBody">
+                        <h1>New Admin</h1>
+                        <form id="create-admin-form" method="post" action="{% url 'admin_register'%}">
+                            {% csrf_token %}
+                            <div class="form-group pb-4 d-flex justify-content-center">
+                                <label class="m-auto" for="Name">Name</label>
+                                <input class="form-control" type="text" id="Name" placeholder="Enter Admin Name" name="name">
+                            </div>
+                            <p id="name-error" style="color:red"></p>
+                            <div class="form-group pb-4 d-flex justify-content-center">
+                                <label class="m-auto" for="Email">Email</label>
+                                <input class="form-control" type="email" id="Email" placeholder="Enter Admin email" name="email">
+                            </div>
+                            <p id="email-error" style="color:red"></p>
+                            <div class="form-group pb-4 d-flex justify-content-center">
+                                <label class="m-auto" for="Email">Phone</label>
+                                <input class="form-control" type="text" id="PhoneNumber" placeholder="Enter Admin Phone" name="phoneNumber">
+                            </div>
+                            <p id="phone-error" style="color:red"></p>
+                            <div class="form-group d-flex justify-content-center align-items-center">
+                                <label for="password">Password</label>
+                                <div class="password-input">
+                                    <input id="password" type="password" class="form-control" id="password" name="password">
+                                    <span class="toggle-password" onclick="togglePassword()"></span>
+                                    <!-- <span class="toggle-password no-drop"> </span> -->
+                                </div>
+                            </div>
+                            <p id="password1-error" style="color:red"></p>
+                            <div class="w-100 d-flex justify-content-end pt-4">
+                                <button type="button" onclick="admin_register()">Create</button>
+                            </div>
+                            <p id="signup-error" style="color:red"></p>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Doctor Verification Massage -->
+            <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Logout Confirmation</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h2>Are you sure you want to logout your account?</h2>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <a href="{% url 'logout' %}" class="btn submit-btn">Logout</button>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="w-100 modal-father"></div>
+            </div>
+
+        </div>
+
+        <script>
+
+            function createNews(){
+
+                var newsDescription = document.getElementById("Description").value
+                document.getElementById("news-description").value = newsDescription
+                document.getElementById("description-error").innerHTML = ""
+                document.getElementById("news-image-error").innerHTML = ""
+                var allGood = true
+                if(newsDescription == "") {
+                    document.getElementById("description-error").innerHTML = "Please Enter News Description"
+                    allGood = false
+                }
+                if(document.getElementById("NewsPhoto").value == ""){
+                    document.getElementById("news-image-error").innerHTML = "Please Enter News Image"
+                    allGood = false
+                }
+
+                if(allGood){document.getElementById("news-form").submit()}
+            }
+            
+            function sendResponse(id){
+
+                var responseText = document.getElementById(`response-text-${id}`).value
+                document.getElementById(`response-input-${id}`).value = responseText
+                
+                document.getElementById(`send-response-button-${id}`).type="submit"
+                var form = document.getElementById(`response-form-${id}`);
+
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    var actionUrl = form.getAttribute('action');
+                    var formData = new FormData(form);
+
+                    fetch(actionUrl, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(function(response) {
+                        if (response.ok) {
+                            document.getElementById(`question-div-${id}`).innerHTML = ""
+                            document.getElementById(`close-send-response-button-${id}`).click()
+                            document.getElementById("supportTeamMessages-count").innerHTML = document.getElementById("supportTeamMessages-count").innerHTML - 1
+                            if (document.getElementById("supportTeamMessages-count").innerHTML == 0){
+                                document.getElementById("supportTeamMessages-count").innerHTML = ""
+                            }
+                            
+                        } else {
+                            console.error('Failed to update status');
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('Error:', error);
+                    });
+                });
+
+
+            }
+
+            function openSidebar() {
+                const sideBar = document.querySelector(".sideBar");
+                const customersData = document.querySelector("body .AdminBody");
+                const openCloseIcon = document.querySelector(".open-close-icon");
+                const links = document.querySelectorAll(".links a");
+
+                sideBar.style.transition = "left 500ms ease";
+                sideBar.style.left = "0";
+                customersData.classList.add("maLeft")
+
+                openCloseIcon.classList.remove("fa-align-justify");
+                openCloseIcon.classList.add("fa-x");
+
+                links.forEach((link, index) => {
+                    setTimeout(() => {
+                        link.style.transition = `top ${(index + 5) * 100}ms ease`;
+                        link.style.top = "0";
+                    }, 0);
+                    link.classList.add('linkClose');
+                });
+            }
+
+            function closeSidebar() {
+                const sideBar = document.querySelector(".sideBar");
+                const customersData = document.querySelector("body .AdminBody");
+                const openCloseIcon = document.querySelector(".open-close-icon");
+                const links = document.querySelectorAll(".links a");
+
+                const sideBarBodyWidth = document.querySelector(".sideBarBody").offsetWidth;
+                sideBar.style.transition = "left 500ms ease";
+                if (sideBarBodyWidth < 240) {
+                    sideBar.style.left = `-240px`;
+                }else{
+                    sideBar.style.left = `-${sideBarBodyWidth}px`;
+                }
+                customersData.classList.remove("maLeft")
+
+                openCloseIcon.classList.add("fa-align-justify");
+                openCloseIcon.classList.remove("fa-x");
+
+                links.forEach((link) => {
+                    link.style.transition = "top 500ms ease";
+                    link.style.top = "300px";
+                    link.classList.remove("linkClose");
+                });
+            }
+
+            document.querySelector(".sideBarHeader .open-close-icon").addEventListener("click", () => {
+                const sideBarLeft = document.querySelector(".sideBar").style.left;
+                if (sideBarLeft === "0px") {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+            });
+            
+            closeSidebar();
+
+            function searchByName(input, sectionId) {
+                var filter, table, tr, td, i, txtValue;
+                filter = input.value.toUpperCase();
+                table = document.querySelector(`#${sectionId} table`);
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[1];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        // Check if the word starts with the entered letters
+                        if (txtValue.toUpperCase().startsWith(filter)) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+            function searchByPhoneNumber(input) {
+                input.value = input.value.replace(/\D/g, '');            
+                var filter = input.value;
+                var table = document.querySelector("table");
+                var tr = table.getElementsByTagName("tr");
+                
+                for (var i = 0; i < tr.length; i++) {
+                    var td = tr[i].getElementsByTagName("td")[3]; 
+                    if (td) {
+                        var phoneNumber = td.textContent || td.innerText;                    
+                        // Check if the number starts with the entered digits
+                        if (phoneNumber.startsWith(filter)) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+            function searchByPhoneNumber2(input,sectionId) {
+                input.value = input.value.replace(/\D/g, '');            
+                var filter = input.value;
+                var table = document.querySelector(`#${sectionId} table`); 
+                var tr = table.getElementsByTagName("tr");
+                
+                for (var i = 0; i < tr.length; i++) {
+                    var td = tr[i].getElementsByTagName("td")[3]; 
+                    if (td) {
+                        var phoneNumber = td.textContent || td.innerText;                    
+                        if (phoneNumber.startsWith(filter)) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+            function searchByPhoneNumber3(input,sectionId) {
+                input.value = input.value.replace(/\D/g, '');            
+                var filter = input.value;
+                var table = document.querySelector(`#${sectionId} table`); 
+                var tr = table.getElementsByTagName("tr");
+                
+                for (var i = 0; i < tr.length; i++) {
+                    var td = tr[i].getElementsByTagName("td")[3]; 
+                    if (td) {
+                        var phoneNumber = td.textContent || td.innerText;                    
+                        if (phoneNumber.startsWith(filter)) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+            document.querySelectorAll("body .sideBarBody .links a").forEach(link => {
+                link.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    const sectionId = this.getAttribute("sectionName");
+                    const sections = document.querySelectorAll("section");
+                    const activeLink = document.querySelector(".links a.active");
+                    const selectedSection = document.getElementById(sectionId);                
+                    sections.forEach(section => {
+                        section.classList.remove("show");
+                    });
+                    selectedSection.classList.add("show");
+                    if (activeLink) {
+                        activeLink.classList.remove("active");
+                    }
+                    this.classList.add("active");
+                    closeSidebar()
+                });
+            });
+
+            function sortAppointmentsByPriceDescending() {
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.getElementById("customers-table");
+                switching = true;
+                while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = parseFloat(rows[i].getElementsByTagName("td")[5].innerText);
+                        y = parseFloat(rows[i + 1].getElementsByTagName("td")[5].innerText);
+                        if (x < y) { // Compare in reverse order for descending sorting
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
+
+            document.getElementById("appointments-sort").addEventListener("click", function() {
+                sortAppointmentsByPriceDescending();
+            });
+
+            function sortCustomersByNumberOfAppointments() {
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.querySelector("#Customers table");
+                switching = true;
+                while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    for (i = 1; i < rows.length - 1; i++) {
+                        shouldSwitch = false;
+                        x = parseInt(rows[i].getElementsByTagName("td")[4].innerText);
+                        y = parseInt(rows[i + 1].getElementsByTagName("td")[4].innerText);
+                        if (x < y) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
+
+            function checkName(name){
+                    const onlyLettersRegex = /^[a-zA-Z\s]+$/;
+                    if (onlyLettersRegex.test(name) == false) {return ("Name Contains Invalid Characters");} 
+
+                    const atLeastTwoWordsRegex = /^[a-zA-Z]+(?:\s+[a-zA-Z]+)+$/;
+                    if (atLeastTwoWordsRegex.test(name) == false) {return ("Name Must Have at Least 2 Names");} 
+                    
+                    return true
+                }
+
+            function checkPhoneNumber(phoneNumber){
+                const onlyLettersRegex = /01(0|1|2|5)[0-9]{8}$/;
+                if (onlyLettersRegex.test(phoneNumber) == false) {return ("Phone Number Must Be in Format '01**********'");} 
+                return true
+            }
+
+            function checkEmail(email){
+                const onlyLettersRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;;
+                if (onlyLettersRegex.test(email) == false) {return ("Email Not Valid");} 
+                return true
+            }
+
+            function checkPaasword(password){
+                const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}$/;
+                if (passwordRegex.test(password) == false) {return ("Password Not Valid; it must be at least 8 characters with 1 number, 1 {@,$,?,!,.} and 1 capital letter");} 
+                return true
+            }
+
+            function admin_register(){
+                var allGood = true
+                document.getElementById("phone-error").innerHTML = ""
+                document.getElementById("name-error").innerHTML = ""
+                document.getElementById("email-error").innerHTML= ""
+                document.getElementById("password1-error").innerHTML = ""
+                var name = document.getElementById("Name").value
+                var phone_number = document.getElementById("PhoneNumber").value
+                var email = document.getElementById("Email").value
+                var password1 = document.getElementById("password").value
+
+                if (name == "" || phone_number == "" || email == "" || password1 =="" || password2 == ""){
+                    document.getElementById("signup-error").innerHTML = "Please Fill All Fields"
+                    allGood = false
+                }
+
+                if(checkName(name) != true){
+                    document.getElementById("name-error").innerHTML = checkName(name)
+                    allGood = false
+                }
+
+                if(checkPhoneNumber(phone_number) != true){
+                    document.getElementById("phone-error").innerHTML = checkPhoneNumber(phone_number)
+                    allGood = false
+                }
+
+                if(checkEmail(email) != true){
+                    document.getElementById("email-error").innerHTML = checkEmail(email)
+                    allGood = false
+                }
+
+                if(checkPaasword(password1) != true){
+                    document.getElementById("password1-error").innerHTML = checkPaasword(password1)
+                    allGood = false
+                }
+
+
+                if(allGood == true){document.getElementById("create-admin-form").submit()}
+
+            }
+        
+            function deleteReview(id){
+
+                document.getElementById(`delete-review-button-${id}`).type="submit"
+                var form = document.getElementById(`delete-review-form-${id}`);
+
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    var actionUrl = form.getAttribute('action');
+                    var formData = new FormData(form);
+
+                    fetch(actionUrl, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(function(response) {
+                        if (response.ok) {
+
+                            document.getElementById(`review-${id}-div`).innerHTML = ""
+                            document.getElementById(`delete-review-modal-close-button-${id}`).click()
+                            document.getElementById("inappropriateReviews-count").innerHTML = document.getElementById("inappropriateReviews-count").innerHTML - 1
+                            if (document.getElementById("inappropriateReviews-count").innerHTML == 0){
+                                document.getElementById("inappropriateReviews-count").innerHTML = ""
+                            }
+                        } else {
+                            console.error('Failed to update status');
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('Error:', error);
+                    });
+                });
+
+            }
+
+            function deleteQuestion(id){
+
+                document.getElementById(`delete-question-button-${id}`).type="submit"
+                var form = document.getElementById(`delete-question-${id}`);
+
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    var actionUrl = form.getAttribute('action');
+                    var formData = new FormData(form);
+
+                    fetch(actionUrl, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(function(response) {
+                        if (response.ok) {
+                            document.getElementById(`question-div-${id}`).innerHTML = ""
+                            document.getElementById(`close-delete-question-modal-${id}`).click()
+                            document.getElementById("supportTeamMessages-count").innerHTML = document.getElementById("supportTeamMessages-count").innerHTML - 1
+                            if (document.getElementById("supportTeamMessages-count").innerHTML == 0){
+                                document.getElementById("supportTeamMessages-count").innerHTML = ""
+                            }
+                        } else {
+                            console.error('Failed to update status');
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('Error:', error);
+                    });
+                });
+
+
+}
+
+
+        </script>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Swiper JS -->
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/index15.js' %}"></script>
+
+
+    </body>
+    
+</html>

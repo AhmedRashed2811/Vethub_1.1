@@ -1,0 +1,386 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write Pet Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'imgs/logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/style8.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/style24.css' %}">
+
+</head>
+<body>
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex justify-content-center align-items-center" to='' href="{% url 'index' %}">
+                <img src="{% static 'imgs/logo.png' %}" alt="logo" />
+                <h1 class="m-0">Vet<span>Hub</span></h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent" style="text-align: center;">
+                
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ng-star-inserted">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
+
+            
+                    <li class="nav-item">
+                        {% if request.user.is_authenticated %}
+                            {% csrf_token %}
+                            {% for group_for in request.user.groups.all %}
+                                {% if group_for.name == 'Doctors' %}
+                                    <a class="nav-link" href="{% url 'chats' %}" >Chats</a>
+                                {% elif group_for.name == 'Customers' %}
+                                    <a class="nav-link" href="{% url 'chats' %}" >Chats</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+            
+                    <li class="nav-item">
+                        {% if request.user.is_authenticated %}
+                            {% csrf_token %}
+                            {% for group_for in request.user.groups.all %}
+                                {% if group_for.name == 'Doctors' %}
+                                    <a class="nav-link" href="{% url 'edit_doctor' request.user.id%}" >Profile</a>
+                                {% elif group_for.name == 'Customers' %}
+                                    <a class="nav-link" href="{% url 'edit_customer' request.user.id%}" >Profile</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+
+                    <li class="nav-item">
+
+                    {% if request.user.is_authenticated %}
+                        {% csrf_token %}
+                        {% for group_for in request.user.groups.all %}
+                            {% if group_for.name == 'Admins' %}
+                                <a class="nav-link" href="{% url 'admin_panel' %}" >Admin Panel</a>
+                            {% elif group_for.name == 'Doctors' %}
+                                <a class="nav-link active" href="{% url 'clinic_management_system' %}" >Clinic Management System</a>
+                            {% elif group_for.name == 'Customers' %}
+                                <a class="nav-link" href="{% url 'customer_previous_appointments' %}" >Appointments</a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                        
+                    </li>
+            
+                </ul>
+        
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-center align-items-center gap-2">
+        
+                    <li class='nav-item position-relative'>
+                        <div class="flag"  style="display:none;">
+                            <!-- <img src="" alt=""> -->
+                            <svg width="60" height="35" viewBox="0 0 60 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="60" height="35" rx="6" fill="#F7FAF8"/>
+                                <rect x="3.5" y="3" width="53" height="29" fill="#FAFAFA"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M56.5 28.5326V22.2282H44.9934L56.5 28.5326Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M42.5526 22.2283L56.5 29.7935L56.5 32L38.3684 22.2283H42.5526Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M35.2303 32H50.2237L35.2303 23.8043V32Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7697 32H10.125L24.7697 23.8043L24.7697 32Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7697 22.2283L7.475 32L3.5 32L21.1434 22.2283H24.7697Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 28.5326V22.2282H15.0066L3.5 28.5326Z" fill="#012169"/>
+                                <rect x="3.5" y="14.6631" width="53" height="5.67391" fill="#C8102E"/>
+                                <rect x="26.8618" y="3" width="6.27632" height="29" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M56.5 6.46741V12.7718H44.9934L56.5 6.46741Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M35.2303 12.7717L52.525 3L56.5 3L38.8566 12.7717H35.2303Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M35.2303 3H49.875L35.2303 11.1957L35.2303 3Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7697 3H9.77632L24.7697 11.1957V3Z" fill="#012169"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4474 12.7717L3.5 5.20652L3.5 3L21.6316 12.7717H17.4474Z" fill="#C8102E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 6.46741V12.7718H15.0066L3.5 6.46741Z" fill="#012169"/>
+                                <rect class="flagHover" x="3.5" y="3" width="53" height="29" fill="black" fill-opacity="0.16"/>
+                                </svg>
+                                
+                        </div>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        {% for group_for in request.user.groups.all %}
+                            {% if group_for.name == 'Customers' %}
+                                <li class='nav-item position-relative'>
+                                    <a class='nav-link BillFather fw-bolder'>
+                                        <!-- <i class='fa-solid fa-bell fs-3'></i> -->
+                                        <svg width="29" height="39" viewBox="0 0 29 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path class="BillHover" d="M16.5 3.5C16.5 4.3743 16.2461 5.14496 15.8609 5.68425C15.475 6.22451 14.987 6.5 14.5 6.5C14.013 6.5 13.525 6.22451 13.1391 5.68425C12.7539 5.14496 12.5 4.3743 12.5 3.5C12.5 2.6257 12.7539 1.85504 13.1391 1.31575C13.525 0.775489 14.013 0.5 14.5 0.5C14.987 0.5 15.475 0.775489 15.8609 1.31575C16.2461 1.85504 16.5 2.6257 16.5 3.5Z" fill="#E9AB02" stroke="#010444"/>
+                                            <path class="BillHover" d="M19.5 34C19.5 36.4038 17.1268 38.5 14 38.5C10.8732 38.5 8.5 36.4038 8.5 34C8.5 31.5962 10.8732 29.5 14 29.5C17.1268 29.5 19.5 31.5962 19.5 34Z" fill="#E9AB02" stroke="#010444"/>
+                                            <mask id="path-3-inside-1_886_982" fill="white">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5868 3.22168C8.17044 3.22168 2.78951 8.06595 2.11787 14.4471L1.60464 19.3231C1.53108 20.022 1.51388 20.7127 1.5492 21.3909L0 33.913H29L27.624 21.4003C27.6599 20.719 27.6429 20.0252 27.569 19.3231L27.0558 14.4471C26.3841 8.06596 21.0032 3.22168 14.5868 3.22168Z"/>
+                                            </mask>
+                                            <path class="BillHover" fill-rule="evenodd" clip-rule="evenodd" d="M14.5868 3.22168C8.17044 3.22168 2.78951 8.06595 2.11787 14.4471L1.60464 19.3231C1.53108 20.022 1.51388 20.7127 1.5492 21.3909L0 33.913H29L27.624 21.4003C27.6599 20.719 27.6429 20.0252 27.569 19.3231L27.0558 14.4471C26.3841 8.06596 21.0032 3.22168 14.5868 3.22168Z" fill="#E9AB02"/>
+                                            <path d="M2.11787 14.4471L3.11237 14.5518L2.11787 14.4471ZM1.60464 19.3231L0.610136 19.2184H0.610136L1.60464 19.3231ZM1.5492 21.3909L2.54163 21.5137L2.55241 21.4266L2.54784 21.3389L1.5492 21.3909ZM0 33.913L-0.992434 33.7902L-1.13134 34.913H0V33.913ZM29 33.913V34.913H30.116L29.994 33.8037L29 33.913ZM27.624 21.4003L26.6254 21.3475L26.6211 21.4287L26.63 21.5096L27.624 21.4003ZM27.569 19.3231L26.5745 19.4278L27.569 19.3231ZM27.0558 14.4471L28.0503 14.3424L27.0558 14.4471ZM3.11237 14.5518C3.73045 8.67958 8.6822 4.22168 14.5868 4.22168V2.22168C7.65868 2.22168 1.84858 7.45232 1.12336 14.3424L3.11237 14.5518ZM2.59915 19.4278L3.11237 14.5518L1.12336 14.3424L0.610136 19.2184L2.59915 19.4278ZM2.54784 21.3389C2.51524 20.7128 2.53108 20.0745 2.59915 19.4278L0.610136 19.2184C0.531085 19.9694 0.512518 20.7125 0.550551 21.4429L2.54784 21.3389ZM0.992434 34.0358L2.54163 21.5137L0.556764 21.2681L-0.992434 33.7902L0.992434 34.0358ZM29 32.913H0V34.913H29V32.913ZM26.63 21.5096L28.006 34.0223L29.994 33.8037L28.618 21.2909L26.63 21.5096ZM26.5745 19.4278C26.6429 20.0774 26.6586 20.7186 26.6254 21.3475L28.6226 21.453C28.6613 20.7194 28.6429 19.9729 28.5635 19.2184L26.5745 19.4278ZM26.0613 14.5518L26.5745 19.4278L28.5635 19.2184L28.0503 14.3424L26.0613 14.5518ZM14.5868 4.22168C20.4914 4.22168 25.4432 8.67959 26.0613 14.5518L28.0503 14.3424C27.3251 7.45233 21.515 2.22168 14.5868 2.22168V4.22168Z" fill="#010444" mask="url(#path-3-inside-1_886_982)"/>
+                                            </svg>
+                                            
+                                        <div id="notifications-count" class='badge position-absolute text-white top-0 end-0 bg-main'> {{notifications_count}} </div>
+                                    </a>
+                                    <div class="Notification position-absolute p-3 notificationshow" id="notifications">
+                                        <h3>Notification</h3>
+                                        <div class="scroll-div">
+                                            {% for notification  in notifications %}
+                                                {%if notification.notification_type == "APPOINTMENT_DONE"%}
+                                                    {%if feedback_exists%}
+                                                        {% for appointment  in not_feedback_appointments %}
+                                                        <div class="notificate my-2">
+                                                            <div class="d-flex justify-content-between">
+                                                                <div class="d-flex">
+                                                                    <h4>{{notification.message}}</h4>
+                                                                    
+                                                                </div>
+                                                                <div class="date">
+                                                                    <h5>{{notification.created_date | date:"d/m/Y"}}</h5>
+                                                                    <h5>{{notification.created_time}}</h5>
+                                                                </div>
+                                                            </div>
+                                                            <div class="w-100 d-flex justify-content-center OpenForm">
+                                                                <a href="{% url 'feedback' appointment.doctor.user.id %}">
+                                                                    Open Form
+                                                                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M6.81326 3.83301C4.66303 3.83301 2.91992 5.54912 2.91992 7.66606V12.7112C2.91992 14.8281 4.66303 16.5443 6.81326 16.5443L6.81326 19.0703C6.81326 19.1504 6.90708 19.1952 6.97091 19.1455L10.3173 16.5443H16.5466C18.6968 16.5443 20.4399 14.8281 20.4399 12.7112V7.66606C20.4399 5.54912 18.6968 3.83301 16.5466 3.83301H6.81326Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                                                        <path d="M8.76014 10.5413C8.76014 11.0706 8.32437 11.4997 7.78681 11.4997C7.24925 11.4997 6.81348 11.0706 6.81348 10.5413C6.81348 10.0121 7.24925 9.58301 7.78681 9.58301C8.32437 9.58301 8.76014 10.0121 8.76014 10.5413Z" fill="white"/>
+                                                                        <path d="M12.6535 10.5413C12.6535 11.0706 12.2177 11.4997 11.6801 11.4997C11.1426 11.4997 10.7068 11.0706 10.7068 10.5413C10.7068 10.0121 11.1426 9.58301 11.6801 9.58301C12.2177 9.58301 12.6535 10.0121 12.6535 10.5413Z" fill="white"/>
+                                                                        <path d="M16.5468 10.5413C16.5468 11.0706 16.111 11.4997 15.5735 11.4997C15.0359 11.4997 14.6001 11.0706 14.6001 10.5413C14.6001 10.0121 15.0359 9.58301 15.5735 9.58301C16.111 9.58301 16.5468 10.0121 16.5468 10.5413Z" fill="white"/>
+                                                                    </svg>
+                                                                        
+                                                                </a>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        
+                                                        {% endfor %}
+                                                    {%endif%}
+                                                {%endif%}
+    
+    
+                                                <div class="notificate my-2">
+                                                    <div class="d-flex justify-content-between">
+                                                        <h4>{{ notification.message }}</h4>
+                                                        <div class="date">
+                                                            <h5>{{notification.created_date | date:"d/m/Y"}}</h5>
+                                                            <h5>{{notification.created_time}}</h5>
+                                                            <div class="OpenForm">
+                                                                {%if notification.is_read%}
+                                                                    <button class="Read">Mark as Read</button>
+                                                                {%else%}
+                                                                    <button class="noRead" data-notification-id="{{ notification.id }}">Mark as Read</button>
+    
+                                                                {%endif%}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                            {% endfor %}
+            
+                                        </div>
+                                    </div>
+                                </li>
+                            {%endif%}
+                        {%endfor%}
+                    {%endif%}
+                        
+
+                    {% if not request.user.is_authenticated %}
+                        <li class="nav-item ng-star-inserted cursorPointer">
+                            <a href="{% url 'signup' %}" class="nav-link logout fw-bolder">SignUp</a>
+                        </li>
+                        <li class="nav-item ng-star-inserted cursorPointer">
+                            <a href="{% url 'login' %}" class="nav-link logout fw-bolder">Login</a>
+                        </li>
+                    {%else%}
+                        <li class="nav-item ng-star-inserted cursorPointer">
+                            <button class="nav-link logout fw-bolder"  type="button" class="btn delete mx-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Logout</button>
+                        </li>
+                    {% endif %}
+                    
+                </ul>
+        
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Bar -->
+    <section class="report">
+        <h1 class="px-3 pb-3">Write Report</h1>
+
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="createBody">
+
+                <form method="post" id="report-form">
+
+                    {% csrf_token %}
+                    <div class="form-group pb-3 d-flex justify-content-center align-items-center">
+                        <label class="m-auto select Pet" for="pet">Select Pet:</label>
+                        <select class="m-b form-control" name="pet" id="chosen-pet">
+                            <option value="" disabled selected>Choose Pet</option>
+                            {% for pet in pets %}
+                                <option value="{{ pet.id }}">{{ pet.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <p id="pet-error" style="color:red"></p>
+                
+                    <div class="form-group pb-3">
+                        <label class="m-auto m-auto pb-2" for="report">Report:</label>
+                        <textarea id="Report" class="form-control" name="report" cols="30" rows="10" placeholder="Write Report"></textarea>
+                    </div>
+                    <p id="report-error" style="color:red"></p>
+
+                    <div class="form-group pb-3 d-flex justify-content-center">
+                        <label class="m-auto" for="dose1">Dose 1:</label>
+                        <input class="form-control" type="text" id="Dose1" name="dose1">
+                    </div>
+
+
+                    <div class="form-group pb-3 d-flex justify-content-center">
+                        <label class="m-auto" for="dose2">Dose 2:</label>
+                        <input class="form-control" type="text" id="Dose2" name="dose2">
+                    </div>
+
+
+                    <div class="form-group pb-3 d-flex justify-content-center">
+                        <label class="m-auto" for="dose3">Dose 3:</label>
+                        <input class="form-control" type="text" id="Dose3" name="dose3">
+                    </div>
+
+
+                    <div class="w-100 d-flex justify-content-between align-items-center pt-4">
+                        <a href="{% url 'create_pet' customer.user.id %}"">Add Pet</a>
+                        <p id="all-error" style="color:red"></p>
+                        <button type="button" onclick="writeReport()">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="clincFooter">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-start Footer">
+                <div class="d-flex justify-content-center align-items-center twoSections">
+                    <div class="sectionOne py-4">
+                        <div class="logo d-flex align-items-center">
+                            <img src="{% static 'imgs/logo.png' %}" alt="logo" />
+                            <h1 class="m-0">Vet<span>Hub</span></h1>
+                        </div>
+                        <p>A website for booking veterinary doctors</p>
+                        <section class="socialMedia">
+                            <h3>Social Media</h3>
+                            <section class="socialLinks d-flex justify-content-around align-items-center pt-2">
+                                    <a href="https://www.facebook.com/"><img src="{% static 'imgs/facebook.png' %}" alt="facebook"></a>
+                                    <a href="#"><img src="{% static 'imgs/Google.png' %}" alt="Google"></a>
+                                    <a href="https://www.linkedin.com/"><img src="{% static 'imgs/linkedin.png' %}" alt="linkedin"></a>
+                            </section>
+                        </section>
+                    </div>
+                    <div class="sectionTwo py-4">
+                        <h3>Your Pet is in safe hands</h3>
+                        <p>VetHub website first and last goal is to obtain the best and fastest way to care for your pet</p>
+                        {% for group_for in request.user.groups.all %}
+                            {% if group_for.name == 'Customers' %}
+                                <h3>Contact Us</h3>
+                                <form method="post" class="d-flex justify-content-center align-items-center">
+                                    {% csrf_token %}
+                                    {{ supportTeamMessageForm.as_p }}
+                                    <input id='Massage' name="message" class='form-control' type="text" placeholder="Massage Us" />
+                                    <div class="px-2">
+                                        <button  type="submit" class='btn text-white'>Send</button>
+                                    </div>
+                                </form>
+
+                            {% endif %}
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+                <div class="sectionThree py-4">
+                    <h3>Get in Touch</h3>
+                    <section>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+201222222222</span>
+                    </section>
+                    <section>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>contact@example.com</span>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Massage Confirmation -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Logout Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2>Are you sure you want to logout your account?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="{% url 'logout'  %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn Delete-btn" style="background-color: #019874d0;">Logout</button>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <div class="w-100 modal-father"></div>
+    </div>
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Swiper JS -->
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/index15.js' %}"></script>
+    <script>
+        function writeReport(){
+            document.getElementById("report-error").innerHTML = ""
+            document.getElementById("pet-error").innerHTML = ""
+            document.getElementById("all-error").innerHTML = ""
+            var pet = document.getElementById("chosen-pet").value
+            var report = document.getElementById("Report").value
+            var allGood = true
+
+            if(report == "" && pet == "") {
+                document.getElementById("all-error").innerHTML = "Please Choose Pet & Write the Report"
+                allGood = false
+            }
+
+            if(report == ""){
+                document.getElementById("report-error").innerHTML = "Please Write the Report"
+                allGood = false
+            }
+
+            if(pet == ""){
+                document.getElementById("pet-error").innerHTML = "Please Choose Pet"
+                allGood = false
+            }
+
+            if(allGood == true){
+                document.getElementById("report-form").submit()
+            }
+
+        }
+    </script>
+
+</body>
+</html>
