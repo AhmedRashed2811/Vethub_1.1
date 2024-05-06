@@ -1,0 +1,4479 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Inter",sans-serif;
+    font-size: 16px;
+}
+.Authentication-page{
+    min-height: 100vh;
+    background: #3CBA92;
+}
+.Authentication-page::after{
+    content: "";
+    position: absolute;
+    width: 225.76px;
+    height: 248.53px;
+    right: -58px;
+    top: -59px;
+    border-radius: 50%;
+    background: rgba(1, 152, 116, 0.6);
+}
+.Authentication-page::before{
+    content: "";
+    position: absolute;
+    width: 225.76px;
+    height: 248.53px;
+    right: -34px;
+    top: -26.53px;
+    border-radius: 50%;
+    background: rgba(1, 152, 116, 0.38);
+
+}
+.Authentication-page .container .Section-1{
+    background-color: #019874;
+    color: #fff;
+    border-radius: 20px 0 0 20px;
+    display: block;
+}
+.Authentication-page .container .Section-1 h2{
+    font-size: 30px;
+    font-weight: 400;
+}
+.Authentication-page .container .Section-1 .img{
+    /* width: 524px; */
+    /* height: 312px; */
+    background: #D9D9D9;
+    border-radius: 8px;
+}
+.Authentication-page .container .Section-1 h3{
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0 1rem 0 0;
+    margin: 0;
+}
+.Authentication-page .container .Section-1 button{
+    background: #c6c7c8;
+    border: 1px solid #c6c7c8;
+    color: #000;
+    margin: 0;
+    transition: 0.5s;
+}
+.Authentication-page .container .Section-1 button:hover{
+    background: #a1a2a3;
+    border: 1px solid #a1a2a3;
+}
+.Authentication-page .container .Section-2{
+    background: #fff;
+    border-radius: 0 20px 20px 0;
+}
+.Authentication-page .container .Section-2 h3{
+    font-size: 35px;
+    font-weight: bold;
+}
+.Authentication-page .container .Section-2 form label{
+    font-size: 20px;
+    padding-right: 10px;
+}
+.Authentication-page .container .Section-2 .forget{
+    cursor: pointer;
+    margin-left: 0 !important;
+    transition: 0.5s;
+    text-decoration: none;
+}
+.Authentication-page .container .Section-2 .forget:hover{
+    color: #019874;
+}
+.Authentication-page .container .Section-2 button{
+    background-color: rgba(1, 152, 116, 0.8157) !important;
+    transition: 0.5s;
+}
+.Authentication-page .container .Section-2 button:hover{
+    background-color: #019874 !important;
+}
+
+/* Sign Up */
+.Authentication-page .container .Section-2 .chooseSignUp{
+    box-sizing: border-box;
+    width: 150px;
+    height: 165.57px;
+    background: #FFFFFF;
+    border: 1px solid #AFD3FF;
+    box-shadow: 0px 4px 4px #E6EEF8;
+    border-radius: 50px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.Authentication-page .container .Section-2 .chooseSignUp:hover{
+    box-sizing: border-box;
+    width: 150px;
+    height: 165.57px;
+    background: #FFFFFF;
+    border: 1px solid #E6EEF8;
+    box-shadow: 0px 10px 38px #8FBFFC;
+    border-radius: 50px;
+}
+.Authentication-page .container .Section-2 .chooseSignUp img{
+    width: 100px;
+    height: 100px;
+}
+.Authentication-page .container .Section-2 .chooseSignUp h4{
+    font-family: 'Public Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.Authentication-page .container .Section-2 form .SignUp-lable, .Authentication-page .container .Section-2 form .SignUp-lable-F1{
+    font-size: 16px;
+    color: #676a6c;
+    width: 22%;
+}
+.Authentication-page .container .Section-2 form .SignUp-lable-F1{
+    width: 22%;
+}
+.Authentication-page .container .Section-2 form .form-control{
+    background-color: #ffffff8a;
+    border: 1px solid #18a68952;
+    border-radius: 1px;
+    color: inherit;
+    display: block;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857143;
+}
+.Authentication-page .container .Section-2 form .form-control:focus{
+    box-shadow: 0 0 0 0.2rem rgba(1, 152, 116,.25);
+}
+
+/* Sign Up Doctor F1 */
+
+.Authentication-page .container .Section-2 form .gender-details .gender-title{
+    font-size: 20px;
+    font-weight: 500;
+}
+.Authentication-page .container .Section-2 form .category{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+.Authentication-page .container .Section-2 form .category label{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-right: 25px;
+}
+.Authentication-page .container .Section-2 form .category label .dot{
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background: #d9d9d9;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+}
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two{
+    background: #019874;
+    border-color: #d9d9d9;
+}
+.Authentication-page .container .Section-2 form input[type="radio"]{
+    display: none;
+}
+
+/* Sign Up Doctor F2 */
+.Authentication-page .container .Section-2 form .tb-container {
+    width: 100%;
+    margin: 5px 0;
+}
+.Authentication-page .container .Section-2 form .tb-container img {
+    width: 200px;
+    height: auto;
+    display: none;
+    margin-bottom: 30px;
+}
+.Authentication-page .container .Section-2 form .tb-container input {
+    display: none;
+}
+.Authentication-page .container .Section-2 form .tb-container label {
+    width: 116px;
+    height: 71px;
+    background: #ADB5BD;
+    color: #ffffff;
+    font-size: 15px;
+    text-transform: capitalize;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: end;
+    padding: 6px;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(0, 0, 0, 0.6);
+    position: relative;
+}
+.Authentication-page .container .Section-2 form .tb-container label .image{
+    content: "";
+    position: absolute;
+    width: 56px;
+    height: 43px;
+    left: 30px;
+    top: 4px;
+    background: url(../imgs/Upload.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 8px;
+
+}
+
+/* Sign Up Doctor F3 */
+.Authentication-page .container .Section-2 form .UrgentExamination{
+    width: 30%;
+}
+.Authentication-page .container .Section-2 form .Price{
+    padding-right: 1rem;
+    font-size: 16px;
+    color: #676a6c;
+}
+.Authentication-page .container .Section-2 form textarea{
+    /* resize: none; */
+    min-height: 100px;
+}
+
+/* NavBar */
+.navbar{
+    background-color: #D9D9D9;
+}
+.navbar .container .navbar-brand img{
+    width: 52px;
+    height: 47.86px;
+}
+.navbar .container .navbar-brand h1, .navbar .container .navbar-brand h1 span{
+    /* width: 134px;
+    height: 38px; */
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 38px;
+    letter-spacing: 0.1em;
+    color: #019874;
+}
+.navbar .container .navbar-brand h1 span{
+    color: #333333;
+}
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 2px 2px;
+    margin: 6px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.navbar-nav .nav-link.active, .navbar-expand-lg .navbar-nav .nav-link:hover{
+    color: #3CBA92;
+}
+.navbar .container .nav-item .flag{
+    width: 60px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.navbar .container .nav-item .flag .flagHover, .navbar .container .nav-item .BillFather .BillHover{
+    transition: 0.5s;
+}
+.navbar .container .nav-item .flag:hover .flagHover{
+    fill: white;
+}
+.navbar .container .nav-item .BillFather{
+    padding: 0px 5px;
+    margin: 0;
+}
+.BillColor{
+    fill: #ffbb00;
+}
+.navbar .container .nav-item .BillFather:hover .BillHover{
+    fill: #ffbb00;
+}
+.navbar .container .nav-item .BillFather .badge{
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #E40909;
+}
+/* Notification */
+.notificationshow{
+    display: none;
+}
+.navbar .container .nav-item .Notification{
+    width: 468px;
+    height: 498px;
+    right: -38px;
+    top: calc(100% + 40px);
+    background: #F8F8F8;
+    border: 1px solid #D9D9D9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.navbar .container .nav-item .Notification::before{
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-image: url(../imgs/arrow.png);
+    position: absolute;
+    right: 44px;
+    top: -21px;
+}
+.navbar .container .nav-item .Notification::after{
+    content: "";
+    width: 50px;
+    height: 5px;
+    background: #F8F8F8;
+    position: absolute;
+    right: 38px;
+    top: 0.8px;
+}
+.navbar .container .nav-item .Notification h3{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    color: #2E2E2E;
+}
+.navbar .container .nav-item .Notification .scroll-div{
+    width: 100%;
+    height: 431px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.navbar .container .nav-item .Notification .scroll-div::-webkit-scrollbar {
+    width: 8px;
+}
+
+.navbar .container .nav-item .Notification .scroll-div::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.navbar .container .nav-item .Notification .scroll-div::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.navbar .container .nav-item .Notification .scroll-div::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+  
+.navbar .container .nav-item .Notification .notificate{
+    width: 98%;
+    min-height: 79px;
+    background: #D9D9D9;
+    border-radius: 8px;
+    padding: 4px;
+}
+.navbar .container .nav-item .Notification .notificate h4{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    color: #808184;
+    margin: 0;
+}
+.navbar .container .nav-item .Notification .notificate p{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 12px;
+    color: #333333;
+    margin: 0;
+    padding-top: 3px;
+}
+.navbar .container .nav-item .Notification .notificate .date h5{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 11px;
+line-height: 13px;
+text-align: right;
+color: #019874;
+}
+
+
+.navbar .container .nav-item .Notification .notificate .OpenForm{
+    padding-bottom: 4px;
+}
+.navbar .container .nav-item .Notification .notificate .OpenForm button, .navbar .container .nav-item .Notification .notificate .OpenForm a{
+    width: 174px;
+    height: 28px;
+    background: #019874;
+    border: 1px solid #019874;
+    border-radius: 50px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 12px;
+    text-align: center;
+    color: #FFFFFF;
+    transition: 0.5s;
+    text-decoration: none;
+    padding: 3px;
+}
+.navbar .container .nav-item .Notification .notificate .OpenForm button:hover, .navbar .container .nav-item .Notification .notificate .OpenForm a:hover{
+    background: #00644C;
+}
+.navbar .container .nav-item .Notification .notificate .OpenForm button.noRead{
+    width: 110px;
+    height: 28px;
+    border-radius: 6px;
+}
+.navbar .container .nav-item .Notification .notificate .OpenForm button.Read{
+    width: 110px;
+    height: 28px;
+    border-radius: 6px;
+    background: #6c757d;
+    cursor: no-drop;
+    border: 1px solid #6c757d;
+}
+.navbar .container .nav-item .Notification .notificate .OpenForm button.Read:hover{
+    background: #6c757d;
+}
+.navbar .container .logout {
+    width: 106px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background: #019874;
+    border-radius: 10px;
+    font-family: 'Raleway',sans-serif;
+    transition: 0.5s;
+}
+.navbar .container .logout:hover{
+    color: #fff;
+    background-color: #00644C;
+}
+
+/* Home Section */
+.home{
+    background-color: #F8F8F8;
+    min-height: 100vh;
+    padding: 6rem 0 0 0;
+    box-sizing: border-box;
+}
+.home .container .row h3{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 70px;
+    color: #000000;
+}
+.home .container .row p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 33px;
+    color: #000000;
+    padding-top: 25px;
+}
+
+/* Doctors Section */
+.doctors{
+    min-height: 100vh;
+    padding-top: 80px;
+}
+.doctors .container .Filter{
+    display: flex;
+}
+.doctors .container .Filter .dropdown-toggle::after{
+    margin-left: 4px;
+    vertical-align: 0px;
+}
+.doctors .container .Filter .cityFilter, .doctors .container .Filter .areaFilter, .doctors .container .Filter .urgentFilter{
+    width: 173px;
+    height: 76px;
+    background: transparent;
+    border: 0.5px solid #C4C4C4;
+    border-radius: 8px 0px 0px 8px;
+    font-size: 25px;
+    color: #D9D9D9;
+}
+.doctors .container .Filter .cityFilter span, .doctors .container .Filter .areaFilter span, .doctors .container .Filter .urgentFilter span{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #019874;
+    padding: 0 3px;
+}
+.doctors .container .Filter .areaFilter{
+    width: 174px;
+    height: 76px;
+    border-radius: 0;
+}
+.doctors .container .Filter .urgentFilter{
+    width: 228px;
+    height: 76px;
+    border-radius: 0;
+}
+.doctors .container .Filter .urgentFilter i{
+    font-size: 24px;
+    padding: 0 6px 0 0;
+    color: #000;
+}
+.doctors .container .Filter .Search{
+    width: 158px;
+    height: 76px;
+    background: #019874;
+    border-radius: 0px 8px 8px 0px;
+    border: none;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+.doctors .container .Filter .Search i{
+    font-size: 22px;
+}
+.doctors .container .head h2{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+    color: #808184;
+    padding-right: 10px;
+}
+.doctors .container .head p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #ADB5BD;
+}
+.doctors .scroller{
+    height: 848px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding-right: 8px;
+}
+.doctors .scroller::-webkit-scrollbar {
+    width: 8px;
+}
+
+.doctors .scroller::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.doctors .scroller::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.doctors .scroller::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.doctors .container .form-control{
+    width: 100%;
+    height: 45px;
+    background: #FFFFFF;
+    border: 0.5px solid #C4C4C4;
+    box-shadow: 0px 0px 10px rgba(204, 204, 204, 0.25);
+    border-radius: 8px;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    position: relative;
+    appearance: auto;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #019874;
+}
+.doctors .container .form-control:focus{
+    border-color: #019874;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(1, 152, 116,.25);
+}
+.doctors .container .form-group label{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #ADB5BD;
+    padding-right: 10px;
+}
+.doctors .container .allDoctors{
+    background: #D9D9D9;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.doctors .container .allDoctors .photo{
+    width: 151.17px;
+    height: 151.17px;
+    background:#D9D9D9;
+    border: 4px solid #019874;
+    border-radius: 200px;
+}
+.doctors .container .allDoctors .information h3{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+    color: #808184;
+}
+.doctors .container .allDoctors .information .Rating span, .doctorDetails .doctorInformation .details .Rating span {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #4D3208;
+}
+.doctors .container .allDoctors .information .Rating .stars i, .doctorDetails .doctorInformation .details .Rating .stars i{
+    font-size: 18px;
+}
+.checked {
+    color: orange;
+}
+.doctors .container .allDoctors .location, .doctorDetails .doctorInformation .details .location{
+    cursor: pointer;
+    width: fit-content;
+}
+.doctors .container .allDoctors .location i, .doctorDetails .doctorInformation .details .location i{
+    color: rgba(1, 101, 252, 0.78);
+    font-size: 22px;
+}
+.doctors .container .allDoctors .location h6, .doctorDetails .doctorInformation .details .location h6{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+    margin: 0 0 0 5px;
+    transition: 0.5s;
+}
+.doctors .container .allDoctors .location:hover h6, .doctorDetails .doctorInformation .details .location:hover h6{
+    color: #019874;
+}
+.doctors .container .allDoctors .description{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 33px;
+    color: #000000;
+}
+.doctors .container .allDoctors h4,.doctors .container .allDoctors h4 span{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 24px;
+    text-align: center;
+    color: #019874;
+    position: relative;
+}
+
+#old-price::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    top: 50%;
+    background-color: #990000;
+    transform: rotate(-21deg);
+}
+
+#old-price::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    top: 50%;
+    background-color: #990000;
+    transform: rotate(21deg);
+}
+
+.doctors .container .allDoctors .Chat, .doctorDetails .doctorInformation .details .Chat{
+    width: 188px;
+    height: 39px;
+    background: #019874;
+    border-radius: 10px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.doctors .container .allDoctors .Chat:hover, .doctorDetails .doctorInformation .details .Chat:hover{
+    background: #00644C;
+}
+
+/* News Section */
+.News{
+    background-color: #F8F8F8;
+    padding: 30px 0 30px 0;
+}
+.container-sm{
+    max-width: 1140px;
+}
+.News h2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #808184;
+}
+.News .scrollable-container {
+    overflow-x: scroll;
+    /* scrollbar-width: thin; */
+}
+.News .scrollable-container::-webkit-scrollbar {
+    height: 10px;
+}
+.News .scrollable-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+.News .scrollable-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.News .scrollable-container::-webkit-scrollbar-thumb:hover{
+    background-color: #555;
+}
+.News .allNews .oneNews{
+    display: inline-block;
+    vertical-align: top;
+    width: 317px;
+    min-height: 324px;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    padding: 20px;
+}
+.News .allNews .oneNews h3{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    color: #ADB5BD;
+}
+.News .allNews .oneNews p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+}
+.News .allNews .oneNews img{
+    width: 277px;
+    height: 179px;
+    background: #D9D9D9;
+    border-radius: 8px;
+}
+
+/* Footer Section */
+footer{
+    background-color: #019874;
+}
+footer .twoSections{
+    width: 75%;
+}
+footer .twoSections .sectionOne{
+    width: 45%;
+}
+footer .twoSections .sectionOne img{
+    width: 70px;
+    height: 62.86px;
+}
+footer .twoSections .sectionOne h1, footer .twoSections .sectionOne span{
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 38px;
+    letter-spacing: 0.1em;
+    color: #fff;
+}
+footer .twoSections .sectionOne span{
+    color: #333333;
+}
+footer .twoSections .sectionOne p, footer .twoSections .sectionTwo p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 33px;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+footer .twoSections .sectionOne .socialMedia h3, footer .twoSections .sectionTwo h3, footer .sectionThree h3{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    color: #FFFFFF;
+    border-bottom: 1px solid #D9D9D9;
+    padding-bottom: 5px;
+}
+footer .twoSections .sectionOne .socialMedia .socialLinks a img{
+    filter: grayscale(.7);
+    width: 30px;
+    height: 30px;
+    transition: 0.5s;
+}
+footer .twoSections .sectionOne .socialMedia .socialLinks a i {
+    font-size: 30px;
+    color: #00ACED;
+    filter: grayscale(.7);
+    transition: 0.5s;
+}
+footer .twoSections .sectionOne .socialMedia .socialLinks a:hover img, footer .twoSections .sectionOne .socialMedia .socialLinks a:hover i{
+    filter: grayscale(0);
+}
+footer .twoSections .sectionTwo{
+    width: 55%;
+    padding: 0 20px;
+}
+footer .twoSections .sectionTwo h3{
+    border-bottom: none;
+    padding-bottom: 0;
+    text-align: start;
+}
+footer .twoSections .sectionTwo p{
+    text-align: start;
+    font-size: 16px;
+}
+footer .twoSections .sectionTwo form button{
+    width: 71px;
+    height: 39px;
+    background: #00644C;
+    border: 1px solid #00644C;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+footer .twoSections .sectionTwo form button:hover{
+    border: 1px solid #00644C;
+    background: #019874;
+}
+footer .twoSections .sectionTwo form .form-control:focus {
+    border-color: #019874;
+    outline: 0;
+    box-shadow: 0 0 0 0.18rem rgba(0, 100, 76,.25);
+}
+footer .sectionThree{
+    width: 25%;
+    padding: 0 20px;
+}
+footer .sectionThree h3{
+    border-bottom: none;
+    padding-bottom: 0;
+    text-align: start;
+}
+footer .sectionThree section{
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+footer .sectionThree section i{
+    font-size: 22px;
+    color: #00644C;
+    padding-right: 8px;
+}
+footer .sectionThree section span{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    color: #FFFFFF;
+}
+/* Form Section */
+.formBody h1{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 41px;
+    color: #2E2E2E;
+}
+.formBody .form{
+    width: 100%;
+    background: #D9D9D9;
+    border-radius: 8px;
+    padding: 30px 50px;
+}
+.formBody .form form .question1 h3,.formBody .form form .question2 h3, .formBody .form form .question4 h3{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #333333;
+}
+.formBody .form form .question1 .answers .answer,.formBody .form form .question2 .answers .answer{
+    cursor: pointer;
+    width: fit-content;
+}
+.formBody .form form .question1 .answers .answer .circle,.formBody .form form .question2 .answers .answer .circle{
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+.choose{
+    background-color: #019874 !important;
+}
+.formBody .form form .question1 .answers .answer h2,.formBody .form form .question2 .answers .answer h2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    color: #000000;
+    margin: 0;
+    padding-left: 7px;
+}
+.formBody .form form .commentLabel{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #333333;
+}
+.formBody .form form textarea{
+    height: 150px;
+    background-color: #FFFFFF;
+    border: 1px solid #A6A6A6;
+    border-radius: 6px;
+}
+.formBody .form form textarea:focus {
+    border-color: #019874;
+    box-shadow: 0 0 0 0.2rem rgba(0, 100, 76,.25);
+}
+.formBody .form form .question4 .answers .stars i{
+    font-size: 35px;
+    cursor: pointer;
+} 
+.formBody .form form button{
+    width: 115px;
+    height: 50px;
+    background: #019874;
+    border-radius: 8px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    color: #FFFFFF;
+    transition: 0.5s;
+}
+.formBody .form form button:hover{
+    background: #00644C;
+}
+
+/* Doctor Details */
+.doctorDetails{
+    min-height: 100vh;
+    background-color: #F8F8F8;
+}
+.doctorDetails .doctorInformation{
+    width: 100%;
+    height: 312px;
+    padding: 20px;
+    background: #FFFFFF;
+    border-radius: 20px;
+}
+.doctorDetails .doctorInformation .photo{
+    width: 152px;
+    height: 152px;
+    background: #D9D9D9;
+    border: 4px solid #019874;
+    border-radius: 50%;
+}
+.doctorDetails .doctorInformation .details{
+    padding-left: 10px;
+}
+.doctorDetails .doctorInformation .details h3{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 35px;
+    color: #808184;
+}
+.doctorDetails .doctorInformation .details p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 33px;
+    color: #000000;
+    padding-top: 5px;
+}
+.doctorDetails .mab{
+    width: 100%;
+    height: 262px;
+    background:#FFFFFF;
+    border-radius: 20px;
+}
+.doctorDetails .mab iframe{
+    border-radius: 20px;
+}
+.doctorDetails .AllComments h4{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+}
+.doctorDetails .AllComments .comments{
+    padding: 10px 0 0 20px;
+}
+.doctorDetails .AllComments .comments .comment{
+    display: none;
+}
+.doctorDetails .AllComments .comments .comment:nth-child(1),
+.doctorDetails .AllComments .comments .comment:nth-child(2),
+.doctorDetails .AllComments .comments .comment:nth-child(3){
+    display: flex;
+}
+.doctorDetails .AllComments .comments .comment .details{
+    padding-left: 10px;
+}
+.doctorDetails .AllComments .comments .comment .details h5{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+    padding-top: 15px;
+}
+.doctorDetails .AllComments .comments .comment .details h6{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #ADB5BD;
+    margin: 0;
+}
+.doctorDetails .AllComments .comments .comment .details p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 33px;
+    color: #000000;
+}
+.doctorDetails .bookingInformation{
+    width: 100%;
+    min-height: 812px;
+    background: #FFFFFF;
+    border-radius: 20px;
+}
+.doctorDetails .bookingInformation .header{
+    width: 100%;
+    padding: 20px 0;
+    background: #019874;
+    border-radius: 20px 20px 0px 0px;
+    color: #fff;
+}
+.doctorDetails .bookingInformation .price{
+    padding-top: 20px;
+    border-bottom: 1px solid #D9D9D9;
+}
+.doctorDetails .bookingInformation .price p, .doctorDetails .bookingInformation .price p span{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #4D3208;
+    position: relative;
+}
+.doctorDetails .bookingInformation .price p span::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    top: 50%;
+    background-color: #990000;
+    transform: rotate(-21deg);
+}
+
+.doctorDetails .bookingInformation .price p span::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    top: 50%;
+    background-color: #990000;
+    transform: rotate(21deg);
+}
+.doctorDetails .bookingInformation .reservationDate h4{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    color: #808184;
+    padding: 13px 0;
+}
+.doctorDetails .bookingInformation .reservationDate .days{
+    width: 100%;
+    padding: 30px 0;
+    background: #D9D9D9;
+    border-radius: 0px 0px 20px 20px;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day{
+    width: 107px;
+    background: #FFFFFF;
+    border-radius: 8px;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .header{
+    padding: 17px 0;
+    background: #019874;
+    border-radius: 8px 8px 0px 0px;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .header h5{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+    margin: 0;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .time{
+    padding:5px 0;
+    margin-top: 5px;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .time span{
+    width: fit-content;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 15px;
+    color: #019874;
+    cursor: pointer;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .booked span{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 15px;
+    color: #808184;
+    position: relative;
+    cursor: no-drop;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .booked span::after{
+    content: "";
+    position: absolute;
+    width: 63px;
+    height: 2px;
+    left: 0;
+    top: 50%;
+    background-color: #808184;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .choose{
+    background-color: #019874;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .choose span{
+    color: #fff;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .footer{
+    width: 100%;
+    border: none;
+    background: rgba(1, 152, 116, 0.6);
+    border-radius: 0px 0px 8px 8px;
+    padding: 14px 0;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .green{
+    background: #019874;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .footer h5{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    color: #FFFFFF;
+    margin: 0;
+}
+.doctorDetails .bookingInformation .reservationDate .days .arrowButton{
+    position: absolute;
+    width: 31px;
+    height: 39.43px;
+    font-size: -1px;
+    background: rgba(255, 255, 255, 0.5);
+    color: #019874;
+}
+.doctorDetails .bookingInformation .reservationDate .days .arrowButtonleft{
+    left: 0;
+}
+.doctorDetails .bookingInformation .reservationDate .days .arrowButtonright{
+    right: 0;
+}
+.doctorDetails .bookingInformation .reservationDate .days .arrowButton::after{
+    font-size: 30px;
+    font-weight: bolder;
+}
+.days {
+    position: relative;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.doctorDetails .AllComments #see-more{
+    width: 188px;
+    height: 39px;
+    background: #019874;
+    border-radius: 10px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.doctorDetails .AllComments #see-more:hover{
+    background: #00644C;
+}
+/* .doctorDetails .AllComments .comments .comment{
+    display: none;
+}
+.doctorDetails .AllComments .comments .comment:nth-child(1),
+.doctorDetails .AllComments .comments .comment:nth-child(2),
+.doctorDetails .AllComments .comments .comment:nth-child(3){
+    display: flex;
+} */
+#more{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 15px;
+    text-align: center;
+    color: rgba(1, 152, 116, 0.6);
+    padding: 7px 0;
+    cursor: pointer;
+    transition: 0.5s;
+}
+#more:hover{
+    color: #fff;
+    background-color: #019874;
+}
+#morex{ 
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 15px;
+    text-align: center;
+    color: rgba(1, 152, 116, 0.6);
+    padding: 7px 0;
+    cursor: pointer; 
+    transition: 0.5s;
+}
+#morex:hover{
+    color: #fff;
+    background-color: #019874;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .time{
+    display: none;
+}
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(1),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(2),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(3),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(4),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(5),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(6),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(7),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(8),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(9),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(10),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(11),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(12),
+.doctorDetails .bookingInformation .reservationDate .days .day .time:nth-child(13){
+    display: inline-block;
+}
+
+/* Model */
+.modal-father{
+    width: 100%;
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    z-index: 85000;
+}
+.modal-dialog{
+    z-index: 90000;
+}
+.modal{
+    --bs-modal-width: 60%;
+}
+.modal-title{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+    color: #000000;
+}
+.modal-body h2{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+    padding-bottom: 5px;
+}
+.modal-body h2 span{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+}
+.modal-footer .submit-btn{
+    padding: 10px;
+    background: #019874;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #fff;
+    transition: 0.5s;
+}
+.modal-footer .submit-btn:hover{
+    background: #00644C;
+}
+.modal-footer .Delete-btn{
+    padding: 10px;
+    background: #EB1D36;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #fff;
+    transition: 0.5s;
+}
+.modal-footer .Delete-btn:hover{
+    background: #971222;
+}
+.modal-footer .btn-secondary{
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #fff;
+}
+.previousAppointments{
+    width: 100%;
+    padding-bottom: 50px;
+    padding-top: 100px;
+    background-color: #F5F6F8;
+    min-height: 80vh;
+}
+.previousAppointments .appointments{
+    width: 100%;
+    height: auto;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    padding: 20px;
+}
+.previousAppointments .appointments h1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36px;
+    color: #000000;
+}
+.previousAppointments .appointments .body{
+
+}
+.previousAppointments .appointments .body .outer-wrapper {
+    margin: 10px;
+}
+.previousAppointments .appointments .body .outer-wrapper .table-wrapper {
+    height: fit-content;
+    margin-top: 22px;
+    margin: 15px;
+    padding-bottom: 20px;
+}
+.previousAppointments .appointments .body .outer-wrapper .table-wrapper table {
+    
+    /* min-width: max-content; */
+    background-color: #F5F6F8;
+    border-collapse: separate;
+    border-spacing: 0px;  
+    border-radius: 10px;  
+    
+}
+.previousAppointments .appointments .body .outer-wrapper .table-wrapper table th{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    color: #000000;
+    position: sticky; 
+    top: 0px;
+    width: 250px;
+    text-align: center;
+}
+.previousAppointments .appointments .body .outer-wrapper .table-wrapper table th{ 
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.previousAppointments .appointments .body .outer-wrapper .table-wrapper table td {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 !important;
+    font-size: 16px !important;
+    color: #000000;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+    border-top: 1px solid #D9D9D9;
+    border-bottom: 1px solid #D9D9D9;
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* padding-left: 20px; */
+}
+.previousAppointments .appointments .body .outer-wrapper .table-wrapper table tr:last-child td{
+    border: none;
+}
+.previousAppointments .appointments .body .outer-wrapper .table-wrapper table td .cancel{
+    padding: 10px 15px;
+    background: rgba(108, 117, 125, 0.815686);
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: no-drop;
+    border: none;
+}
+.previousAppointments .appointments .body .outer-wrapper .table-wrapper table td .cancel.available{
+    background: #019874;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.previousAppointments .appointments .body .outer-wrapper .table-wrapper table td .cancel.available:hover{
+    background: #00644C;
+}
+
+/* User Profile */
+.profile{
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 73px;
+    background-color: #F8F8F8;
+    position: relative;
+}
+.profile .background-image{
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    left: 0;
+    top: 0;
+    background: url(../imgs/background.png), #D9D9D9;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    z-index: 1;
+}
+.profile .Body{
+    position: relative;
+    z-index: 5;
+    padding-top: 100px;
+}
+.profile .Body .profileImage{
+    background-color: #D9D9D9;
+    width: 200px;
+    height: 200px;
+    border: 4px solid #019874;
+    border-radius: 50%;
+}
+.profile .Body .custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 5px;
+}
+.profile .Body .custom-file-upload .upload-icon {
+    width: 29px;
+    height: 32px;
+    vertical-align: middle;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+}
+.profile .Body .Name{
+    padding-left: 40px;
+}
+.profile .Body .Name h1{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+    color: #2E2E2E;
+}
+.profile .Body .Name h3{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #019874;
+}
+.profile .Body .Information{
+    margin-top: 30px !important;
+    width: 70%;
+}
+.profile .Body .Information h2{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+    color: #A6A6A6;
+    border-bottom: 1px solid #D9D9D9;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+.profile .Body .Information form .form-group{
+    padding-bottom: 20px;
+}
+.profile .Body .Information form .control-label{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #333333;
+    padding-bottom: 10px;
+    padding-right: 20px;
+}
+.profile .Body .Information form input,.profile .Body .Information form select, .profile .Body .Information form textarea{
+    width: 100%;
+    border: 1px solid #A6A6A6;
+    border-radius: 6px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 22px;
+    color: #333333;
+    padding: 10px;
+}
+.profile .Body .Information form textarea{
+    height: 180px;
+}
+.profile .Body .Information form .password-input, body .newAdmin form .password-input{
+    position: relative;
+}
+.profile .Body .Information form .password-input input[type="password"], body .newAdmin form .password-input input[type="password"]{
+    padding-right: 30px; 
+}
+.profile .Body .Information form .password-input .toggle-password, body .newAdmin form .password-input .toggle-password{
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 29px;
+    height: 21px;
+    background: url(../imgs/open-eye.png);
+}
+.profile .Body .Information form .Delete-btn{
+    padding: 10px;
+    background: #EB1D36;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #fff;
+    transition: 0.5s;
+}
+.profile .Body .Information form .Delete-btn:hover{
+    background: #971222;
+}
+.profile .Body .Information form .Delete-btn i{
+    font-size: 20px;
+    color: #fff;
+    padding-right: 10px;
+}
+.profile .Body .Information form .btn-save{
+    border: none;
+    padding: 10px;
+    background: #019874;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #fff;
+    transition: 0.5s;
+}
+.profile .Body .Information form .btn-save:hover{
+    background: #00644C;
+}
+.no-drop{
+    cursor: no-drop !important;
+}
+.profile .Body .Information form .gender-details .gender-title{
+    font-size: 20px;
+    font-weight: 500;
+}
+.profile .Body .Information form .category{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+.profile .Body .Information form .gender-details{
+    padding-top: 3px;
+}
+.profile .Body .Information form .category label{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-right: 25px;
+}
+.profile .Body .Information form .category label .dot{
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background: #d9d9d9;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+}
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two{
+    background: #019874;
+    border-color: #d9d9d9;
+}
+.profile .Body .Information form input[type="radio"]{
+    display: none;
+}
+/* Admin Panal */
+/* Side Bar */
+body .sideBar{
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+body .sideBar .sideBarHeader img{
+    width: 50px;
+}
+body .sideBar .sideBarBody{
+    background-color: #019874;
+}
+body .sideBar .sideBarBody h1, body .sideBar .sideBarBody h1 span{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: #fff;
+    padding-left: 0.5rem;
+    text-align: start;
+}
+body .sideBar .sideBarBody h1 span{
+    color: #000;
+}
+body .sideBar .links a img{
+    width: 20px;
+    height: 18px;
+}
+i, body .sideBar .sideBarBody a, #submitBtn{
+    cursor: pointer;
+}
+body .sideBar .sideBarBody a{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    transition: 0.5s;
+}
+body .sideBar .sideBarBody a:hover, body .sideBar .sideBarBody a.active{
+    background-color: #00644C;
+}
+body .sideBar .logout{
+    background: #00644C;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.5s;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+body .AdminBody section {
+    display: none;
+}
+body .AdminBody section.show {
+    display: block;
+}
+body .AdminBody{
+    margin-left: 68px;
+    /* background-color: red; */
+    transition: 500ms;
+}
+body .AdminBody.maLeft{
+    margin-left: 306px !important;
+}
+body .AdminBody .customersData .sort,body .AdminBody .appointments .sort,body .AdminBody .doctorsData .sort,body .AdminBody .DoctorVerification .sort{
+    height: fit-content;
+    padding: 10px 20px;
+    background: #00644C;
+    border-radius: 10px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    transition: 0.5s;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+body .AdminBody .customersData .sort:hover, body .AdminBody .appointments .sort:hover, body .AdminBody .doctorsData .sort:hover, body .AdminBody .DoctorVerification .sort:hover, body .AdminBody .sideBar a.logout:hover{
+    border: 1px solid #00644C;
+    background: #34a78c;
+}
+body .AdminBody .customersData .searchInput,body .AdminBody .appointments .searchInput, body .AdminBody .doctorsData .searchInput, body .AdminBody .DoctorVerification .searchInput{
+    width: 400px;
+    height: 39px;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    border-radius: 6px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    color: #797979;
+}
+body .AdminBody .appointments .searchInput{
+    width: 600px;
+}
+body .AdminBody .customersData .searchInput:focus,body .AdminBody .appointments .searchInput:focus, body .AdminBody .doctorsData .searchInput:focus, body .AdminBody .DoctorVerification .searchInput:focus{
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(1, 152, 116,.25);
+}
+body .AdminBody .newAdmin .createBody{
+    width: 450px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    padding: 20px;
+}
+body .AdminBody .newAdmin h1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    padding-bottom: 20px;
+    line-height: 48px;
+    text-align: center;
+    color: #000;
+}
+body .AdminBody .newAdmin form label{
+    font-size: 16px;
+    color: #676a6c;
+    padding-right: 10px;
+    width: 25%;
+}
+body .newAdmin form .password-input{
+    width: 100%;
+}
+body .newAdmin form input:focus{
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(1, 152, 116,.25);
+}
+body .AdminBody .newAdmin form button{
+    padding: 8px;
+    background: rgba(1, 152, 116, 0.815686);
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    transition: 0.5s;
+}
+body .AdminBody .newAdmin form button:hover{
+    background: #00644C;
+}
+.body{
+
+}
+.body .outer-wrapper {
+    margin: 10px;
+}
+.body .outer-wrapper .table-wrapper {
+    height: fit-content;
+    margin-top: 22px;
+    margin: 15px;
+    padding-bottom: 20px;
+}
+.body .outer-wrapper .table-wrapper table {
+    
+    /* min-width: max-content; */
+    background-color: #fff;
+    border-collapse: separate;
+    border-spacing: 0px;  
+    border-radius: 10px;  
+    
+}
+.body .outer-wrapper .table-wrapper table th{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    color: #000000;
+    position: sticky; 
+    top: 0px;
+    width: 250px;
+    text-align: center;
+}
+.body .outer-wrapper .table-wrapper table th{ 
+    padding: 10px 0px;
+    text-align: center;
+}
+.body .outer-wrapper .table-wrapper table td {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 !important;
+    font-size: 16px !important;
+    color: #000000;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+    border-top: 1px solid #D9D9D9;
+    border-bottom: 1px solid #D9D9D9;
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* padding-left: 20px; */
+}
+.body .outer-wrapper .table-wrapper table tr:last-child td{
+    border: none;
+}
+.body .outer-wrapper .table-wrapper table td .update{
+    padding: 12px;
+    background: rgba(1, 152, 116, 0.8157);
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 19px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    transition: 0.5s;
+}
+.body .outer-wrapper .table-wrapper table td .update:hover{
+    background: #00644C;
+}
+.body .outer-wrapper .table-wrapper table td .delete{
+    padding: 10px;
+    background: #EB1D36;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 19px;
+    color: #fff;
+    transition: 0.5s;
+    cursor: pointer;
+    border: none;
+}
+.body .outer-wrapper .table-wrapper table td .delete:hover{
+    background: #971222;
+}
+.body .outer-wrapper .table-wrapper table td .delete i{
+    font-size: 20px;
+    color: #fff;
+    padding-right: 10px;
+}
+/* Inappropriate Reviews */
+body .AdminBody .inappropriateReviews h1{
+    width: 100%;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000;
+    padding-top: 25px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review{
+    max-width: 827px;
+    border-radius: 8px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    margin-top: 20px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .icon{
+    width: 51px;
+    height: 45px;
+    background: #019874;
+    border-radius: 100px;
+    margin: 20px 8px 0 20px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .icon i{
+    font-size: 24px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .commentInformation{
+    margin-top: 20px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .commentInformation h2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 27px;
+    color: #000;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .commentInformation .stars i{
+    font-size: 18px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .commentInformation h6{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #ADB5BD;
+    margin: 0 0 0 5px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .commentInformation p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 33px;
+    color: #000;
+    width: 486px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .Details{
+    width: 260px;
+    background: #019874;
+    border-radius: 0px 8px 8px 0px;
+    padding-top: 20px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .Details h2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #FFFFFF;
+    width: 100%;
+    border-bottom: 1px solid #D9D9D9;
+    text-align: center;
+    padding-bottom: 5px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .Details h4{
+    width: 100%;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 30px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .Details .delete, body .AdminBody .inappropriateReviews .allReviews .review .Details .Ignore{
+    padding: 10px;
+    background: #EB1D36;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 19px;
+    color: #fff;
+    transition: 0.5s;
+    cursor: pointer;
+    border: none;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .Details .delete:hover{
+    background: #971222;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .Details .delete i{
+    font-size: 20px;
+    color: #fff;
+    padding-right: 10px;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .Details .Ignore{
+    background: #9EB23B;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .Details .Ignore:hover{
+    background: #596420;
+}
+body .AdminBody .inappropriateReviews .allReviews .review .Details .buttons{
+    padding-top: 15px;
+}
+body .modal .modal-dialog .modal-footer .Ignore-btn{
+    background: #9EB23B !important;
+}
+body .modal .modal-dialog .modal-footer .Ignore-btn:hover{
+    background: #596420 !important;
+}
+/* Customer Support */
+body .AdminBody .Support h1{
+    width: 100%;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000;
+    padding-top: 25px;
+}
+body .AdminBody .Support .allQuestions .question{
+    max-width: 827px;
+    border-radius: 8px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    margin-top: 20px;
+}
+body .AdminBody .Support .allQuestions .question .icon{
+    width: 51px;
+    height: 45px;
+    background: #019874;
+    border-radius: 100px;
+    margin: 20px 8px 0 20px;
+}
+body .AdminBody .Support .allQuestions .question .icon i{
+    font-size: 24px;
+}
+body .AdminBody .Support .allQuestions .question .questionInformation{
+    margin-top: 20px;
+}
+body .AdminBody .Support .allQuestions .question .questionInformation h2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 27px;
+    color: #000;
+}
+body .AdminBody .Support .allQuestions .question .questionInformation .stars i{
+    font-size: 18px;
+}
+body .AdminBody .Support .allQuestions .question .questionInformation h6{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #ADB5BD;
+    margin: 0 0 0 5px;
+    padding-right: 15px;
+}
+body .AdminBody .Support .allQuestions .question .questionInformation p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 33px;
+    color: #000;
+    width: 486px;
+    padding-right: 15px;
+}
+body .AdminBody .Support .allQuestions .question .Details{
+    width: 260px;
+    background: #019874;
+    border-radius: 0px 8px 8px 0px;
+    padding-top: 20px;
+}
+body .AdminBody .Support .allQuestions .question .Details h2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #FFFFFF;
+    width: 100%;
+    border-bottom: 1px solid #D9D9D9;
+    text-align: center;
+    padding-bottom: 5px;
+}
+body .AdminBody .Support .allQuestions .question .Details h4{
+    width: 100%;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 30px;
+}
+body .AdminBody .Support .allQuestions .question .Details .delete, body .AdminBody .Support .allQuestions .question .Details .answer{
+    padding: 10px;
+    background: #EB1D36;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 19px;
+    color: #fff;
+    transition: 0.5s;
+    cursor: pointer;
+    border: none;
+    margin-left: 15px;
+}
+body .AdminBody .Support .allQuestions .question .Details .delete:hover{
+    background: #971222;
+}
+body .AdminBody .Support .allQuestions .question .Details .delete i{
+    font-size: 20px;
+    color: #fff;
+    padding-right: 0;
+}
+body .AdminBody .Support .allQuestions .question .Details .answer{
+    background: #9EB23B;
+    font-size: 16px;
+    margin-left: 0;
+    margin-right: 15px;
+}
+body .AdminBody .Support .allQuestions .question .Details .answer:hover{
+    background: #596420;
+}
+body .AdminBody .Support .allQuestions .question .Details .buttons{
+    padding-top: 15px;
+}
+body .modal .modal-dialog .modal-body textarea{
+    width: 100%;
+    border: 1px solid #A6A6A6;
+    border-radius: 6px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 22px;
+    color: #333333;
+    padding: 10px;
+}
+body .modal .modal-dialog .modal-body textarea{
+    height: 120px;
+}
+/* Manage News */
+body .manageNews h1{
+    width: 100%;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000;
+    padding-top: 25px;
+}
+body .manageNews form{
+    max-width: 700px;
+    margin: auto;
+    padding-top: 20px;
+}
+body .manageNews form .control-label{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000;
+    padding-bottom: 10px;
+    padding-right: 20px;
+}
+body .manageNews form textarea{
+    min-width: 500px;
+    border: 1px solid #A6A6A6;
+    border-radius: 6px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 22px;
+    color: #333333;
+    padding: 10px;
+}
+body .manageNews form textarea{
+    height: 180px;
+}
+body .manageNews form .tb-container {
+    width: 100%;
+    margin: 5px 0;
+}
+body .manageNews form .tb-container img {
+    width: 200px;
+    height: auto;
+    display: none;
+    margin-bottom: 30px;
+}
+body .manageNews form .tb-container input {
+    display: none;
+}
+body .manageNews form .tb-container label {
+    width: 156px;
+    height: 120px;
+    background: #ADB5BD;
+    color: #ffffff;
+    font-size: 15px;
+    text-transform: capitalize;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: end;
+    padding: 6px;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(0, 0, 0, 0.6);
+    position: relative;
+}
+body .manageNews form .tb-container label .image{
+    content: "";
+    position: absolute;
+    width: 108px;
+    height: 88px;
+    left: 22px;
+    top: 5px;
+    background: url(../imgs/Upload.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 8px;
+}
+body .manageNews form .submit-btn{
+    padding: 10px 15px;
+    background: #019874;
+    border: 1px solid #019874;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 19px;
+    color: #fff;
+    transition: 0.5s;
+}
+body .manageNews form .submit-btn:hover{
+    background: #00644C;
+}
+body .manageNews .News .allNews .oneNews h3{
+    margin: 0;
+}
+body .manageNews .News .allNews .oneNews .deleteBtn{
+    padding: 5px;
+    padding-bottom: 1px;
+    background: #EB1D36;
+    border: none;
+    border-radius: 2px;
+    transition: 0.5s;
+}
+body .manageNews .News .allNews .oneNews .deleteBtn:hover{
+    background: #971222;
+}
+body .manageNews .News .allNews .oneNews .deleteBtn i{
+    font-size: 18px;
+    color: #fff;
+}
+body .modal .modal-dialog .modal-body .certificate{
+    width: 400px;
+}
+.widthPhoto{
+    width: -webkit-fill-available !important;
+    padding-right: 20px !important;
+}
+/* Clinic Management System */
+.clincSideBar{
+    margin-top: 73.5px;
+}
+.clincSideBar .doctorPhoto{
+    width: 100px;
+    height: 100px;
+    background: #D9D9D9;
+    border: 4px solid #FFFFFF;
+    border-radius: 50%;
+}
+body .sideBar .sideBarBody h1.title{
+    width: 100%;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    color: #fff;
+    border-bottom: 1px solid #D9D9D9;
+    padding: 1rem 0;
+}
+body .clincSideBar .sideBarHeader{
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+.clincFooter{
+    position: relative;
+    z-index: 10;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+body .ClincBody{
+    min-height: 100vh;
+    background: #F5F6F8;
+    margin-top: 73.5px;
+}
+body .ClincBody.maLeft{
+    margin-left: 360px !important;
+}
+body .ClincBody .reviews h2, body .ClincBody .appointmentManage h2, body .ClincBody .allAppointments h2, body .ClincBody .offer h2,.report h1,.reports h2{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+    color: #2E2E2E;
+    padding-top: 1.5rem;
+    width: 100%;
+    text-align: center;
+}
+.appointmentManage{
+    margin-top: 74px;
+}
+.appointmentManage form label{
+    font-size: 20px;
+    font-weight: 600;
+    padding-right: 10px;
+    /* width: 31%; */
+}
+.appointmentManage form .FormLable{
+    width: 72px;
+}
+.appointmentManage .form-control:focus{
+    outline: 0;
+    border: #019874;
+    box-shadow: 0 0 0 0.25rem rgba(1, 152, 116,.25) !important;
+}
+.appointmentManage .FromTo select{
+    width: 132px;
+}
+.appointmentManage .ToFrom select{
+    width: 152px;
+}
+.appointmentManage .DayOf select{
+    width: 180px;
+}
+.appointmentManage .DayOf label{
+    width: 92px;
+}
+.appointmentManage .ToFrom label{
+    width: 46px;
+}
+.appointmentManage .bookingInformation{
+    width: 100%;
+    min-height: 668px;
+    background: #FFFFFF;
+    border-radius: 20px;
+}
+.appointmentManage .bookingInformation .header{
+    width: 100%;
+    padding: 20px 0;
+    background: #019874;
+    border-radius: 20px 20px 0px 0px;
+    color: #fff;
+}
+.appointmentManage .bookingInformation .price{
+    padding-top: 20px;
+    border-bottom: 1px solid #D9D9D9;
+}
+.appointmentManage .bookingInformation .price p, .appointmentManage .bookingInformation .price p span{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #4D3208;
+    position: relative;
+}
+.appointmentManage .bookingInformation .price p span::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    top: 50%;
+    background-color: #990000;
+    transform: rotate(-21deg);
+}
+
+.appointmentManage .bookingInformation .price p span::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    top: 50%;
+    background-color: #990000;
+    transform: rotate(21deg);
+}
+.appointmentManage .bookingInformation .reservationDate h4{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    color: #808184;
+    padding: 13px 0;
+}
+.appointmentManage .bookingInformation .reservationDate .days{
+    width: 100%;
+    padding: 30px 0;
+    background: #D9D9D9;
+    border-radius: 0px 0px 20px 20px;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day{
+    width: 107px;
+    background: #FFFFFF;
+    border-radius: 8px;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .header{
+    padding: 17px 0;
+    background: #019874;
+    border-radius: 8px 8px 0px 0px;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .header h5{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+    margin: 0;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .time{
+    padding:5px 0;
+    margin-top: 5px;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .time span{
+    width: fit-content;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 15px;
+    color: #019874;
+    cursor: pointer;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .booked span{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 15px;
+    color: #808184;
+    position: relative;
+    cursor: no-drop;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .booked span::after{
+    content: "";
+    position: absolute;
+    width: 63px;
+    height: 2px;
+    left: 0;
+    top: 50%;
+    background-color: #808184;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .choose{
+    background-color: #019874;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .choose span{
+    color: #fff;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .footer{
+    width: 100%;
+    border: none;
+    background: rgba(1, 152, 116, 0.6);
+    border-radius: 0px 0px 8px 8px;
+    padding: 14px 0;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .green{
+    background: #019874;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .footer h5{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    color: #FFFFFF;
+    margin: 0;
+}
+.appointmentManage .bookingInformation .reservationDate .days .arrowButton{
+    position: absolute;
+    width: 31px;
+    height: 39.43px;
+    font-size: -1px;
+    background: rgba(255, 255, 255, 0.5);
+    color: #019874;
+}
+.appointmentManage .bookingInformation .reservationDate .days .arrowButtonleft{
+    left: 0;
+}
+.appointmentManage .bookingInformation .reservationDate .days .arrowButtonright{
+    right: 0;
+}
+.appointmentManage .bookingInformation .reservationDate .days .arrowButton::after{
+    font-size: 30px;
+    font-weight: bolder;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .time{
+    display: none;
+}
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(1),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(2),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(3),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(4),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(5),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(6),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(7),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(8),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(9),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(10),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(11),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(12),
+.appointmentManage .bookingInformation .reservationDate .days .day .time:nth-child(13){
+    display: inline-block;
+}
+.MassageClinicName h2,.MassageClinicNumber h2{
+    padding-right: 13px;
+    padding-bottom: 0;
+    margin: 0;
+}
+.MassageClinicName input{
+    width: 210px;
+}
+.MassageClinicNumber input{
+    width: 243px;
+}
+.MassageDoctorPhone{
+    padding-right: 124px;
+}
+.MassageDoctorPhone span{
+    padding-left: 21px;
+}
+.body .outer-wrapper .table-wrapper table td.pending,.body .outer-wrapper .table-wrapper table td.onGoing,.body .outer-wrapper .table-wrapper table td.done{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    line-height: 24px;
+    color: #000;
+}
+.body .outer-wrapper .table-wrapper table td.onGoing{
+    color: #019874;
+}
+.body .outer-wrapper .table-wrapper table td.done{
+    color: #808184;
+}
+body .ClincBody .offer form{
+    width: 500px;
+    margin: auto;
+}
+body .ClincBody .offer form label{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #333;
+    padding-bottom: 5px;
+}
+
+.start-appoionment {
+    padding: 8px;
+    background: rgba(1, 152, 116, 0.815686);
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    transition: 0.5s;
+}
+
+.start-appoionment:hover {
+    background: #00644C;
+}
+
+.write-report {
+    padding: 8px;
+    background: rgba(1, 152, 116, 0.815686);
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+.write-report:hover {
+    background: #00644C;
+}
+body .AdminBody .customersData .sort,body .AdminBody .appointments .sort,body .AdminBody .doctorsData .sort,body .AdminBody .DoctorVerification .sort, body .ClincBody .allAppointments .sort{
+    height: fit-content;
+    padding: 10px 20px;
+    background: #00644C;
+    border-radius: 10px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    transition: 0.5s;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+body .AdminBody .customersData .sort:hover, body .AdminBody .appointments .sort:hover, body .AdminBody .doctorsData .sort:hover, body .AdminBody .DoctorVerification .sort:hover, body .ClincBody .allAppointments .sort:hover, body .AdminBody .sideBar a.logout:hover{
+    border: 1px solid #00644C;
+    background: #34a78c;
+}
+body .AdminBody .customersData .searchInput,body .AdminBody .appointments .searchInput, body .AdminBody .doctorsData .searchInput, body .AdminBody .DoctorVerification .searchInput, body .ClincBody .allAppointments .searchInput{
+    width: 400px;
+    height: 39px;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    border-radius: 6px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    color: #797979;
+}
+body .AdminBody .appointments .searchInput{
+    width: 600px;
+}
+body .AdminBody .customersData .searchInput:focus,body .AdminBody .appointments .searchInput:focus, body .AdminBody .doctorsData .searchInput:focus, body .AdminBody .DoctorVerification .searchInput:focus, body .ClincBody .allAppointments .searchInput:focus{
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(1, 152, 116,.25);
+}
+
+
+.finish-appoionment {
+    padding: 8px;
+    background: rgba(1, 152, 116, 0.815686);
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    transition: 0.5s;
+}
+
+.finish-appoionment:hover {
+    background: #00644C;
+}
+
+
+.doctor-cancel-appooinment{
+    padding: 8px;
+    background: rgba(161, 35, 4, 0.816);
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    transition: 0.5s;
+}
+
+.doctor-cancel-appooinment:hover{
+    background: #761b02;
+}
+
+body .ClincBody .offer form .create{
+    padding: 8px;
+    background: rgba(1, 152, 116, 0.815686);
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    transition: 0.5s;
+}
+body .ClincBody .offer form .create:hover{
+    background: #00644C;
+}
+body .ClincBody .offer form .form-control:focus{
+    border-color: #019874;
+    box-shadow: 0 0 0 0.2rem rgba(1, 152, 116,.25);
+}
+.body .outer-wrapper .table-wrapper table button.NoDelete{
+    background: rgba(108, 117, 125, 0.815686);
+    cursor: no-drop;
+}
+.body .outer-wrapper .table-wrapper table button.NoDelete:hover{
+    background: rgba(108, 117, 125, 0.815686);
+}
+
+.report{
+    margin-top: 74px;
+    padding: 3.45rem 0;
+    background: #F5F6F8;
+}
+.report .createBody{
+    width: 450px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    padding: 20px;
+}
+.report .createBody h1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    padding: 0;
+    line-height: 48px;
+    text-align: center;
+    color: #000;
+}
+.report .createBody form label{
+    font-size: 16px;
+    color: #676a6c;
+    padding-right: 10px;
+    width: 30%;
+}
+.report .createBody .password-input{
+    width: 100%;
+}
+.report .createBody form textarea{
+    height: 120px;
+}
+.report .createBody .form-control:focus{
+    outline: 0;
+    border: #019874;
+    box-shadow: 0 0 0 0.25rem rgba(1, 152, 116,.25) !important;
+}
+.report .createBody input.form-control:focus{
+    height: 37.6px;
+}
+.report .createBody select.form-control:focus{
+    height: 34.4px;
+}
+.report .createBody form button, .report .createBody form a{
+    padding: 10px 14px;
+    background: rgba(1, 152, 116, 0.815686);
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.report .createBody form button:hover, .report .createBody form a:hover{
+    background: #00644C;
+}
+.report .CreatePet form label{
+    width: 20%;
+}
+
+.reports{
+    margin-top: 74px;
+}
+.reports .search{
+    height: fit-content;
+    padding: 10px 20px;
+    background: #00644C;
+    border-radius: 10px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    transition: 0.5s;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.reports .search:hover{
+    border: 1px solid #00644C;
+    background: #34a78c;
+}
+.reports .searchInput{
+    width: 600px;
+    height: 39px;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    border-radius: 6px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    color: #797979;
+}
+.reports .searchInput:focus{
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(1, 152, 116,.25);
+}
+.reports .body .outer-wrapper .table-wrapper table td{
+    font-weight: 400 !important;
+    font-size: 18px !important;
+}
+.reports .body .outer-wrapper .table-wrapper table td .update{
+    font-size: 18px;
+}
+/* Chats */
+.chats{
+    width: 100%;
+    padding-bottom: 50px;
+    padding-top: 100px;
+    background-color: #F5F6F8;
+    min-height: 80vh;
+}
+.chats .chatsBody{
+    width: 75%;
+    height: 80vh;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    padding: 20px;
+    padding-right: 10px;
+}
+.chats .chatsBody h1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36px;
+    color: #000;
+}
+.chats .chatsBody .allChats {
+    height: 498px;
+    padding-top: 100px;
+    overflow-y: scroll;
+    padding-right: 10px;
+}
+.chats .chatsBody .allChats.hide-scrollbar {
+    height: auto;
+    padding-top: 0;
+    overflow-y: hidden;
+}
+.chats .chatsBody .allChats::-webkit-scrollbar {
+    width: 5px;
+}
+.chats .chatsBody .allChats::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+.chats .chatsBody .allChats::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+.chats .chatsBody .allChats .chat{
+    width: -webkit-fill-available;
+    padding: 20px;
+    background: #D9D9D9;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.chats .chatsBody .allChats .chat img{
+    width: 90px;
+    height: 90px;
+    margin-right: 1rem;
+    background: #D9D9D9;
+    border: 4px solid #019874;
+    border-radius: 200px;
+}
+.chats .chatsBody .allChats .chat h2{
+    width: 500px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 35px;
+    color: #000;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.chats .chatsBody .allChats .chat p{
+    width: 400px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #00000063;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.chats .chatsBody .allChats .chat .nonSeen{
+    font-weight: 700;
+}
+
+/* User Chats */
+.userChat{
+    width: 100%;
+    min-height: 110vh;
+    padding-bottom: 50px;
+    padding-top: 85px;
+    background-color: #F5F6F8;
+}
+.userChat .container{
+    background-color: #fff;
+    border: 1px solid #D4D4D4;
+    border-radius: 8px;
+    height: 88vh;
+    padding: 0;
+}
+.userChat .header{
+    height: 70px;
+    margin: 0 20px;
+    background: #FFFFFF;
+}
+.userChat .header img{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    background: #C4C4C4;
+    border-radius: 50%;
+}
+.userChat .header h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    color: #002046;
+    margin: 0;
+}
+.userChat .body{
+    background-color: #D4D4D4;
+    width: 100%;
+    height: calc(88vh - 70px);
+    padding: 20px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    border-radius: 0 0 8px 8px;
+}
+.userChat .body .allMassages{
+    height: calc(88vh - 162px);
+    overflow-y: auto;
+    padding-right: 10px;
+}
+.userChat .body .allMassages::-webkit-scrollbar {
+    width: 6px;
+}
+.userChat .body .allMassages::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 3px;
+}
+.userChat .body .allMassages::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
+}
+.userChat .body .allMassages .chatMassage,.userChat .body .allMassages .myMassage{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 70px 10px 24px;
+    /* padding-bottom: 20px; */
+    /* gap: 10px; */
+    width: fit-content;
+    max-width: 505px;
+    background: #019874;
+    border-radius: 0px 41.5946px 41.5946px 41.59px;
+    margin-bottom: 10px;
+}
+.userChat .body .allMassages .chatMassage .time, .userChat .body .allMassages .myMassage .time{
+    position: absolute;
+    /* bottom: 0; */
+    right: 10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    color: #fff;
+    margin: 0;
+}
+.userChat .body .allMassages .chatMassage p,.userChat .body .allMassages .myMassage p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 155%;
+    color: #FFFFFF;
+    margin: 0;
+}
+.userChat .body .allMassages .myMassage{
+    background: #fff;
+    border-radius: 41.5946px 41.5946px 0 41.59px;
+    margin-left: auto;
+    width: fit-content;
+    max-width: 700px;
+}
+.userChat .body .allMassages .myMassage p, .userChat .body .allMassages .myMassage .time{
+    color: #019874;
+}
+.userChat .body .allMassages .date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 16px;
+    background: #002F67;
+    border-radius: 47px;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.userChat .body .allMassages .date p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 158%;
+    color: #fff;
+    margin: 0;
+    width: fit-content;
+}
+.userChat .body .footer{
+    width: 100%;
+    height: 57px;
+    padding: 0 20px;
+    background: #F7F7F7;
+}
+.userChat .body .footer input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 155%;
+    color: #002046;
+    margin: 0;
+    width: calc(100% - 48px);
+}
+.userChat .body .footer button{
+    border: none;
+    background: transparent;
+    outline: none;
+}
+.userChat .body .footer button img{
+    width: 48px;
+}
+
+/* Chatbot */
+.Chat-Button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: #E6CDEA;
+    border: 1px solid #019874;
+    transition: 500ms;
+    right: 10px;
+    bottom: 10px;
+    z-index: 40;
+}
+.Chat-Button img{
+    width: 35px;
+}
+.ChatBot{
+    position: fixed;
+    right: 65px;
+    bottom: 75px;
+    width: 430px;
+    height: 540px;
+    background: #fff;
+    border-radius: 25px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.ChatBot .header{
+    width: 100%;
+    background: #019874;
+    border-radius: 25px 25px 0px 0px;
+}
+.ChatBot .header img{
+    padding-right: 1rem;
+}
+.ChatBot .header h1{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 19px;
+    color: #fff;
+}
+.ChatBot .header .online{
+    width: 13px;
+    height: 13px;
+    background: #81C784;
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
+.ChatBot .header p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 15px;
+    color: #E9E9E9;
+    padding-left: 4px;
+    margin: 0;
+}
+.ChatBot .header i{
+    color: #fff;
+    font-size: 25px;
+}
+.ChatBot .body{
+    background-color: #fff;
+    width: 100%;
+    height: calc(570px - 77px);
+    /* padding: 20px; */
+    /* padding-bottom: 10px; */
+    /* padding-right: 10px; */
+    border-radius: 0 0 25px 25px;
+}
+.ChatBot .body .allChatBotMassages{
+    height: calc(570px - 138px);
+    overflow-y: auto;
+    padding: 10px 10px 0 20px;
+    margin: 5px 0;
+    margin-right: 10px;
+}
+.ChatBot .body .allChatBotMassages::-webkit-scrollbar {
+    width: 6px;
+}
+.ChatBot .body .allChatBotMassages::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 3px;
+}
+.ChatBot .body .allChatBotMassages::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
+}
+.ChatBot .body .allChatBotMassages .chaBotMassage,.ChatBot .body .allChatBotMassages .massage{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #E3E3E3;
+    border-radius: 6px;
+    padding: 10px;
+    width: fit-content;
+    max-width: 215px;
+    margin-bottom: 10px;
+}
+.ChatBot .body .allChatBotMassages .chaBotMassage img{
+    width: 2.3rem;
+    padding-right: 4px;
+}
+.ChatBot .body .allChatBotMassages .chaBotMassage p,.ChatBot .body .allChatBotMassages .massage p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #282828;
+    margin: 0;
+}
+.ChatBot .body .allChatBotMassages .massage p{
+    color: #fff;
+}
+.ChatBot .body .allChatBotMassages .massage{
+    background: #019874;
+    margin-left: auto;
+}
+.ChatBot .body .footer{
+    width: 100%;
+    height: 57px;
+    padding: 0 20px;
+    background: #fff;
+    border-top: 1px solid #ACACAC;
+    border-radius: 0 0 25px 25px;
+}
+.ChatBot .body .footer input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000;
+    margin: 0;
+    width: calc(100% - 48px);
+}
+.ChatBot .body .footer button{
+    border: none;
+    background: transparent;
+    outline: none;
+}
+.ChatBot .body .footer button img{
+    width: 26px;
+}
+
+/* The Map */
+#map{
+    height: 230px;
+    width: 100%;
+    margin: auto; 
+    margin-top: 10px;
+    border-radius: 12px;
+}
+
+@media screen and (max-width: 1400px){
+    .Authentication-page .container .Section-1 h2 {
+        font-size: 22px;
+    }
+    .Authentication-page .container .Section-1 h3 {
+        font-size: 18px;
+    }
+    .Authentication-page .container .Section-2 h3 {
+        font-size: 30px;
+    }
+    .Authentication-page .container .Section-2 form label {
+        font-size: 18px;
+    }
+    .Authentication-page .container .Section-2 p{
+        font-size: 18px;
+    }
+    /* Sign Up Doctor F3 */
+    .Authentication-page .container .Section-2 form .UrgentExamination{
+        width: 35%;
+    }
+    /* Home Section */
+    .home .container .row h3{
+        font-size: 45px;
+        line-height: 55px;
+    }
+    .home .container .row p{
+        font-size: 18px;
+    }
+    /* All Doctors */
+    .doctors .container .allDoctors .Chat{
+        width: 177px;
+    }
+}
+@media screen and (max-width: 1200px){
+    .Authentication-page .container .Section-2 form .SignUp-lable{
+        width: 29%;
+    }
+    /* Sign Up */
+    .Authentication-page .container .Section-2 form .SignUp-lable-F1{
+        width: 30%;
+    }
+    /* Sign Up Doctor F3 */
+    .Authentication-page .container .Section-2 form .UrgentExamination{
+        width: 40%;
+    }
+    /* NavBar */
+    .navbar-expand-lg .navbar-nav .nav-link {
+        margin: 6px 11px;
+    }
+    /* Home Section */
+    .home .container .row h3{
+        font-size: 42px;
+        line-height: 55px;
+    }
+    /* All Doctors */
+    .doctors .container .allDoctors .photo{
+        width: 130px;
+        height: 130px;
+    }
+    .doctors .container .allDoctors .information h3{
+        font-size: 22px;
+    }
+    .doctors .container .allDoctors .information .Rating span{
+        font-size: 14px;
+    }
+    .doctors .container .allDoctors .information .Rating .stars i{
+        font-size: 16px;
+    }
+    .doctors .container .allDoctors .location{
+        cursor: pointer;
+        padding-bottom: 5px;
+    }
+    .doctors .container .allDoctors .description{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .doctors .container .allDoctors h4,.doctors .container .allDoctors h4 span{
+        font-size: 18px;
+        position: relative;
+    }
+    .doctors .container .allDoctors .Chat{
+        width: 137px;
+        border-radius: 8px;
+        font-size: 12px;
+    }
+    .doctors .container .allDoctors .Chat svg{
+        width: 24px;
+        height: 24px;
+    }
+    /* News Section */
+    .container-sm{
+        max-width: 720px;
+    }
+    /* Footer Section */
+    footer .sectionOne p{
+        font-size: 15px;
+    }
+    /* Doctor Details */
+    .doctorDetails .doctorInformation .photo {
+        width: 130px;
+        height: 130px;
+    }
+    .doctors .container .allDoctors .Chat, .doctorDetails .doctorInformation .details .Chat{
+        width: 170px;
+        font-size: 15px;
+    }
+    .doctorDetails .bookingInformation .header h3{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 26px;
+        text-align: center;
+        color: #fff;
+    }
+    .doctorDetails .bookingInformation .reservationDate h4{
+        font-size: 21px;
+    }
+}
+@media screen and (max-width: 992px){
+    .container{
+        max-width: 1140px;
+    }
+    .Authentication-page .container .Section-2{
+        border-radius: 20px;
+    }
+    /* Sign Up Doctor F3 */
+    .Authentication-page .container .Section-2 form .UrgentExamination{
+        width: 31%;
+    }
+    /* Navbar Notification */
+    .navbar .container .nav-item .Notification {
+        width: 400px;
+        height: 498px;
+        left: 54px;
+        bottom: -170px;
+        top: auto;
+        right: auto;
+    }
+    .navbar .container .nav-item .Notification::before {
+        left: -22px;
+        transform: rotate(270deg);
+        top: 298px;
+    }
+    .navbar .container .nav-item .Notification::after {
+        transform: rotate(90deg);
+        left: -22.8px;
+        top: 302px;
+    }
+    .marginRight{
+        margin-right: auto;
+    }
+    /* Home Section */
+    .home .container .row h3{
+        font-size: 34px;
+        line-height: 45px;
+    }
+    .home .container .row p{
+        font-size: 16px;
+    }
+    /* All Doctors */
+    .doctors .container .allDoctors .photo {
+        width: 100px;
+        height: 100px;
+    }
+    .doctors .container .allDoctors .information h3{
+        font-size: 16px;
+    }
+    .doctors .container .allDoctors .information .Rating span{
+        font-size: 10px;
+    }
+    .doctors .container .allDoctors .information .Rating .stars i{
+        font-size: 14px;
+    }
+    .doctors .container .allDoctors .description{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .doctors .container .allDoctors h4,.doctors .container .allDoctors h4 span{
+        font-size: 15px;
+    }
+    .doctors .container .allDoctors h6,.doctors .container .allDoctors h6 span{
+        font-size: 14px;
+    }
+    /* Footer Section */
+    footer .twoSections{
+        width: 100%;
+    }
+    footer .sectionOne p{
+        font-size: 18px;
+    }
+    footer .sectionThree{
+        width: 100%;
+        padding: 0 20px;
+    }
+    footer .Footer{
+        flex-direction: column;
+    }
+
+    /* table */
+    .outer-wrapper {
+        max-width: fit-content;
+        max-height: fit-content;
+    }
+    .table-wrapper {
+        overflow-x: scroll;
+    }
+    /* Custom Scrollbar */
+    .table-wrapper::-webkit-scrollbar {
+        width: 10px;
+    }
+    .table-wrapper::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+    }
+    .table-wrapper::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+    }
+    .table-wrapper::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+    table {
+        min-width: max-content;
+    }
+    /* Doctor Details */
+    .doctorDetails .container {
+        max-width: 720px;
+    }
+    .doctorDetails .bookingInformation {
+        margin-bottom: 20px;
+    }
+    
+}
+@media screen and (max-width: 767px){
+    .container{
+        max-width: 960px;
+    }
+    /* Sign Up Doctor F3 */
+    .Authentication-page .container .Section-2 form .UrgentExamination{
+        width: 43%;
+    }
+    /* Doctors Section */
+    .doctors .container .Filter .cityFilter, .doctors .container .Filter .areaFilter, .doctors .container .Filter .urgentFilter{
+        width: 128px;
+        height: 60px;
+        font-size: 16px;
+        padding-left: 2px;
+        padding-right: 8px;
+    }
+    .doctors .container .Filter .cityFilter svg, .doctors .container .Filter .areaFilter svg{
+        width: 16px;
+        height: 16px;
+    }
+    .doctors .container .Filter .cityFilter span, .doctors .container .Filter .areaFilter span, .doctors .container .Filter .urgentFilter span{
+        font-size: 14px;
+        padding: 0;
+    }
+    .doctors .container .Filter .areaFilter {
+        width: 143px;
+        height: 60px;
+    }
+    .doctors .container .Filter .urgentFilter {
+        width: 172px;
+        height: 60px;
+    }
+    .doctors .container .Filter .urgentFilter i {
+        font-size: 16px;
+        padding: 0 1px 0 0;
+    }
+    .doctors .container .Filter .Search {
+        width: 88px;
+        height: 60px;
+        font-size: 16px;
+        padding: 5px;
+    }
+    .doctors .container .Filter .Search i{
+        font-size: 17px;
+    }
+    .doctors .container .head h2{
+        font-size: 21px;
+        padding-right: 3px;
+    }
+    .doctors .container .head p{
+        font-size: 10px;
+    }
+    .doctors .container .form-control{
+        padding: 6px 6px;
+        font-size: 14px;
+    }
+    .doctors .container .form-group label{
+        font-size: 14px;
+        padding-right: 5px;
+    }
+    .dropdown-item{
+        white-space: normal;
+        font-size: 14px;
+    }
+    .dropdown-menu.show {
+        min-width: 100%;
+    }
+    /* All Doctors */
+    
+    .doctors .container .allDoctors .photo{
+        width: 130px;
+        height: 130px;
+    }
+    .doctors .container .allDoctors .information h3{
+        font-size: 16px;
+    }
+    .doctors .container .allDoctors .information .Rating{
+        padding: 0 0.25rem !important;
+    }
+    .doctors .container .allDoctors .information .Rating span{
+        font-size: 10px;
+    }
+    .doctors .container .allDoctors .information .Rating .stars i{
+        font-size: 14px;
+    }
+    .doctors .container .allDoctors .description{
+        font-size: 14px;
+        line-height: 22px;
+    }  
+    .doctors .container .allDoctors h4,.doctors .container .allDoctors h4 span{
+        font-size: 18px;
+    }
+    .doctors .container .allDoctors h6,.doctors .container .allDoctors h6 span{
+        font-size: 1rem;
+    }
+    .doctors .container .allDoctors .location i{
+        font-size: 20px;
+    }
+    .doctors .container .allDoctors .location h6 span{
+        font-size: 14px;
+    }
+    .doctors .container .allDoctors .Chat {
+        margin: auto;
+        margin-right: 0;
+    }
+    /* Footer Section */
+    footer .twoSections .sectionOne{
+        width: 100%;
+        text-align: center;
+    }
+    footer .twoSections .sectionOne .logo{
+        justify-content: center;
+    }
+    footer .twoSections .sectionTwo{
+        width: 100%;
+        text-align: center;
+    }
+    footer .Footer,footer .twoSections{
+        flex-direction: column;
+    }
+
+    /* profile */
+    .profile .Body .Information {
+        width: 95%;
+    }
+    .profile .Body .Information form .Delete-btn, 
+    .profile .Body .Information form .btn-save, 
+    .profile .Body .Information form .Delete-btn i{
+        font-size: 16px;
+    }
+    .profile .Body .Information form .control-label{
+        font-size: 20px;
+    }
+    .profile .Body .Information form input, .profile .Body .Information form select, .profile .Body .Information form textarea{
+        font-size: 17px;
+    }
+
+    /* Doctor Details */
+    .doctorDetails .doctorInformation {
+        height: auto;
+    }
+    .doctorDetails .doctorInformation .details h3 {
+        font-size: 22px;
+    }
+    .doctorDetails .doctorInformation .details p {
+        font-size: 15px;
+        line-height: 27px;
+    }
+    .doctorDetails .doctorInformation .details .Rating span {
+        font-size: 14px;
+    }
+    .doctorDetails .doctorInformation .details .Rating .stars i {
+        font-size: 16px;
+    }
+    .doctorDetails .AllComments .comments .comment svg {
+        width: 45px;
+        height: 45px;
+    }
+    .doctorDetails .AllComments .comments .comment .details p {
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    /* The Map */
+    #map{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 567px){
+    .container{
+        max-width: 720px;
+    }
+    .Authentication-page .container .Section-1{
+        display: none;
+    }
+    .Authentication-page .container .Section-2 form .SignUp-lable{
+        width: 45%;
+    }
+    /* Sign Up */
+    .Authentication-page .container .Section-2 form .SignUp-lable-F1{
+        width: 36%;
+    }
+    /* Sign Up Doctor F3 */
+    .Authentication-page .container .Section-2 form .UrgentExamination{
+        width: 46%;
+    }
+    /* Home Section */
+    .home .container .row h3, .home .container .row p {
+        text-align: center;
+    }
+    /* Doctors Section */
+    .doctors .container .Filter .cityFilter, .doctors .container .Filter .areaFilter, .doctors .container .Filter .urgentFilter{
+        width: 112px;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+    }
+    .doctors .container .Filter .cityFilter span, .doctors .container .Filter .areaFilter span, .doctors .container .Filter .urgentFilter span{
+        font-size: 12px;
+    }
+    .doctors .container .Filter .areaFilter{
+        width: 116px;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+    }
+    .doctors .container .Filter .urgentFilter{
+        width: 157px;
+    }
+    .doctors .container .Filter .Search{
+        width: 84px;
+        font-size: 16px;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+    }
+    .doctors .container .Filter .Search i{
+        font-size: 16px;
+    }
+    .doctors .container .allDoctors .description {
+        padding-bottom: 10px;
+    }
+    .doctors .container .allDoctors .doctorPrice{
+        display: inline-block;
+    }
+    .doctors .container .allDoctors h6{
+        padding-left: 0;
+    }
+    /* Admin Panal */
+    body .AdminBody .newAdmin form label {
+        width: 36%;
+    }
+
+    .widthPhoto {
+        width: -webkit-fill-available !important;
+        padding-right: 10px !important;
+    }
+    /* profile */
+    .profile .Body .Name {
+        padding-left: 10px;
+    }
+    .profile .Body .Information form .control-label{
+        font-size: 18px;
+    }
+    .profile .Body .Information form .category label {
+        padding-right: 15px;
+    }
+    /* Chatbot */
+    .ChatBot{
+        right: 46px;
+        bottom: 60px;
+        width: 369px;
+        height: 441px;
+    }
+    .ChatBot .header{
+        padding-bottom: 0.5rem !important;
+    }
+    .ChatBot .header img{
+        padding-right: 1rem;
+        width: 50px;
+    }
+    .ChatBot .header h1{
+        font-size: 18px;
+        margin: 0;
+    }
+    .ChatBot .header .online{
+        width: 10px;
+        height: 10px;
+    }
+    .ChatBot .header i{
+        font-size: 22px;
+    }
+    .ChatBot .body{
+        height: calc(441px - 77px);
+    }
+    .ChatBot .body .allChatBotMassages{
+        height: calc(441px - 125px);
+    }
+    /* Doctor Details */
+    .doctorDetails .doctorInformation .photo {
+        width: 120px;
+        height: 120px;
+    }
+    .doctorDetails .doctorInformation .details p {
+        font-size: 14px;
+        line-height: 25px;
+    }
+    .doctorDetails .doctorInformation .details .Rating span {
+        font-size: 12px;
+    }
+    .doctorDetails .doctorInformation .details .Rating .stars i {
+        font-size: 14px;
+    }
+    .doctorDetails .doctorInformation .details .Chat {
+        width: 138px;
+        font-size: 13px;
+    }
+    .doctorDetails .doctorInformation .details .Chat svg {
+        width: 24px;
+        height: 24px;
+    }
+
+}
+@media screen and (max-width: 481px){
+    /* Navbar Notification */
+    .navbar .container .nav-item .Notification {
+        width: 250px;
+        height: 367px;
+        bottom: -73px;
+        padding: 0.5rem !important;
+    }
+    .navbar .container .nav-item .Notification::before {
+        top: 265px;
+    }
+    .navbar .container .nav-item .Notification::after {
+        top: 281px;
+    }
+    .navbar .container .nav-item .Notification .scroll-div {
+        height: 318px;
+    }
+    .navbar .container .nav-item .Notification .scroll-div::-webkit-scrollbar {
+        width: 6px;
+    }
+    .navbar .container .nav-item .Notification .notificate h4 {
+        font-size: 10px;
+    }
+    .navbar .container .nav-item .Notification .notificate .date h5 {
+        font-size: 10px;
+    }
+    .navbar .container .nav-item .Notification .notificate .OpenForm button.noRead, 
+    .navbar .container .nav-item .Notification .notificate .OpenForm button.Read{
+        width: 76px;
+        font-size: 10px;
+    }
+    .navbar .container .nav-item .Notification .notificate .d-flex .d-flex{
+        flex-direction: column;
+    }
+    .navbar .container .nav-item .Notification .notificate .d-flex .d-flex h4{
+        font-size: 13px;
+    }
+    .navbar .container .nav-item .Notification .notificate p {
+        font-size: 10px;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+    .navbar .container .nav-item .Notification .notificate .OpenForm button, .navbar .container .nav-item .Notification .notificate .OpenForm a {
+        width: 140px;
+        font-size: 12px;
+    }
+    /* Home Section */
+    .home .container .row h3 {
+        font-size: 28px;
+        line-height: 29px;
+    }
+    .home .container svg{
+        height: 300px;
+    }
+    /* Doctors Section */
+    .doctors {
+        padding-top: 40px;
+    }
+    .doctors .container .Filter {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .doctors .container .Filter .cityFilter, .doctors .container .Filter .areaFilter, .doctors .container .Filter .urgentFilter{
+        width: 200px;
+        border-radius: 8px;
+    }
+    .doctors .container .Filter .cityFilter svg, .doctors .container .Filter .areaFilter svg{
+        width: 20px;
+        height: 20px;
+    }
+    .doctors .container .Filter .cityFilter span, .doctors .container .Filter .areaFilter span, .doctors .container .Filter .urgentFilter span{
+        font-size: 16px;
+    }
+    .doctors .container .Filter .areaFilter {
+        width: 200px;
+    }
+    .doctors .container .Filter .urgentFilter {
+        width: 200px;
+    }
+    .doctors .container .Filter .urgentFilter i {
+        font-size: 18px;
+        padding: 0 4px 0 0;
+    }
+    .doctors .container .Filter .Search {
+        width: 110px;
+        font-size: 18px;
+        border-radius: 8px;
+    }
+    .doctors .container .Filter .Search i{
+        font-size: 18px;
+    }
+    .dropdown-item{
+        font-size: 16px;
+    }
+    .information {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .doctors .container .head h2 {
+        font-size: 18px;
+    }
+    .doctors .container .form-control {
+        padding: 0;
+        font-size: 13px;
+    }
+    .doctors .container .allDoctors .information h3 {
+        margin: 0;
+    }
+    .doctors .container .allDoctors h4, .doctors .container .allDoctors h4 span {
+        font-size: 14px;
+    }
+    .doctors .container .allDoctors h6, .doctors .container .allDoctors h6 span {
+        font-size: 12px;
+    }
+    .doctors .container .allDoctors .Chat {
+        width: 106px;
+        border-radius: 7px;
+        font-size: 10px;
+    }
+    .doctors .container .allDoctors .row>* {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+    }
+    .doctors .headTitle{
+        flex-direction: column;
+        align-items: start !important;
+    }
+    .doctors .container .allDoctors .Chat svg {
+        width: 20px;
+        height: 20px;
+    }
+    .doctors .container .form-control {
+        padding: 0;
+        font-size: 13px;
+        width: 100px;
+    }
+    .doctors .container .form-control option {
+        font-size: 13px;
+    }
+    .doctors .container .allDoctors .location {
+        margin: auto;
+    }
+    .doctors .container .allDoctors .description {
+        text-align: justify;
+    }
+    /* News Section */
+    .News .allNews .oneNews {
+        width: 245px;
+        margin: 0.75rem !important;
+    }
+    .News .allNews .oneNews p {
+        font-size: 14px;
+    }
+    .News .allNews .oneNews img {
+        width: 206px;
+        height: auto;
+    }
+    /* profile */
+    .profile .Body .Information form .Delete-btn, 
+    .profile .Body .Information form .btn-save, 
+    .profile .Body .Information form .Delete-btn i{
+        font-size: 14px;
+    }
+    .profile .Body .profileImage {
+        width: 120px;
+        height: 120px;
+        margin-top: 46px;
+    }
+    .profile .Body .custom-file-upload .upload-icon {
+        width: 20px;
+        height: 36px;
+    }
+    .profile .Body .Name {
+        padding-left: 5px;
+    }
+    .profile .Body .Name h1 {
+        font-size: 21px;
+        margin: 0;
+    }
+    .profile .Body .Name h3 {
+        font-size: 16px;
+        text-align: center;
+    }
+    .profile .Body .Information form .form-group{
+        display: block !important;
+    }
+    .profile .Body .Information form .category {
+        width: 60%;
+    }
+
+    /* Creat Pet */
+    .report .createBody{
+        width: 321px;
+    }
+    .report .createBody h1{
+        font-size: 26px;
+    }
+    .report .createBody form label{
+        font-size: 14px;
+        color: #676a6c;
+        padding-right: 0px;
+        width: 30%;
+    }
+    .report .createBody form .form-control{
+        width: 80%;
+        padding: .375rem .5rem;
+        font-size: 14px;
+    }
+    .report .createBody form textarea.form-control{
+        width: 100%;
+    }
+
+    /* Previous Appointment */
+    .previousAppointments .appointments h1{
+        font-size: 22px;
+    }
+    .previousAppointments .appointments .body .outer-wrapper .table-wrapper table th{
+        width: 205px;
+        font-size: 18px;
+    }
+    .previousAppointments .appointments .body .outer-wrapper .table-wrapper table td{
+        font-size: 14px !important;
+    }
+
+    /* Chatbot */
+    .ChatBot{
+        width: 263px;
+    }
+    .ChatBot .body .allChatBotMassages .chaBotMassage, 
+    .ChatBot .body .allChatBotMassages .massage {
+        padding: 5px;
+    }
+    .ChatBot .body .allChatBotMassages .chaBotMassage p, 
+    .ChatBot .body .allChatBotMassages .massage p {
+        font-size: 13px;
+    }
+    .ChatBot .body .footer input{
+        font-size: 14px;
+    }
+    .ChatBot .body .footer button {
+        margin-right: 0.5rem !important;
+    }
+    .ChatBot .body .footer button.mx-3 {
+        margin-left: 4px !important;
+    }
+    .ChatBot .body .footer button img {
+        width: 22px;
+    }
+
+    /* Doctor Details */
+    .doctorDetails .doctorInformation {
+        flex-direction: column;
+        align-items: center;
+    }
+    .doctorDetails .doctorInformation .details p {
+        font-size: 14px;
+        line-height: 25px;
+        margin-bottom: 0.5rem;
+    }
+    .doctorDetails .AllComments .comments .comment .details h5 {
+        font-size: 21px;
+        padding-top: 12px;
+        margin-bottom: 0.25rem;
+    }
+    .doctorDetails .AllComments .comments .comment .details .stars i {
+        font-size: 15px;
+    }
+    .doctorDetails .AllComments .comments .comment .details h6 {
+        font-size: 17px;
+        margin: 0;
+    }
+    .doctorDetails .AllComments .comments .comment .details p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+}
+@media screen and (max-width: 365px){
+    /* Doctor Details */
+    .doctorDetails .doctorInformation .details h3 {
+        font-size: 18px;
+    }
+    .doctorDetails .doctorInformation .details .d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: center;
+    }
+    .doctorDetails .doctorInformation .details .Rating {
+        margin-bottom: 10px;
+    }
+    .doctorDetails .doctorInformation .details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .doctorDetails .doctorInformation .details p {
+        text-align: center;
+    }
+}
+@media screen and (max-width: 321px){
+    /* Navbar Notification */
+    .navbar .container .nav-item .Notification {
+        width: 240px;
+        height: 232px;
+        bottom: 63px;
+        left: 0;
+    }
+    .navbar .container .nav-item .Notification::before {
+        top: 227px;
+        transform: rotate(180deg);
+        left: 5.5px;
+    }
+    .navbar .container .nav-item .Notification::after {
+        top: 225px;
+        transform: rotate(0deg);
+        left: 0;
+    }
+    .navbar .container .nav-item .Notification .scroll-div {
+        height: 186px;
+    }
+    /* Home Section */
+    .home .container .row h3 {
+        font-size: 22px;
+        line-height: 27px;
+    }
+    .home .container .row p {
+        font-size: 12px;
+        line-height: 20px;
+        padding-top: 9px;
+    }
+    .home .container svg{
+        height: 300px;
+    }
+    .doctors .head {
+        flex-direction: column-reverse;
+    }
+    .doctors .headTitle {
+        flex-direction: column;
+        align-items: center !important;
+        padding-top: 10px;
+    }
+    .doctors .container .allDoctors .information h3 {
+        text-align: center;
+        line-height: 25px;
+    }
+    .doctors .container .allDoctors .col-xll-2.col-xl-3.col-md-3.col-sm-12.d-flex.flex-md-column.flex-sm-row.justify-content-between.align-items-end.pt-md-0.pt-sm-2 {
+        flex-direction: column;
+        align-items: center !important;
+    }
+    .doctors .container .allDoctors .Chat {
+        width: 130px;
+        font-size: 12px;
+        justify-content: space-around !important;
+        margin: auto;
+    }
+    .doctors .container .allDoctors h6, .doctors .container .allDoctors h6 span {
+        text-align: center;
+    }
+    .doctors .scroller {
+        padding-right: 6px;
+        height: 1060px;
+    }
+    .doctors .scroller::-webkit-scrollbar {
+        width: 6px;
+    }
+    /* News Section */
+    .News .allNews .oneNews {
+        width: 206px;
+        margin: 0.45rem !important;
+        padding: 15px;
+        min-height: 286px;
+    }
+    .News .allNews .oneNews h3 {
+        font-size: 17px;
+    }
+    .News .allNews .oneNews p {
+        font-size: 12px;
+    }
+    .News .allNews .oneNews img {
+        width: 170px;
+    }
+    /* profile */
+    .profile .Body .Information form .Delete-btn, 
+    .profile .Body .Information form .btn-save, 
+    .profile .Body .Information form .Delete-btn i{
+        font-size: 12px;
+    }
+    .profile .Body .Name h1 {
+        font-size: 16px;
+        margin: 0;
+    }
+    .profile .Body .Name h3 {
+        font-size: 14px;
+    }
+    .profile .Body .Information form .control-label{
+        font-size: 16px;
+    }
+    .profile .Body .Information form input, .profile .Body .Information form select, .profile .Body .Information form textarea{
+        font-size: 15px;
+    }
+
+    /* Creat Pet */
+    .report .createBody{
+        width: 240px;
+    }
+    .report .createBody form button, .report .createBody form a {
+        padding: 8px 10px;
+        margin: auto;
+        font-size: 16px;
+    }
+    .report .createBody form .selectPet{
+        width: 48%;
+    }
+
+    /* Previous Appointment */
+    .previousAppointments .appointments h1{
+        text-align: center;
+    }
+    .previousAppointments .appointments .body .outer-wrapper .table-wrapper table th{
+        width: 146px;
+    }
+    /* Chatbot */
+    .ChatBot {
+        width: 230px;
+        right: 15px;
+        bottom: 65px;
+    }
+    .ChatBot .body .allChatBotMassages {
+        padding-left: 10px;
+    }
+    .ChatBot .body .footer {
+        padding: 0 10px;
+    }
+
+    /* Doctor Details */
+    .doctorDetails .doctorInformation .photo {
+        width: 110px;
+        height: 110px;
+    }
+    .doctorDetails .doctorInformation .details h3 {
+        font-size: 18px;
+        text-align: center;
+    }
+    .doctorDetails .doctorInformation .details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .doctorDetails .doctorInformation .details p {
+        font-size: 12px;
+        line-height: 19px;
+        margin-bottom: 0.2rem;
+    }
+    .doctorDetails .doctorInformation .details .Rating {
+        margin-bottom: 6px;
+    }
+    .doctorDetails .AllComments h4{
+        text-align: center;
+    }
+    .doctorDetails .AllComments .comments{
+        padding-left: 0;
+    }
+    .doctorDetails .AllComments .comments .comment svg {
+        display: none;
+    }
+    .doctorDetails .AllComments .comments .comment .details {
+        padding-left: 0px;
+        text-align: center;
+    }
+    .doctorDetails .AllComments .comments .comment .details h5 {
+        font-size: 21px;
+        padding-top: 0px;
+        margin-bottom: 0.25rem;
+    }
+    .doctorDetails .AllComments .comments .comment .details .d-flex.align-items-center {
+        justify-content: center;
+    }
+    .doctorDetails .AllComments .comments .comment .details .stars i {
+        font-size: 15px;
+    }
+    .doctorDetails .AllComments .comments .comment .details h6 {
+        font-size: 17px;
+        margin: 0;
+    }
+    .doctorDetails .AllComments .comments .comment .details p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .doctorDetails .AllComments #see-more {
+        margin-top: 0 !important;
+    }
+    .doctorDetails .bookingInformation .header h3 {
+        font-size: 20px;
+    }
+    .doctorDetails .bookingInformation .price p, .doctorDetails .bookingInformation .price p span {
+        font-size: 17px;
+    }
+    .doctorDetails .bookingInformation .reservationDate h4 {
+        font-size: 15px;
+    }
+
+}
+
+
+
+select{
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #e5e6e7;
+    border-radius: 1px;
+    color: inherit;
+    display: block;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+    font-size: 14px;
+    position: relative;
+    appearance: auto !important;
+}
+.form-body {
+    display: none;
+}
+
+body .ClincBody .reviews h2, body .ClincBody .appointmentManage h2, body .ClincBody .allAppointments h2, body .ClincBody .offer h2,.report h1,.reports h2{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+    color: #2E2E2E;
+    padding-top: 1.5rem;
+    width: 100%;
+    text-align: center;
+}
+
+
