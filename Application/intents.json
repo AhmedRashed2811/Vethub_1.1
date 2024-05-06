@@ -1,0 +1,285 @@
+{"intents": [
+    {"tag": "Feline Leukemia",
+     "patterns": [
+       "cat Anemia",
+       "cat weight loss",
+       "cat respiratory distress",
+       "cat Weakness Lethargy",
+       "cat fever",
+       "cat recurring infections",
+       "cat Respiratory",
+       "cat digestive",
+       "cat Gastrointestinal",
+       "cat Pale Gums Mucous Membranes",
+       "cat Reproductive"],
+     "preventions": 
+     ["Vaccination: Ensure cats at high risk receive FeLV vaccines.",
+     "Indoor Environment: Keep cats indoors to limit exposure.",
+     "Testing: Test cats before introducing them to other cats.",
+     "Isolation of Infected Cats: Separate infected cats from others.",
+     "Avoid Contact with Stray Cats: Prevent interactions with strays.",
+     "Regular Veterinary Care: Schedule check-ups for guidance.",
+     "Sterilization: Spay/neuter cats to reduce transmission risk.",
+     "Environmental Hygiene: Maintain cleanliness in shared spaces.",
+     "Education and Awareness: Inform owners about FeLV risks."
+    ]
+    },
+
+    {
+        "tag": "Fleas and Flea Control",
+        "patterns": [
+          "cat fleas",
+          "dog fleas"
+        ],
+        "preventions": [
+          "Regular Flea Control: This is the most important step in preventing FBH. There are many effective flea control products available, including topical medications, chewable tablets, and collars. Talk to your veterinarian about the best option for your pet and their lifestyle (indoor/outdoor, seasonal flea problems, etc.).",
+          "Environmental Control: Vacuum carpets and upholstery regularly to remove fleas, eggs, and larvae. Wash pet bedding in hot water.",
+          "Additional Considerations: Severity of Reaction: The frequency and severity of flea control will depend on your pet's individual reaction to flea bites. Discuss this with your veterinarian. Seasonal vs. Year-Round: If you live in an area with mild winters where fleas can survive year-round, year-round flea control is recommended."
+        ]
+      }
+      ,
+
+      {
+        "tag": "Ear mites",
+        "patterns": [
+          "Pruritus ears ear",
+          "Pruritus neck",
+          "Pruritus head",
+          "Thick red brown black crusts in ears ear",
+          "Crusting scales neck, rump, and tail",
+          "ear Excoriations"
+        ],
+        "preventions":[
+          "Regular veterinary checkups: Regular checkups allow your veterinarian to examine your pet's ears for signs of mites and other problems.",
+          "Parasite prevention medication: There are many effective parasite prevention medications available that can help prevent ear mite infestations.",
+          "Talk to your veterinarian about the best option for your pet.",
+          "Cleaning your pet's ears: Regular ear cleaning can help remove debris and earwax that can attract mites. However, it's important to use a veterinarian-approved ear cleaner and to follow their instructions carefully. Improper ear cleaning can actually irritate the ear canal and make it more susceptible to infection."
+        ]
+      },
+
+      {
+        "tag": "Feline Herpesvirus Infection",
+        "patterns":[
+          "cat fever",
+          "cat Rhinitis",
+          "cat nasal discharge",
+          "cat sinusitis ",
+          "cat ocular eye discharge",
+          "cat ulceration descemetocele panophthalmitis eye"
+        ],
+        "preventions":[
+          "Vaccination: Vaccination is the most important step in preventing FHV-1. Kittens typically receive a series of vaccinations starting at around 8 weeks of age, with boosters given throughout their lives. Your veterinarian can recommend a vaccination schedule for your cat.",
+          "Minimize Stress: Stress can weaken a cat's immune system and make them more susceptible to infection. Provide your cat with a quiet, comfortable place to relax and avoid introducing major changes to their routine.",
+          "Isolate Sick Cats: If you have a cat with FHV-1, isolate them from other cats to prevent the spread of the virus. Use separate food bowls, water bowls, litter boxes, and bedding for sick and healthy cats.",
+          "Hygiene: Wash your hands thoroughly after handling a cat with FHV-1 to prevent spreading the virus to other animals or yourself."
+        ]
+      },
+
+    
+
+    {
+      "tag": "Feline Panleukopenia",
+      "patterns": [
+        "cat Vomiting", 
+        "cat diarrhea", 
+        "cat lethargy", 
+        "cat fever",
+        "cat loss Appetite",
+        "cat Dehydration",
+        "cat Depression",
+        "cat cold"],
+      "preventions": [
+      "Vaccination: All kittens should be vaccinated against feline panleukopenia. The vaccination schedule typically involves a series of vaccinations starting at around 6-8 weeks of age, with boosters given at regular intervals throughout the cat's life. Your veterinarian can recommend a specific vaccination schedule for your cat.",
+      "Minimize contact with sick cats: Avoid introducing stray or unknown cats into your home, especially if you have a kitten or unvaccinated cat.",
+      "Quarantine new cats: If you bring a new cat into your home, quarantine them away from other cats for a period of time to ensure they are not carrying any diseases.",
+      "Maintain a clean environment: Regularly clean and disinfect your cat's litter box, food bowls, and water bowls. This will help to reduce the spread of germs."
+    ]
+    },
+
+
+    {
+      "tag": "Rabies",
+      "patterns": [
+        "ferocious", 
+        "changes in behavior", 
+        "Seeking solitude", 
+        "Apprehension",
+        "Nervousness",
+        "Anxiety",
+        "Unusual shyness",
+        "aggressiveness",
+        "Biting",
+        "Chewing site wound",
+        "Wandering Roaming",
+        "Viciousness",
+        "unresponsive to light",
+        "anisocoria"
+      ],
+      "preventions": [
+      "Vaccination: All dogs and cats should be vaccinated against rabies according to local regulations.",
+      "Your veterinarian can advise you on the appropriate vaccination schedule for your pet.",
+      "Leash your pet: When walking your pet outdoors, keep them on a leash to maintain control and prevent them from coming into contact with wild animals.",
+      "Keep your pet confined: Do not allow your pet to roam freely outdoors unsupervised. This will help to reduce their chances of encountering wild animals that may be carrying rabies.",
+      "Avoid wild animals: Teach your pet to avoid wild animals, such as raccoons, foxes, and bats."
+    ]
+    },
+
+
+    {"tag": "Feline Upper Respiratory",
+     "patterns": [
+        "cat Sneezing", 
+        "cat Nasal Discharge", 
+        "cat Conjunctivitis",
+        "cat Watery Eyes",
+        "cat Squinting or Blinking", 
+        "cat Coughing",
+        "cat Difficulty Swallowing"],
+     "preventions":
+      ["Vaccination: Ensure cats receive vaccines for common respiratory pathogens.",
+     "Quarantine: Separate infected cats to prevent spread to others.",
+     "Hygiene: Keep living spaces clean to reduce contamination.",
+     "Air Quality: Provide good ventilation to minimize respiratory irritants.",
+     "Stress Management: Minimize stressors to support immune health.",
+     "Nutrition: Provide a balanced diet to support overall health.",
+     "Prompt Treatment: Seek veterinary care at the first sign of illness.",
+     "Isolation: Keep sick cats away from healthy ones to prevent transmission.",
+     "Monitoring: Watch for symptoms and seek veterinary advice if concerned."]
+    },
+
+    {"tag": "Feline Asthma",
+     "patterns": ["cat Coughing","cat Sneezing" , "cat Wheezing", "cat Difficulty Breathing"],
+     "preventions": 
+     ["Environmental Control: Minimize exposure to known triggers like smoke or dust.",
+     "Medication Adherence: Administer prescribed medications consistently.",
+     "Regular Veterinary Check-ups: Monitor asthma and adjust treatment as needed.",
+     "Stress Reduction: Minimize stressors to prevent flare-ups.",
+     "Indoor Environment: Keep indoor air clean and free from irritants.",
+     "Diet Management: Maintain a healthy weight to reduce respiratory strain.",
+     "Symptom Monitoring: Watch for signs of respiratory distress and seek veterinary care promptly.",
+     "Education: Learn about asthma management and treatment options.",
+     "Emergency Preparedness: Have a plan in place for severe asthma attacks."]
+    },
+
+    {"tag": "Feline Lower Urinary",
+     "patterns": [
+        "cat Straining to Urinate", 
+        "cat Blood in Urine",
+        "cat Painful Urination",
+        "cat Urinating Outside the Litter Box",
+        "cat Urinary Accidents",
+        "cat Licking Genital Area",
+        "cat Urinary Blockage",
+        "cat Changes in Urinary Habits",
+        "cat diarrhea",
+        "cat urine"],
+     "preventions": 
+     ["Hydration: Ensure access to fresh water to promote urinary health.",
+     "Dietary Management: Feed a balanced diet to prevent urinary issues.",
+     "Stress Reduction: Minimize stressors to prevent flare-ups.",
+     "Litter Box Hygiene: Keep litter boxes clean to reduce the risk of infection.",
+     "Regular Veterinary Check-ups: Monitor urinary health and address issues promptly.",
+     "Medication Adherence: Administer prescribed medications consistently.",
+     "Environmental Enrichment: Provide mental and physical stimulation to reduce stress.",
+     "Symptom Monitoring: Watch for signs of urinary discomfort and seek veterinary care promptly.",
+     "Education: Learn about urinary health and preventive measures for your cat."]
+    },
+
+
+    {
+        "tag": "Canine Parvovirus",
+        "patterns": ["dog Vomiting", "dog diarrhea", "dog lethargy"],
+        "preventions": ["Vaccination: Ensure puppies receive a series of vaccinations against parvovirus.",
+        "Quarantine: Isolate infected dogs to prevent spread to others.",
+        "Disinfection: Thoroughly clean and disinfect areas where infected dogs have been.",
+        "Hydration: Provide intravenous fluids to combat dehydration.",
+        "Nutrition: Offer easily digestible food to maintain strength.",
+        "Veterinary Care: Seek immediate veterinary attention for diagnosis and treatment.",
+        "Preventive Measures: Avoid areas where parvovirus is known to be prevalent.",
+        "Isolation: Keep unvaccinated puppies away from potentially infected dogs.",
+        "Monitoring: Watch for symptoms such as vomiting, diarrhea, and lethargy."]
+        
+    },
+    {
+        "tag": "Canine Distemper",
+        "patterns": ["dog Fever", "dog coughing", "dog nasal discharge"],
+        "preventions": 
+        ["Vaccination: Ensure puppies receive vaccinations against distemper.",
+        "Quarantine: Isolate infected dogs to prevent spread to others.",
+        "Disinfection: Thoroughly clean and disinfect areas where infected dogs have been.",
+        "Nutrition: Provide a balanced diet to support immune health.",
+        "Veterinary Care: Seek immediate veterinary attention for diagnosis and treatment.",
+        "Preventive Measures: Avoid areas where distemper is known to be prevalent.",
+        "Isolation: Keep unvaccinated puppies away from potentially infected dogs.",
+        "Monitoring: Watch for symptoms such as fever, coughing, and discharge."]
+    },
+    {
+        "tag": "Canine Lyme Disease",
+        "patterns": ["dog Joint pain", "dog lameness", "dog lethargy"],
+        "preventions": 
+        ["Tick Prevention: Use tick prevention products regularly, especially in endemic areas.",
+        "Tick Checks: Perform regular tick checks after outdoor activities.",
+        "Vaccination: Consider vaccination against Lyme disease for dogs in high-risk areas.",
+        "Environmental Management: Reduce tick habitats in yards by mowing grass and removing leaf litter.",
+        "Prompt Removal: Remove attached ticks promptly and correctly to reduce transmission risk.",
+        "Regular Veterinary Check-ups: Monitor for signs of Lyme disease during routine visits.",
+        "Education: Learn about Lyme disease prevention and symptoms.",
+        "Symptom Monitoring: Watch for signs such as lameness, fever, and lethargy after potential tick exposure.",
+        "Outdoor Safety: Avoid known tick-infested areas during peak seasons."]
+    },
+    {
+        "tag": "Canine Brucellosis",
+        "patterns": 
+        ["dog reproduct",
+        "dog Reproductive",
+        "dog sexual",
+        "dog lethargy",
+        "dog Joint pain",
+        "dog Fever",
+        "dog Eye inflammation"
+      ]
+        ,
+        "preventions": 
+        ["Testing: Test breeding dogs for Brucellosis before mating.",
+        "Quarantine: Isolate infected dogs to prevent spread to others.",
+        "Strict Hygiene: Maintain strict hygiene practices, especially in breeding facilities.",
+        "Disinfection: Thoroughly clean and disinfect areas where infected dogs have been.",
+        "Preventive Measures: Avoid contact with potentially infected animals.",
+        "Veterinary Care: Seek immediate veterinary attention for diagnosis and treatment.",
+        "Isolation: Keep infected dogs away from uninfected ones to prevent transmission.",
+        "Education: Learn about Brucellosis prevention and transmission.",
+        "Reporting: Report suspected cases to veterinary authorities for monitoring and control."]
+    },
+    {
+        "tag": "Canine Cushing's Disease",
+        "patterns":
+        ["dog Increased thirst",
+        "dog Increased urination",
+        "dog Excessive hunger",
+        "dog Weight gain",
+        "dog Muscle weakness",
+        "dog Skin changes",
+        "dog Electrolyte imbalance",
+        "dog Behavioral changes",
+        "dog Fatigue",
+        "dog Sensitivity to heat",
+        "dog Panting",
+        "dog Abdominal enlargement",
+        "dog Skin infections"],
+
+        "preventions": 
+        ["Regular Veterinary Check-ups: Monitor for signs of Cushing's disease during routine visits.",
+        "Diagnostic Testing: Conduct blood tests and other diagnostic procedures to confirm diagnosis.",
+        "Medication Adherence: Administer prescribed medications consistently.",
+        "Dietary Management: Feed a balanced diet to support overall health.",
+        "Stress Reduction: Minimize stressors to manage symptoms.",
+        "Exercise: Provide regular, moderate exercise to maintain muscle mass and joint health.",
+        "Environmental Comfort: Ensure a comfortable living environment for the dog.",
+        "Symptom Monitoring: Watch for signs such as increased thirst, urination, and appetite.",
+        "Education: Learn about Cushing's disease management and treatment options."]
+        
+    }
+
+
+]
+}
+
